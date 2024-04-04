@@ -236,4 +236,11 @@ const m_list = [
 }));
 
 
+m_list.unshift({
+  label: 'basic (updater, eslint, stylelint)',
+  packages: m_list.filter(i => ['updater', 'eslint', 'stylelint'].indexOf(i.label) !== -1).map(i => i.packages).flat(),
+  dev: true,
+});
+
+
 export {m_list, packages_list};
