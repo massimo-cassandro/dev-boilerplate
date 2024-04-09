@@ -3,6 +3,10 @@
 **/*.mwb.bak
 **/*.mwb.beforefix
 
+node_modules
+bower_components
+package-lock.json
+composer.lock
 
 .env
 .env.local
@@ -12,8 +16,6 @@
 .env.test.local
 .env.production.local
 
-/**/node_modules/
-/**/bower_components/
 *.sass-cache
 /@files-repo
 /@db-backup

@@ -64,7 +64,8 @@
     box-shadow: none;
   }
 
-  @include mediaMixins.media-desktop-up() {
+  // @include mediaMixins.media-desktop-up() {}
+  @media screen and (min-width: __desktop_breakpoint__) {
     .fullscreen & {
       inset: 1.5rem;
     }
@@ -77,7 +78,8 @@
         -10px -10px 1rem var(--overlay);
 
     }
-  } // end desktop
+
+  }
 
 }
 
