@@ -190,7 +190,7 @@ const m_list = [
   },
   {
     label: 'eslint',
-    packages: ['@massimo-cassandro/eslint-config', 'eslint'],
+    packages: ['@massimo-cassandro/eslint-config', 'eslint@^8'],
     dev: true,
   },
   {

@@ -1,13 +1,13 @@
 # Packages list
 
 ## basic (updater, eslint, stylelint)
-npm i -D @massimo-cassandro/dev-updater @massimo-cassandro/eslint-config eslint @massimo-cassandro/stylelint-config @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint
+npm i -D @massimo-cassandro/dev-updater @massimo-cassandro/eslint-config eslint@^8 @massimo-cassandro/stylelint-config @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint
 
 ## updater
 npm i -D @massimo-cassandro/dev-updater
 
 ## eslint
-npm i -D @massimo-cassandro/eslint-config eslint
+npm i -D @massimo-cassandro/eslint-config eslint@^8
 
 ## stylelint
 npm i -D @massimo-cassandro/stylelint-config @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint
