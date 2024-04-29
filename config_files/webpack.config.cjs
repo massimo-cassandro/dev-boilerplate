@@ -22,7 +22,7 @@ const isDevelopment = process.env.NODE_ENV === 'development',
 const config = {
   mode: isDevelopment? 'development' : 'production',
 
-  watch: isDevelopment,
+  // watch: isDevelopment,
 
   // Control how source maps are generated
   // devtool: isDevelopment? 'inline-source-map' : 'source-map', // false, <== false non aggiunge la sourcemap ,
@@ -84,7 +84,8 @@ const config = {
     compress: true,
     hot: true,
     // host: '0.0.0.0',
-    port: 5507,
+    port: 5500,
+    // devMiddleware: { writeToDisk: true } // forza la scrittura su disco anche in modalità dev
   },
 
   plugins: [
@@ -240,9 +241,9 @@ const config = {
         ]
       },
 
-      // scss modules
+      // css/scss modules
       {
-        test: /\.module\.s(a|c)ss$/,
+        test: /\.module\.(sass|scss|css)$/,
         use: [
           isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
           {

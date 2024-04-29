@@ -107,7 +107,10 @@ const packages_list = [
   },
   {
     label: 'styled-components',
-    packages: ['styled-components'],
+    packages: [
+      'babel-plugin-styled-components',
+      'styled-components'
+    ],
     dev: true,
   },
   {
@@ -127,7 +130,6 @@ const packages_list = [
       // '@babel/plugin-proposal-class-properties',
       '@babel/preset-env',
       'babel-loader',
-      'babel-plugin-styled-components',
       // 'clean-webpack-plugin',
       'copy-webpack-plugin',
       'css-loader',
