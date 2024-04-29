@@ -103,5 +103,5 @@ npm i -D styled-components
 npm i -D @types/react-dom @types/react ts-loader typescript-plugin-css-modules typescript
 
 ## webpack
-npm i -D @babel/core @babel/plugin-proposal-class-properties @babel/preset-env babel-loader babel-plugin-styled-components copy-webpack-plugin css-loader css-minimizer-webpack-plugin csso-webpack-plugin dotenv-webpack file-loader html-loader html-webpack-plugin mini-css-extract-plugin postcss-loader postcss-preset-env sass-loader style-loader terser-webpack-plugin webpack-cli webpack-dev-server webpack-manifest-plugin webpack-remove-empty-scripts webpack
+npm i -D @babel/core @babel/preset-env babel-loader babel-plugin-styled-components copy-webpack-plugin css-loader css-minimizer-webpack-plugin csso-webpack-plugin dotenv-webpack file-loader html-loader html-webpack-plugin mini-css-extract-plugin postcss-loader postcss-preset-env sass-loader style-loader terser-webpack-plugin webpack-cli webpack-dev-server webpack-manifest-plugin webpack-remove-empty-scripts webpack
 

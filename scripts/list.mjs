@@ -124,7 +124,7 @@ const packages_list = [
     label: 'webpack',
     packages: [
       '@babel/core',
-      '@babel/plugin-proposal-class-properties',
+      // '@babel/plugin-proposal-class-properties',
       '@babel/preset-env',
       'babel-loader',
       'babel-plugin-styled-components',
