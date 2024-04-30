@@ -97,6 +97,7 @@ const config = {
     // }),
 
     // Removes/cleans build folders and unused assets when rebuilding
+    // non necessario con opzione `clean` di output
     // new CleanWebpackPlugin(),
 
     // Extracts CSS into separate files
@@ -105,7 +106,7 @@ const config = {
       chunkFilename: isDevelopment? '[id].css' : '[id].[contenthash].css'
     }),
 
-    // Copies files from target to destination folder
+    // favicons
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -175,16 +176,19 @@ const config = {
   // Determine how modules within the project are treated
   module: {
     rules: [
+
+      // html files
       // {
       //   test: /\.html$/,
       //   loader: 'html-loader'
       // },
 
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
+      // typescript
+      // {
+      //   test: /\.tsx?$/,
+      //   use: 'ts-loader',
+      //   exclude: /node_modules/,
+      // },
 
       // JavaScript/JSX: Use Babel to transpile JavaScript files
       {
@@ -199,13 +203,14 @@ const config = {
           },
         },
       },
+
       // inline svg
       {
         test: /\.inline\.svg$/i,
         type: 'asset/inline'
       },
 
-      // Images: Copy image files to build folder
+      // Images / svg: Copy image files to build folder
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif|svg)$/i,
         // type: 'asset/resource',
@@ -222,7 +227,7 @@ const config = {
         ]
       },
 
-      // Fonts and SVGs
+      // Fonts
       {
         test: /\.(woff2?|eot|ttf|otf)$/,
         //type: 'asset/resource',
@@ -243,7 +248,7 @@ const config = {
 
       // css/scss modules
       {
-        test: /\.module\.(sass|scss|css)$/,
+        test: /(\.module\.(sass|scss|css))$/,
         use: [
           isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
@@ -266,9 +271,11 @@ const config = {
           }
         ]
       },
+
+      // css / scss
       {
         test: /\.(sass|scss|css)$/,
-        exclude: /\.module.(s?(a|c)ss)$/,
+        exclude: /(\.module\.s?(a|c)ss)$/,
         use: [
           isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
@@ -304,7 +311,7 @@ const config = {
       'util': false
     },
     modules: ['./', 'node_modules'],
-    extensions: ['.tsx', '.ts', '.js', '.jsx', '.json', '.scss'],
+    extensions: ['.tsx', '.ts', '.js', '.mjs', '.cjs', '.jsx', '.json', '.scss', '.css'],
     alias: {
       '@': './',
       assets:'./build',
