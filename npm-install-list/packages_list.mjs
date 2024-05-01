@@ -1,5 +1,4 @@
-const packages_list = [
-
+const std_packages = [
   {
     label: 'rollup base',
     packages: [
@@ -27,20 +26,20 @@ const packages_list = [
     dev: true,
   },
   {
-    label: 'postcss + csso + autoprefixer + purgecss',
+    label: 'postcss + autoprefixer + purgecss (webpack)',
     packages: [
       'postcss',
       '@fullhuman/postcss-purgecss',
       'autoprefixer',
-      'postcss-csso',
+      // 'postcss-csso',
     ],
     dev: true,
   },
-  {
-    label: 'postcss cli',
-    packages: ['postcss-cli'],
-    dev: true
-  },
+  // {
+  //   label: 'postcss cli',
+  //   packages: ['postcss-cli'],
+  //   dev: true
+  // },
   {
     label: 'postcss-banner',
     packages: ['postcss-banner'],
@@ -74,7 +73,7 @@ const packages_list = [
     dev: true
   },
   {
-    label: 'primsjs',
+    label: 'prismjs',
     packages: ['prismjs'],
     dev: false,
   },
@@ -88,8 +87,6 @@ const packages_list = [
     packages: ['open-props', 'postcss-jit-props'],
     dev: false,
   },
-
-
   {
     label: 'react',
     packages: [
@@ -167,22 +164,9 @@ const packages_list = [
 
 ];
 
-packages_list.sort((a,b) => {
-  if (a.label < b.label) {
-    return -1;
-  }
-  if (a.label > b.label) {
-    return 1;
-  }
+std_packages.sort((a,b) => a.label < b.label? -1 : (a.label > b.label? 1 : 0));
 
-  // names must be equal
-  return 0;
-});
-
-
-
-
-const m_list = [
+const basic_packages = [
   {
     label: 'updater',
     packages: [
@@ -215,34 +199,35 @@ const m_list = [
     label: 'layout-tools',
     packages: ['@massimo-cassandro/layout-tools'],
     dev: true,
-  },
-].concat([
-  'auto-datatables-bs5',
-  'autocomplete',
-  'ckeditor-utilities',
-  'cookie-consent',
-  'js-file-uploader',
-  'js-utilities',
-  'json-table',
-  'modal-alert',
-  'scss-utilities',
-  'sharing-links',
-  'unsplash-page'
-].map(item =>{
-  return {
-    label: `@massimo-cassandro/${item}`,
-    packages: [`@massimo-cassandro/${item}`],
-    dev: false,
-  };
+  }
+];
 
-}));
-
-
-m_list.unshift({
+basic_packages.unshift({
   label: 'basic (updater, eslint, stylelint)',
-  packages: m_list.filter(i => ['updater', 'eslint', 'stylelint'].indexOf(i.label) !== -1).map(i => i.packages).flat(),
+  packages: basic_packages.filter(i => ['updater', 'eslint', 'stylelint'].indexOf(i.label) !== -1).map(i => i.packages).flat(),
   dev: true,
 });
 
 
-export {m_list, packages_list};
+const m_packages = [
+    'auto-datatables-bs5',
+    'autocomplete',
+    'ckeditor-utilities',
+    'cookie-consent',
+    'js-file-uploader',
+    'js-utilities',
+    'json-table',
+    'modal-alert',
+    'scss-utilities',
+    'sharing-links',
+    'unsplash-page'
+  ].map(item =>({
+      label: `@massimo-cassandro/${item}`,
+      packages: [`@massimo-cassandro/${item}`],
+      dev: false,
+  }));
+
+
+
+
+export {basic_packages, std_packages, m_packages};

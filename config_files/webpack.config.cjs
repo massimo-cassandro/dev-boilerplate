@@ -254,8 +254,10 @@ const config = {
           {
             loader: 'css-loader',
             options: {
+              // importLoaders: 1,
               // modules: true,
               modules: {
+                // esModule: false, // abilita importazione in cjs
                 auto: true, // /\.module\.scss$/i.test(filename),
                 // localIdentName: Encore.isProduction()? '[hash:base64]' : '[local]_[hash:base64:6]' // '[name]__[local]_[hash:base64:5]'
                 localIdentName: '[local]_[hash:base64:6]' // '[name]__[local]_[hash:base64:5]'

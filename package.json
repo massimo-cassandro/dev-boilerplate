@@ -1,6 +1,6 @@
 {
   "name": "dev-boilerpale",
   "scripts": {
-    "write install list file": "node ./scripts/write-list.mjs"
+    "write install list file": "node ./npm-install-list/write-list.mjs"
   }
 }
