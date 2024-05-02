@@ -131,7 +131,7 @@ const std_packages = [
       'copy-webpack-plugin',
       'css-loader',
       'css-minimizer-webpack-plugin',
-      'csso-webpack-plugin',
+      // 'csso-webpack-plugin',
       'dotenv-webpack',
       'file-loader',
       'html-loader',

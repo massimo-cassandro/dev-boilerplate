@@ -183,6 +183,12 @@ const config = {
       //   loader: 'html-loader'
       // },
 
+      // markdown / plain text
+      // {
+      //   test: /\.(txt|md)$/,
+      //   loader: 'raw-loader'
+      // },
+
       // typescript
       // {
       //   test: /\.tsx?$/,
