@@ -124,7 +124,6 @@ const std_packages = [
     label: 'webpack',
     packages: [
       '@babel/core',
-      // '@babel/plugin-proposal-class-properties',
       '@babel/preset-env',
       'babel-loader',
       // 'clean-webpack-plugin',
