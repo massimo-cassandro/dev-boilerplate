@@ -1,6 +1,6 @@
 /* eslint-env node */
 
-module.exports = {
+const postcssConfig = {
   plugins: [
 
     require('autoprefixer'),
@@ -10,31 +10,16 @@ module.exports = {
       content: [
         './node_modules/@massimo-cassandro/**/*.js',
         './node_modules/@massimo-cassandro/**/*.jsx',
-        './assets/**/*.js',
-        '../blunet-sf/templates/convention23/**/*.html.twig'
+        './led-board/**/*.js',
+        './led-board/**/*.jsx'
       ],
       // css: ['./AppBundle/Resources/public/css/**/*.css'],
       // output: ['./AppBundle/Resources/public/css/'],
-      // variables: true,
+      variables: true,
       // fontFace: true,
       safelist: {
-        standard: [
-          'font-monospace', 'was-validated', 'is-valid', 'is-invalid', 'lead',
-          /* 'container-xl', */ 'container-xxl'
-        ],
-        deep: [
-          /^text-/, /^pagination/, /^page-/, /^alert/, /^[mp][tbselrxy]?-(.{2,3}-)?[\d(auto)]/,
-          /^col-/, /^row/, /^btn-/, /^d-/, /^fw-/, /* /^btn-/, */
-
-          /^mAlert/, /^modal-alert/, /^ac-/, /^fupl/,
-
-          // yet-another-react-lightbox
-          /^yarl/,
-
-          // cookie consent
-          // /^cck-/, /^wt-ecl-/
-
-        ],
+        // standard: [],
+        // deep: [],
         // greedy: [/yellow$/]
       }
     }),
@@ -48,3 +33,16 @@ module.exports = {
     // })
   ]
 };
+
+// If we are in production mode, then add cssnano
+if (process.env.NODE_ENV === 'production') {
+  postcssConfig.plugins.push(
+    require('cssnano')({
+      // use the safe preset so that it doesn't
+      // mutate or remove code from our css
+      preset: 'default',
+    })
+  );
+}
+
+module.exports = postcssConfig;

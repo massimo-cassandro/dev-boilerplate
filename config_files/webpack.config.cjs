@@ -183,9 +183,9 @@ const config = {
       //   loader: 'html-loader'
       // },
 
-      // markdown / plain text
+      // markdown / plain text / raw svg
       // {
-      //   test: /\.(txt|md)$/,
+      //   test: /\.(txt|md|raw\.svg)$/,
       //   loader: 'raw-loader'
       // },
 
