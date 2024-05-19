@@ -11,6 +11,9 @@ npm i -D @massimo-cassandro/dev-updater
 ### eslint
 npm i -D @massimo-cassandro/eslint-config eslint@^8
 
+### eslint 9
+npm i -D @massimo-cassandro/eslint-config@latest eslint@latest @eslint/js globals
+
 ### stylelint
 npm i -D @massimo-cassandro/stylelint-config @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint
 

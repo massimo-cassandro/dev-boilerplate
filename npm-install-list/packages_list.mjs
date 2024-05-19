@@ -179,6 +179,11 @@ const basic_packages = [
     dev: true,
   },
   {
+    label: 'eslint 9',
+    packages: ['@massimo-cassandro/eslint-config@latest', 'eslint@latest', '@eslint/js', 'globals'],
+    dev: true,
+  },
+  {
     label: 'stylelint',
     packages: [
       '@massimo-cassandro/stylelint-config',

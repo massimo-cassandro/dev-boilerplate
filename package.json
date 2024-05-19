@@ -1,6 +1,10 @@
 {
-  "name": "dev-boilerpale",
+  "name": "dev-boilerplate",
   "scripts": {
     "write install list file": "node ./npm-install-list/write-list.mjs"
+  },
+  "devDependencies": {
+    "@massimo-cassandro/eslint-config": "^1.1.1",
+    "eslint": "^8.57.0"
   }
 }

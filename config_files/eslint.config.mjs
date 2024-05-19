@@ -1,11 +1,9 @@
+import eslint_config from '@massimo-cassandro/eslint-config';
 
 export default [
-  {
-    extends: [
-      // 'react-app',
-      '@massimo-cassandro/eslint-config'
-    ],
-    // files: ["src/**/*.js"],
-    // ignores: ["**/*.config.js"],
-  }
+  eslint_config,
+  // {
+  //   files: ["src/**/*.js"],
+  //   ignores: ["**/*.config.js"],
+  // }
 ];
