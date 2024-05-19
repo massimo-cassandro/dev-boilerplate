@@ -12,7 +12,7 @@ npm i -D @massimo-cassandro/dev-updater
 npm i -D @massimo-cassandro/eslint-config eslint@^8
 
 ### eslint 9
-npm i -D @massimo-cassandro/eslint-config@latest eslint@latest @eslint/js globals
+npm i -D eslint@latest @eslint/js globals @massimo-cassandro/eslint-config@latest
 
 ### stylelint
 npm i -D @massimo-cassandro/stylelint-config @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint
@@ -114,4 +114,9 @@ npm i -S @massimo-cassandro/sharing-links
 
 ### @massimo-cassandro/unsplash-page
 npm i -S @massimo-cassandro/unsplash-page
+
+## Cmds
+----------------------------------------
+### Update stylelint config file
+mv stylelint.config.cjs .stylelintrc.cjs
 

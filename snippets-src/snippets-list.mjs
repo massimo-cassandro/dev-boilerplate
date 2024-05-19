@@ -180,7 +180,7 @@ const basic_packages = [
   },
   {
     label: 'eslint 9',
-    packages: ['@massimo-cassandro/eslint-config@latest', 'eslint@latest', '@eslint/js', 'globals'],
+    packages: ['eslint@latest', '@eslint/js', 'globals', '@massimo-cassandro/eslint-config@latest'],
     dev: true,
   },
   {
@@ -214,24 +214,30 @@ basic_packages.unshift({
 
 
 const m_packages = [
-    'auto-datatables-bs5',
-    'autocomplete',
-    'ckeditor-utilities',
-    'cookie-consent',
-    'js-file-uploader',
-    'js-utilities',
-    'json-table',
-    'modal-alert',
-    'scss-utilities',
-    'sharing-links',
-    'unsplash-page'
-  ].map(item =>({
-      label: `@massimo-cassandro/${item}`,
-      packages: [`@massimo-cassandro/${item}`],
-      dev: false,
-  }));
+  'auto-datatables-bs5',
+  'autocomplete',
+  'ckeditor-utilities',
+  'cookie-consent',
+  'js-file-uploader',
+  'js-utilities',
+  'json-table',
+  'modal-alert',
+  'scss-utilities',
+  'sharing-links',
+  'unsplash-page'
+].map(item =>({
+  label: `@massimo-cassandro/${item}`,
+  packages: [`@massimo-cassandro/${item}`],
+  dev: false,
+}));
 
 
+const cmds = [
+  {
+    label: 'Update stylelint config file',
+    cmd: 'mv stylelint.config.cjs .stylelintrc.cjs'
+  }
+];
 
 
-export {basic_packages, std_packages, m_packages};
+export {basic_packages, std_packages, m_packages, cmds};

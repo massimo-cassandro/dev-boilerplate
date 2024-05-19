@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-env node */
 
-import { basic_packages, std_packages, m_packages } from './packages_list.mjs';
+import { basic_packages, std_packages, m_packages, cmds } from './snippets-list.mjs';
 import { writeFileSync } from 'fs';
 
 import * as path from 'path';
@@ -10,10 +10,10 @@ import * as path from 'path';
 const __dirname = new URL('.', import.meta.url).pathname;
 
 
-const target_file = path.resolve(__dirname, '../npm-install-list.md');
+const target_file = path.resolve(__dirname, '../snippets.md');
 
 
-const content = [
+let content = [
   {name: 'Base', packages: basic_packages},
   {name: 'Standard', packages: std_packages},
   {name: '@m', packages: m_packages},
@@ -27,6 +27,11 @@ const content = [
     }).join('');
 }).join('\n\n');
 
+
+content +=  '## Cmds\n' + '-'.repeat(40) + '\n' + cmds.map( i => {
+  return `### ${i.label}\n` +
+    `${i.cmd}\n\n`;
+}).join('\n\n');
 
 writeFileSync(target_file, '# Packages install list\n\n' + content);
 
