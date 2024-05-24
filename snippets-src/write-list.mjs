@@ -28,9 +28,9 @@ let content = [
 }).join('\n\n');
 
 
-content +=  '## Cmds\n' + '-'.repeat(40) + '\n' + cmds.map( i => {
+content +=  '\n\n## Cmds\n' + '-'.repeat(40) + '\n' + cmds.map( i => {
   return `### ${i.label}\n` +
-    `${i.cmd}\n\n`;
+    `${i.cmd}`;
 }).join('\n\n');
 
 writeFileSync(target_file, '# Packages install list\n\n' + content);
