@@ -11,7 +11,7 @@ npm i -D @massimo-cassandro/dev-updater eslint@latest @eslint/js globals && npm 
 npm i -D @massimo-cassandro/dev-updater
 
 #### eslint@8
-npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config
+npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1
 
 #### eslint
 npm i -D eslint@latest @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@latest

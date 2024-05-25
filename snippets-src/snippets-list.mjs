@@ -10,7 +10,7 @@ const basic_packages = [
   {
     id: 'eslint@8',
     label: 'eslint@8',
-    packages: ['eslint@^8', ['@massimo-cassandro/eslint-config']],
+    packages: ['eslint@^8', ['@massimo-cassandro/eslint-config@^1']],
     dev: true,
   },
   {
