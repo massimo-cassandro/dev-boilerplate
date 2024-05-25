@@ -123,4 +123,4 @@ npm i -S @massimo-cassandro/unsplash-page
 mv -f .stylelintrc.cjs stylelint.config.cjs
 
 ### Update eslint
-rm -f .eslintrc.cjs && npm uninstall @massimo-cassandro/eslint-config eslint && npm i -D eslint@latest @eslint/js globals @massimo-cassandro/eslint-config@latest
+rm -f .eslintrc.cjs && npm uninstall @massimo-cassandro/eslint-config eslint && npm i -D eslint@latest @eslint/js globals @massimo-cassandro/eslint-config@latest && echo "import eslint_config from '@massimo-cassandro/eslint-config';\n\nexport default [\n  ...eslint_config,\n  // {\n  //   files: ['src/**/*.js'],\n  //   ignores: [\n  //     'dist/',\n  //     'build/',\n  //     '**/vendor/'\n  //   ],\n  // }\n];\n" > eslint.config.mjs

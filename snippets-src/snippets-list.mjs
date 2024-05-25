@@ -1,3 +1,70 @@
+const basic_packages = [
+  {
+    label: 'updater',
+    packages: [
+      '@massimo-cassandro/dev-updater'
+    ],
+    dev: true,
+  },
+  {
+    label: 'eslint@8',
+    packages: ['@massimo-cassandro/eslint-config', 'eslint@^8'],
+    dev: true,
+  },
+  {
+    label: 'eslint',
+    packages: ['eslint@latest', '@eslint/js', 'globals', '@massimo-cassandro/eslint-config@latest'],
+    dev: true,
+  },
+  {
+    label: 'stylelint',
+    packages: [
+      '@massimo-cassandro/stylelint-config',
+      '@stylistic/stylelint-plugin',
+      'stylelint-config-css-modules',
+      'stylelint-config-twbs-bootstrap',
+      'stylelint',
+    ],
+    dev: true,
+  },
+  {
+    label: 'create-favicons',
+    packages: ['@massimo-cassandro/create-favicons'],
+    dev: true,
+  },
+  {
+    label: 'layout-tools',
+    packages: ['@massimo-cassandro/layout-tools'],
+    dev: true,
+  }
+];
+
+basic_packages.unshift({
+  label: 'basic (updater, eslint, stylelint)',
+  packages: basic_packages.filter(i => ['updater', 'eslint', 'stylelint'].indexOf(i.label) !== -1).map(i => i.packages).flat(),
+  dev: true,
+});
+
+
+const m_packages = [
+  'auto-datatables-bs5',
+  'autocomplete',
+  'ckeditor-utilities',
+  'cookie-consent',
+  'js-file-uploader',
+  'js-utilities',
+  'json-table',
+  'modal-alert',
+  'scss-utilities',
+  'sharing-links',
+  'unsplash-page'
+].map(item =>({
+  label: `@massimo-cassandro/${item}`,
+  packages: [`@massimo-cassandro/${item}`],
+  dev: false,
+}));
+
+
 const std_packages = [
   {
     label: 'rollup base',
@@ -165,72 +232,6 @@ const std_packages = [
 
 std_packages.sort((a,b) => a.label < b.label? -1 : (a.label > b.label? 1 : 0));
 
-const basic_packages = [
-  {
-    label: 'updater',
-    packages: [
-      '@massimo-cassandro/dev-updater'
-    ],
-    dev: true,
-  },
-  {
-    label: 'eslint@8',
-    packages: ['@massimo-cassandro/eslint-config', 'eslint@^8'],
-    dev: true,
-  },
-  {
-    label: 'eslint',
-    packages: ['eslint@latest', '@eslint/js', 'globals', '@massimo-cassandro/eslint-config@latest'],
-    dev: true,
-  },
-  {
-    label: 'stylelint',
-    packages: [
-      '@massimo-cassandro/stylelint-config',
-      '@stylistic/stylelint-plugin',
-      'stylelint-config-css-modules',
-      'stylelint-config-twbs-bootstrap',
-      'stylelint',
-    ],
-    dev: true,
-  },
-  {
-    label: 'create-favicons',
-    packages: ['@massimo-cassandro/create-favicons'],
-    dev: true,
-  },
-  {
-    label: 'layout-tools',
-    packages: ['@massimo-cassandro/layout-tools'],
-    dev: true,
-  }
-];
-
-basic_packages.unshift({
-  label: 'basic (updater, eslint, stylelint)',
-  packages: basic_packages.filter(i => ['updater', 'eslint', 'stylelint'].indexOf(i.label) !== -1).map(i => i.packages).flat(),
-  dev: true,
-});
-
-
-const m_packages = [
-  'auto-datatables-bs5',
-  'autocomplete',
-  'ckeditor-utilities',
-  'cookie-consent',
-  'js-file-uploader',
-  'js-utilities',
-  'json-table',
-  'modal-alert',
-  'scss-utilities',
-  'sharing-links',
-  'unsplash-page'
-].map(item =>({
-  label: `@massimo-cassandro/${item}`,
-  packages: [`@massimo-cassandro/${item}`],
-  dev: false,
-}));
-
 
 const cmds = [
   {
@@ -241,9 +242,28 @@ const cmds = [
 
   {
     label: 'Update eslint',
-    cmd: 'rm -f .eslintrc.cjs && npm uninstall @massimo-cassandro/eslint-config eslint ' +
-      '&& npm i -D eslint@latest @eslint/js globals @massimo-cassandro/eslint-config@latest'
-  }
+    cmd: 'rm -f .eslintrc.cjs && npm uninstall @massimo-cassandro/eslint-config eslint',
+    packages: ['eslint'],
+    addConfigFile: ['eslint.config.mjs']
+  },
+
+  // {
+  //   label: 'eslint + stylelint + config files',
+  //   packages: ['eslint', 'stylelint'],
+  //   addConfigFile: ['eslint.config.mjs', 'stylelint.config.cjs']
+  // },
+
+  // {
+  //   label: 'rollup + config files',
+  //   packages: ['rollup base'],
+  //   addConfigFile: ['rollup.config.mjs']
+  // },
+
+  // {
+  //   label: 'postcss + config files',
+  //   packages: ['postcss + autoprefixer + purgecss (webpack)'],
+  //   addConfigFile: ['postcss.config.cjs']
+  // }
 ];
 
 

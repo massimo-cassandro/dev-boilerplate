@@ -5,7 +5,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.3.0",
-    "@massimo-cassandro/eslint-config": "^2.0.1",
+    "@massimo-cassandro/eslint-config": "^2.0.2",
     "eslint": "^9.3.0",
     "globals": "^15.3.0"
   }
