@@ -45,7 +45,7 @@ content +=  '\n\n## Cmds\n' + '-'.repeat(40) + '\n' + cmds.map( i => {
     i.addConfigFile.forEach( configFile => {
       const filePath = path.resolve(__dirname, `../config_files/${configFile}`),
         file_content = fs.readFileSync(filePath, 'utf8').replace(/\n/g, '\\n');
-      cmds.push(`echo "${file_content}" > ${configFile}`);
+      cmds.push(`echo "${file_content}" > ${configFile.replace(/^_/, '.')}`);
     });
 
   }

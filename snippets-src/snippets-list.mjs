@@ -246,6 +246,10 @@ const cmds = [
     packages: ['eslint'],
     addConfigFile: ['eslint.config.mjs']
   },
+  {
+    label: 'editorconfig',
+    addConfigFile: ['_editorconfig']
+  },
 
   // {
   //   label: 'eslint + stylelint + config files',
