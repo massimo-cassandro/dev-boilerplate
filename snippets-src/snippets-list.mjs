@@ -8,15 +8,15 @@ const basic_packages = [
     dev: true,
   },
   {
-    id: 'eslint@8',
-    label: 'eslint@8',
+    id: 'eslint8',
+    label: 'eslint 8',
     packages: ['eslint@^8', ['@massimo-cassandro/eslint-config@^1']],
     dev: true,
   },
   {
-    id: 'eslint',
-    label: 'eslint',
-    packages: ['eslint@latest', '@eslint/js', 'globals', ['@massimo-cassandro/eslint-config@latest']],
+    id: 'eslint9',
+    label: 'eslint 9',
+    packages: ['eslint@^9', '@eslint/js', 'globals', ['@massimo-cassandro/eslint-config@^2']],
     dev: true,
   },
   {
@@ -47,12 +47,20 @@ const basic_packages = [
   }
 ];
 
-basic_packages.unshift({
-  id: 'basic',
-  label: 'basic (updater, eslint, stylelint)',
-  packages: basic_packages.filter(i => ['updater', 'eslint', 'stylelint'].indexOf(i.id) !== -1).map(i => i.packages).flat(),
-  dev: true,
-});
+basic_packages.unshift(
+  {
+    id: 'basic',
+    label: 'basic (updater, eslint 9, stylelint)',
+    packages: basic_packages.filter(i => ['updater', 'eslint9', 'stylelint'].indexOf(i.id) !== -1).map(i => i.packages).flat(),
+    dev: true,
+  },
+  {
+    id: 'basic8',
+    label: 'basic eslint 8 (updater, eslint 8, stylelint)',
+    packages: basic_packages.filter(i => ['updater', 'eslint8', 'stylelint'].indexOf(i.id) !== -1).map(i => i.packages).flat(),
+    dev: true,
+  }
+);
 
 
 const m_packages = [
@@ -275,15 +283,15 @@ const cmds = [
   {
     label: 'Update eslint 8 → 9',
     cmd: 'rm -f .eslintrc.cjs',
-    uninstall: ['eslint@8'],
-    packages: ['eslint'],
+    uninstall: ['eslint8'],
+    packages: ['eslint9'],
     addConfigFile: ['eslint.config.mjs']
   },
   {
     label: 'Downgrade eslint 9 → 8',
     cmd: 'rm -f eslint.config.mjs',
-    uninstall: ['eslint'],
-    packages: ['eslint@8'],
+    uninstall: ['eslint9'],
+    packages: ['eslint8'],
     addConfigFile: ['_eslintrc.cjs']
   },
   {
@@ -292,8 +300,8 @@ const cmds = [
   },
 
   // {
-  //   label: 'eslint + stylelint + config files',
-  //   packages: ['eslint', 'stylelint'],
+  //   label: 'eslint9 + stylelint + config files',
+  //   packages: ['eslint9', 'stylelint'],
   //   addConfigFile: ['eslint.config.mjs', 'stylelint.config.cjs']
   // },
 

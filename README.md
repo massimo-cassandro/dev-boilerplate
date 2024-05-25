@@ -4,20 +4,23 @@
 
 ### Base
 ----------------------------------------
-#### basic (updater, eslint, stylelint)
-npm i -D @massimo-cassandro/dev-updater eslint@latest @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@latest && npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint @massimo-cassandro/stylelint-config
+#### basic (updater, eslint 9, stylelint)
+npm i -D @massimo-cassandro/dev-updater eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@^2 && npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint @massimo-cassandro/stylelint-config
+
+#### basic eslint 8 (updater, eslint 8, stylelint)
+npm i -D @massimo-cassandro/dev-updater eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1 && npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint @massimo-cassandro/stylelint-config @massimo-cassandro/stylelint-config
 
 #### updater
 npm i -D @massimo-cassandro/dev-updater
 
-#### eslint@8
+#### eslint 8
 npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1
 
-#### eslint
-npm i -D eslint@latest @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@latest
+#### eslint 9
+npm i -D eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@^2
 
 #### stylelint
-npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint @massimo-cassandro/stylelint-config && npm i -D @massimo-cassandro/stylelint-config
+npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint @massimo-cassandro/stylelint-config @massimo-cassandro/stylelint-config && npm i -D @massimo-cassandro/stylelint-config
 
 #### create-favicons
 npm i -D @massimo-cassandro/create-favicons
@@ -125,10 +128,10 @@ npm i -S @massimo-cassandro/unsplash-page
 mv -f .stylelintrc.cjs stylelint.config.cjs
 
 #### Update eslint 8 → 9
-rm -f .eslintrc.cjs && npm uninstall eslint@latest @eslint/js globals && npm uninstall @massimo-cassandro/eslint-config@latest && npm i -D eslint@latest @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@latest && echo "import eslint_config from '@massimo-cassandro/eslint-config';\n\nexport default [\n  ...eslint_config,\n  // {\n  //   files: ['src/**/*.js'],\n  //   ignores: [\n  //     'dist/',\n  //     'build/',\n  //     '**/vendor/'\n  //   ],\n  // }\n];\n" > eslint.config.mjs
+rm -f .eslintrc.cjs && npm uninstall eslint@^8 && npm uninstall @massimo-cassandro/eslint-config@^1 && npm i -D eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@^2 && echo "import eslint_config from '@massimo-cassandro/eslint-config';\n\nexport default [\n  ...eslint_config,\n  // {\n  //   files: ['src/**/*.js'],\n  //   ignores: [\n  //     'dist/',\n  //     'build/',\n  //     '**/vendor/'\n  //   ],\n  // }\n];\n" > eslint.config.mjs
 
 #### Downgrade eslint 9 → 8
-rm -f eslint.config.mjs && npm uninstall eslint@^8 && npm uninstall @massimo-cassandro/eslint-config@^1 && npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1 && echo "/* eslint-env node */\n\nmodule.exports = {\n  extends: [/* 'react-app',  */'@massimo-cassandro/eslint-config'], \n  ignorePatterns: []\n};" > .eslintrc.cjs
+rm -f eslint.config.mjs && npm uninstall eslint@^9 @eslint/js globals && npm uninstall @massimo-cassandro/eslint-config@^2 && npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1 && echo "/* eslint-env node */\n\nmodule.exports = {\n  extends: [/* 'react-app',  */'@massimo-cassandro/eslint-config'], \n  ignorePatterns: []\n};" > .eslintrc.cjs
 
 #### editorconfig
 echo "# https://editorconfig.org\n\n# top-most EditorConfig file\nroot = true\n\n[*]\ncharset = utf-8\nend_of_line = lf\nindent_size = 2\nindent_style = space\ninsert_final_newline = true\ntrim_trailing_whitespace = true\n\n[*.md]\nmax_line_length = off\ntrim_trailing_whitespace = false\n\n[*.{yml,yaml}]\nindent_size = 4\n" > .editorconfig
