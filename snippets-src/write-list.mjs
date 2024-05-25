@@ -11,7 +11,7 @@ import * as fs from 'fs';
 const __dirname = new URL('.', import.meta.url).pathname;
 
 
-const target_file = path.resolve(__dirname, '../snippets.md');
+const target_file = path.resolve(__dirname, '../README.md');
 
 const parsed_packages = {}; // per utilizzo in cmds
 
@@ -21,19 +21,19 @@ let content = [
   {name: '@m', packages: m_packages},
 
 ].map( i => {
-  return `## ${i.name}\n` +
+  return `### ${i.name}\n` +
     '-'.repeat(40) + '\n' +
     i.packages.map(p => {
 
       parsed_packages[p.label] = `npm i ${p.dev? '-D' : '-S'} ${p.packages.join(' ')}`;
 
-      return `### ${p.label}\n` +
+      return `#### ${p.label}\n` +
         `${parsed_packages[p.label]}\n\n`;
     }).join('');
 }).join('\n\n');
 
 
-content +=  '\n\n## Cmds\n' + '-'.repeat(40) + '\n' + cmds.map( i => {
+content +=  '\n\n### Cmds\n' + '-'.repeat(40) + '\n' + cmds.map( i => {
   const cmds = [
     ...(i.cmd? [i.cmd] : []),
     ...(i.packages? [`${i.packages.map(p => parsed_packages[p]).join(' && ')}`] : []),
@@ -50,10 +50,10 @@ content +=  '\n\n## Cmds\n' + '-'.repeat(40) + '\n' + cmds.map( i => {
 
   }
 
-  return `### ${i.label}\n` + cmds.join(' && ');
+  return `#### ${i.label}\n` + cmds.join(' && ');
 
 }).join('\n\n');
 
-writeFileSync(target_file, '# Packages install list\n\n' + content);
+writeFileSync(target_file, '# Personal boilerplate\n\n## Snippets\n\n' + content);
 
 console.log(`...wrote to ${target_file}`);
