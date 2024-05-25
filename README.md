@@ -5,19 +5,19 @@
 ### Base
 ----------------------------------------
 #### basic (updater, eslint, stylelint)
-npm i -D @massimo-cassandro/dev-updater eslint@latest @eslint/js globals @massimo-cassandro/eslint-config@latest @massimo-cassandro/stylelint-config @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint
+npm i -D @massimo-cassandro/dev-updater eslint@latest @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@latest && npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint @massimo-cassandro/stylelint-config
 
 #### updater
 npm i -D @massimo-cassandro/dev-updater
 
 #### eslint@8
-npm i -D @massimo-cassandro/eslint-config eslint@^8
+npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config
 
 #### eslint
-npm i -D eslint@latest @eslint/js globals @massimo-cassandro/eslint-config@latest
+npm i -D eslint@latest @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@latest
 
 #### stylelint
-npm i -D @massimo-cassandro/stylelint-config @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint
+npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint @massimo-cassandro/stylelint-config && npm i -D @massimo-cassandro/stylelint-config
 
 #### create-favicons
 npm i -D @massimo-cassandro/create-favicons
@@ -57,7 +57,7 @@ npm i -D postcss-banner
 npm i -S prismjs
 
 #### react
-npm i -D @babel/preset-react babel-plugin-transform-react-remove-prop-types classnames dotenv-webpack eslint-config-react-app nanoid prop-types react-dom react
+npm i -D @babel/preset-react babel-plugin-transform-react-remove-prop-types classnames dotenv-webpack eslint-config-react-app && npm i -D nanoid prop-types && npm i -D react-dom react
 
 #### react-html-comment
 npm i -D react-html-comment
@@ -78,7 +78,7 @@ npm i -D babel-plugin-styled-components styled-components
 npm i -D @types/react-dom @types/react ts-loader typescript-plugin-css-modules typescript
 
 #### webpack
-npm i -D @babel/core @babel/preset-env babel-loader copy-webpack-plugin css-loader css-minimizer-webpack-plugin dotenv-webpack file-loader html-loader html-webpack-plugin mini-css-extract-plugin postcss-loader postcss-preset-env sass-loader style-loader terser-webpack-plugin webpack-cli webpack-dev-server webpack-manifest-plugin webpack-remove-empty-scripts webpack
+npm i -D @babel/core @babel/preset-env babel-loader copy-webpack-plugin css-loader css-minimizer-webpack-plugin dotenv-webpack file-loader html-loader html-webpack-plugin mini-css-extract-plugin postcss-loader postcss-preset-env sass-loader style-loader terser-webpack-plugin && npm i -D webpack-cli webpack-dev-server webpack-manifest-plugin webpack-remove-empty-scripts webpack
 
 
 
@@ -125,7 +125,7 @@ npm i -S @massimo-cassandro/unsplash-page
 mv -f .stylelintrc.cjs stylelint.config.cjs
 
 #### Update eslint
-rm -f .eslintrc.cjs && npm uninstall @massimo-cassandro/eslint-config eslint && npm i -D eslint@latest @eslint/js globals @massimo-cassandro/eslint-config@latest && echo "import eslint_config from '@massimo-cassandro/eslint-config';\n\nexport default [\n  ...eslint_config,\n  // {\n  //   files: ['src/**/*.js'],\n  //   ignores: [\n  //     'dist/',\n  //     'build/',\n  //     '**/vendor/'\n  //   ],\n  // }\n];\n" > eslint.config.mjs
+rm -f .eslintrc.cjs && npm uninstall @massimo-cassandro/eslint-config eslint && npm i -D eslint@latest @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@latest && echo "import eslint_config from '@massimo-cassandro/eslint-config';\n\nexport default [\n  ...eslint_config,\n  // {\n  //   files: ['src/**/*.js'],\n  //   ignores: [\n  //     'dist/',\n  //     'build/',\n  //     '**/vendor/'\n  //   ],\n  // }\n];\n" > eslint.config.mjs
 
 #### editorconfig
 echo "# https://editorconfig.org\n\n# top-most EditorConfig file\nroot = true\n\n[*]\ncharset = utf-8\nend_of_line = lf\nindent_size = 2\nindent_style = space\ninsert_final_newline = true\ntrim_trailing_whitespace = true\n\n[*.md]\nmax_line_length = off\ntrim_trailing_whitespace = false\n\n[*.{yml,yaml}]\nindent_size = 4\n" > .editorconfig

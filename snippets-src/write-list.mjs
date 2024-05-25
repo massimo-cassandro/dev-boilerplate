@@ -25,10 +25,26 @@ let content = [
     '-'.repeat(40) + '\n' +
     i.packages.map(p => {
 
-      parsed_packages[p.label] = `npm i ${p.dev? '-D' : '-S'} ${p.packages.join(' ')}`;
+
+      const packages_groups = [];
+      let group_index = 0;
+      p.packages.forEach( pp => {
+        if(Array.isArray(pp)) {
+          packages_groups.push(pp);
+          group_index++;
+        } else {
+          packages_groups[group_index] ??= [];
+          packages_groups[group_index].push(pp);
+        }
+      });
+
+      // Object.values -> campatta sparse arrays
+      parsed_packages[p.id] = packages_groups.map(pg => {
+        return `npm i ${p.dev? '-D' : '-S'} ${pg.join(' ')}`;
+      }).join( ' && ');
 
       return `#### ${p.label}\n` +
-        `${parsed_packages[p.label]}\n\n`;
+        `${parsed_packages[p.id]}\n\n`;
     }).join('');
 }).join('\n\n');
 
