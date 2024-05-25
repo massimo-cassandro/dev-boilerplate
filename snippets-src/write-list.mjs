@@ -25,7 +25,6 @@ let content = [
     '-'.repeat(40) + '\n' +
     i.packages.map(p => {
 
-
       const packages_groups = [];
       let group_index = 0;
       p.packages.forEach( pp => {
@@ -52,6 +51,7 @@ let content = [
 content +=  '\n\n### Cmds\n' + '-'.repeat(40) + '\n' + cmds.map( i => {
   const cmds = [
     ...(i.cmd? [i.cmd] : []),
+    ...(i.uninstall? [`${i.packages.map(p => parsed_packages[p].replace(/npm i -./g, 'npm uninstall')).join(' && ')}`] : []),
     ...(i.packages? [`${i.packages.map(p => parsed_packages[p]).join(' && ')}`] : []),
     // ...(i.addConfigFile? i.addConfigFile.map(f => `cp -f ${f} .`) : [])
   ];

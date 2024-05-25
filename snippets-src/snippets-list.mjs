@@ -272,13 +272,19 @@ const cmds = [
     label: 'Update stylelint config file',
     cmd: 'mv -f .stylelintrc.cjs stylelint.config.cjs'
   },
-  // TODO[epic=dev-boilerplate] inserire riferimenti ai record di snippets-list.mjs nei cmds e farli risolvere al momento di scrivere il file snippets
-
   {
-    label: 'Update eslint',
-    cmd: 'rm -f .eslintrc.cjs && npm uninstall @massimo-cassandro/eslint-config eslint',
+    label: 'Update eslint 8 → 9',
+    cmd: 'rm -f .eslintrc.cjs',
+    uninstall: ['eslint@8'],
     packages: ['eslint'],
     addConfigFile: ['eslint.config.mjs']
+  },
+  {
+    label: 'Downgrade eslint 9 → 8',
+    cmd: 'rm -f eslint.config.mjs',
+    uninstall: ['eslint'],
+    packages: ['eslint@8'],
+    addConfigFile: ['_eslintrc.cjs']
   },
   {
     label: 'editorconfig',

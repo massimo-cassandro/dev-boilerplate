@@ -124,8 +124,11 @@ npm i -S @massimo-cassandro/unsplash-page
 #### Update stylelint config file
 mv -f .stylelintrc.cjs stylelint.config.cjs
 
-#### Update eslint
-rm -f .eslintrc.cjs && npm uninstall @massimo-cassandro/eslint-config eslint && npm i -D eslint@latest @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@latest && echo "import eslint_config from '@massimo-cassandro/eslint-config';\n\nexport default [\n  ...eslint_config,\n  // {\n  //   files: ['src/**/*.js'],\n  //   ignores: [\n  //     'dist/',\n  //     'build/',\n  //     '**/vendor/'\n  //   ],\n  // }\n];\n" > eslint.config.mjs
+#### Update eslint 8 → 9
+rm -f .eslintrc.cjs && npm uninstall eslint@latest @eslint/js globals && npm uninstall @massimo-cassandro/eslint-config@latest && npm i -D eslint@latest @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@latest && echo "import eslint_config from '@massimo-cassandro/eslint-config';\n\nexport default [\n  ...eslint_config,\n  // {\n  //   files: ['src/**/*.js'],\n  //   ignores: [\n  //     'dist/',\n  //     'build/',\n  //     '**/vendor/'\n  //   ],\n  // }\n];\n" > eslint.config.mjs
+
+#### Downgrade eslint 9 → 8
+rm -f eslint.config.mjs && npm uninstall eslint@^8 && npm uninstall @massimo-cassandro/eslint-config@^1 && npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1 && echo "/* eslint-env node */\n\nmodule.exports = {\n  extends: [/* 'react-app',  */'@massimo-cassandro/eslint-config'], \n  ignorePatterns: []\n};" > .eslintrc.cjs
 
 #### editorconfig
 echo "# https://editorconfig.org\n\n# top-most EditorConfig file\nroot = true\n\n[*]\ncharset = utf-8\nend_of_line = lf\nindent_size = 2\nindent_style = space\ninsert_final_newline = true\ntrim_trailing_whitespace = true\n\n[*.md]\nmax_line_length = off\ntrim_trailing_whitespace = false\n\n[*.{yml,yaml}]\nindent_size = 4\n" > .editorconfig
