@@ -191,16 +191,25 @@ const std_packages = [
       [
         '@babel/preset-react',
         'babel-plugin-transform-react-remove-prop-types',
-        'classnames',
-        'dotenv-webpack',
         'eslint-config-react-app'
       ],
       [
+        'classnames',
         'nanoid',
         'prop-types'
       ],
       'react-dom',
       'react',
+    ],
+    dev: true,
+  },
+  {
+    id: 'react_utilities',
+    label: 'React utilities',
+    packages: [
+      'classnames',
+      'nanoid',
+      'prop-types'
     ],
     dev: true,
   },
@@ -295,27 +304,27 @@ const cmds = [
     addConfigFile: ['_eslintrc.cjs']
   },
   {
-    label: 'editorconfig',
+    label: 'Crea editorconfig',
     addConfigFile: ['_editorconfig']
   },
 
-  // {
-  //   label: 'eslint9 + stylelint + config files',
-  //   packages: ['eslint9', 'stylelint'],
-  //   addConfigFile: ['eslint.config.mjs', 'stylelint.config.cjs']
-  // },
+  {
+    label: 'stylelint + config files',
+    packages: ['stylelint'],
+    addConfigFile: ['stylelint.config.cjs']
+  },
 
-  // {
-  //   label: 'rollup + config files',
-  //   packages: ['rollup base'],
-  //   addConfigFile: ['rollup.config.mjs']
-  // },
+  {
+    label: 'rollup + config files',
+    packages: ['rollup'],
+    addConfigFile: ['rollup.config.mjs']
+  },
 
-  // {
-  //   label: 'postcss + config files',
-  //   packages: ['postcss + autoprefixer + purgecss (webpack)'],
-  //   addConfigFile: ['postcss.config.cjs']
-  // }
+  {
+    label: 'postcss + config files',
+    packages: ['postcss'],
+    addConfigFile: ['postcss.config.cjs']
+  }
 ];
 
 
