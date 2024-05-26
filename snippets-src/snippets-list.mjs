@@ -300,7 +300,7 @@ const cmds = [
   {
     label: 'Update eslint 8 → 9',
     cmd: 'rm -f .eslintrc.cjs',
-    uninstall: ['eslint8'],
+    uninstall: ['eslint-config-react-app', 'eslint8'],
     packages: ['eslint9'],
     addConfigFile: ['eslint.config.mjs']
   },

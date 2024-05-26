@@ -134,7 +134,7 @@ npm i -S @massimo-cassandro/unsplash-page
 mv -f .stylelintrc.cjs stylelint.config.cjs
 
 #### Update eslint 8 → 9
-rm -f .eslintrc.cjs && npm uninstall eslint && npm uninstall @massimo-cassandro/eslint-config && npm i -D eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@^2 && echo "import eslint_config from '@massimo-cassandro/eslint-config';\n\nexport default [\n  ...eslint_config,\n  // {\n  //   files: ['src/**/*.js'],\n  //   ignores: [\n  //     'dist/',\n  //     'build/',\n  //     '**/vendor/'\n  //   ],\n  // }\n];\n" > eslint.config.mjs
+rm -f .eslintrc.cjs && npm uninstall eslint-config-react-app && npm uninstall eslint && npm uninstall @massimo-cassandro/eslint-config && npm i -D eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@^2 && echo "import eslint_config from '@massimo-cassandro/eslint-config';\n\nexport default [\n  ...eslint_config,\n  // {\n  //   files: ['src/**/*.js'],\n  //   ignores: [\n  //     'dist/',\n  //     'build/',\n  //     '**/vendor/'\n  //   ],\n  // }\n];\n" > eslint.config.mjs
 
 #### Downgrade eslint 9 → 8
 rm -f eslint.config.mjs && npm uninstall eslint @eslint/js globals && npm uninstall @massimo-cassandro/eslint-config && npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1 && echo "/* eslint-env node */\n\nmodule.exports = {\n  extends: [/* 'react-app',  */'@massimo-cassandro/eslint-config'], \n  ignorePatterns: []\n};" > .eslintrc.cjs
