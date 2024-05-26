@@ -186,11 +186,12 @@ const std_packages = [
   },
   {
     id: 'react',
-    label: 'react',
+    label: 'react (NB: richiede eslint 8)',
     packages: [
       [
         '@babel/preset-react',
         'babel-plugin-transform-react-remove-prop-types',
+        'eslint-config-react-app'
       ],
       [
         'classnames',
@@ -203,14 +204,6 @@ const std_packages = [
     dev: true,
   },
 
-  {
-    id: 'eslint-config-react-app',
-    label: 'react: eslint-config-react-app (eslint 8)',
-    packages: [
-      'eslint-config-react-app'
-    ],
-    dev: true,
-  },
   {
     id: 'react_utilities',
     label: 'React utilities',
@@ -300,7 +293,7 @@ const cmds = [
   {
     label: 'Update eslint 8 → 9',
     cmd: 'rm -f .eslintrc.cjs',
-    uninstall: ['eslint-config-react-app', 'eslint8'],
+    uninstall: ['eslint8'],
     packages: ['eslint9'],
     addConfigFile: ['eslint.config.mjs']
   },
