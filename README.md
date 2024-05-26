@@ -63,10 +63,13 @@ npm i -D postcss-banner
 npm i -S prismjs
 
 #### react
-npm i -D @babel/preset-react babel-plugin-transform-react-remove-prop-types eslint-config-react-app && npm i -D classnames nanoid prop-types && npm i -D react-dom react
+npm i -D @babel/preset-react babel-plugin-transform-react-remove-prop-types && npm i -D classnames nanoid prop-types && npm i -D react-dom react
 
 #### react-html-comment
 npm i -D react-html-comment
+
+#### react: eslint-config-react-app (eslint 8)
+npm i -D eslint-config-react-app
 
 #### rollup base
 npm i -D rollup@latest @rollup/plugin-terser @rollup/plugin-node-resolve @rollup/plugin-json @rollup/plugin-image @rollup/plugin-replace @rollup/plugin-commonjs

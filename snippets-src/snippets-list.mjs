@@ -191,7 +191,6 @@ const std_packages = [
       [
         '@babel/preset-react',
         'babel-plugin-transform-react-remove-prop-types',
-        'eslint-config-react-app'
       ],
       [
         'classnames',
@@ -200,6 +199,15 @@ const std_packages = [
       ],
       'react-dom',
       'react',
+    ],
+    dev: true,
+  },
+
+  {
+    id: 'eslint-config-react-app',
+    label: 'react: eslint-config-react-app (eslint 8)',
+    packages: [
+      'eslint-config-react-app'
     ],
     dev: true,
   },
