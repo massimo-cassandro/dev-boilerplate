@@ -74,7 +74,8 @@ const m_packages = [
   'modal-alert',
   'scss-utilities',
   'sharing-links',
-  'unsplash-page'
+  'unsplash-page',
+  'twig-utilities',
 ].map(item =>({
   id: `@massimo-cassandro/${item}`,
   label: `@massimo-cassandro/${item}`,
