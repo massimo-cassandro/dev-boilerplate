@@ -74,6 +74,5 @@ content +=  '\n\n### Cmds\n' + '-'.repeat(40) + '\n' + cmds.map( i => {
 
 }).join('\n\n');
 
-writeFileSync(target_file, '# Personal boilerplate\n\n## Snippets\n\n' + content);
 
 console.log(`...wrote to ${target_file}`);

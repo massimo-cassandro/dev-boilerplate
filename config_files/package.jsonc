@@ -40,7 +40,7 @@
     "upd@m": "npx upd@m",
     "npm-update": "npm update",
     "npm-publish": "npm publish",
-    "local test server": "python3 -m http.server 8000 # --directory build # 8000 = default port",
+    "python server": "python3 -m http.server 8000 # --directory __dirname__ # 8000 = default port",
     "php server": "php -S localhost:8000 # -t root_dir/",
 
     "webpack PROD": "NODE_ENV=production webpack --config ./config/webpack-config/webpack.prod.js"
