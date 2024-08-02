@@ -74,5 +74,6 @@ content +=  '\n\n### Cmds\n' + '-'.repeat(40) + '\n' + cmds.map( i => {
 
 }).join('\n\n');
 
+writeFileSync(target_file, content, 'utf-8');
 
 console.log(`...wrote to ${target_file}`);

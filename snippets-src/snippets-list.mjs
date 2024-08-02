@@ -310,6 +310,11 @@ const cmds = [
   },
 
   {
+    label: 'Crea browserslistrc',
+    addConfigFile: ['_browserslistrc']
+  },
+
+  {
     label: 'stylelint + config files',
     packages: ['stylelint'],
     addConfigFile: ['stylelint.config.cjs']
