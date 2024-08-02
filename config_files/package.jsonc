@@ -27,7 +27,7 @@
     "sass+postcss": "npm run sass-cli & npm run postcss-cli",
     "sass-cli": "npx sass ./source/:./target/ --load-path=./node_modules/ --load-path=./front-end/icone/ --style=compressed --watch",
     "postcss-cli": "npx postcss ../public/css/**/*.css --dir ../public/css/ --config ./scripts/ --map --verbose --watch",
-    "webpack DEV": "NODE_ENV=development webpack serve --config ./config/webpack-config/webpack.dev.js",
+    "webpack DEV": "NODE_ENV=development webpack serve --config ./webpack-config.cjs",
     "build-css-custom-prop-list": "node './scripts/get-css-custom-properties-list.mjs'",
     "build_icons": "cd ./front-end/icone && gulp",
 
@@ -43,36 +43,8 @@
     "python server": "python3 -m http.server 8000 # --directory __dirname__ # 8000 = default port",
     "php server": "php -S localhost:8000 # -t root_dir/",
 
-    "webpack PROD": "NODE_ENV=production webpack --config ./config/webpack-config/webpack.prod.js"
+    "webpack PROD": "NODE_ENV=production webpack --config ./webpack-config.cjs"
 
-  },
-
-  "browserslist": [
-    "last 1 version",
-    "iOS >= 13",
-    "Safari >= 12",
-    "not ie <= 11",
-    "> 3% in IT"
-  ],
-
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      [
-        "@babel/preset-react",
-        {
-          "runtime": "automatic"
-        }
-      ]
-    ],
-    "plugins": [],
-    "env": {
-      "production": {
-        "plugins": [
-          "transform-react-remove-prop-types"
-        ]
-      }
-    }
   },
   "files": [
     "dist/**/*.{css,js,map}",
