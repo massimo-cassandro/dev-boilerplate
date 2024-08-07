@@ -182,8 +182,14 @@ const std_packages = [
   {
     id: 'open-props',
     label: 'open-props',
-    packages: ['open-props', 'postcss-jit-props'],
+    packages: ['open-props'],
     dev: false,
+  },
+  {
+    id: 'postcss-jit-props',
+    label: 'open-props',
+    packages: ['postcss-jit-props'],
+    dev: true,
   },
   {
     id: 'react',

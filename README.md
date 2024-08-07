@@ -47,7 +47,10 @@ npm i -D html-react-parser
 npm i -S normalize.css
 
 #### open-props
-npm i -S open-props postcss-jit-props
+npm i -S open-props
+
+#### open-props
+npm i -D postcss-jit-props
 
 #### postcss + autoprefixer + purgecss (webpack)
 npm i -D postcss @fullhuman/postcss-purgecss autoprefixer
