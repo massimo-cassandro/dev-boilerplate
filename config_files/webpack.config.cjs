@@ -140,21 +140,21 @@ const config = {
       //   const css_files = typeof htmlWebpackPlugin.files.css === 'object'?
       //     htmlWebpackPlugin.files.css : [htmlWebpackPlugin.files.css];
 
-      if(css_files.length) {
-          tpl += css_files.map(item =>
-            `<link rel="preload" href="${item}" as="style">` + (isDevelopment? '\n' : '') +
-            `<link rel="stylesheet" href="${item}" type="text/css" media="all">`
-          ).join(isDevelopment? '\n' : '');
-        }
+      //   if(css_files.length) {
+      //     tpl += css_files.map(item =>
+      //       `<link rel="preload" href="${item}" as="style">` + (isDevelopment? '\n' : '') +
+      //       `<link rel="stylesheet" href="${item}" type="text/css" media="all">`
+      //     ).join(isDevelopment? '\n' : '');
+      //   }
 
-        tpl += (css_files.length && js_files.length && isDevelopment)? '\n\n' : '';
+      //   tpl += (css_files.length && js_files.length && isDevelopment)? '\n\n' : '';
 
-        if(js_files.length) {
-          tpl += js_files.map(item =>
-            `<link rel="preload" href="${item}" as="script">` + (isDevelopment? '\n' : '') +
-            `<script src="${item}" defer></script>`
-          ).join(isDevelopment? '\n' : '');
-        }
+      //   if(js_files.length) {
+      //     tpl += js_files.map(item =>
+      //       `<link rel="preload" href="${item}" as="script">` + (isDevelopment? '\n' : '') +
+      //       `<script src="${item}" defer></script>`
+      //     ).join(isDevelopment? '\n' : '');
+      //   }
 
       //   return tpl;
       // },
