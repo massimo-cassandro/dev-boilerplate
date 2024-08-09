@@ -16,8 +16,10 @@ const path = require('path');
 
 
 // const Dotenv = require('dotenv-webpack');
-const isDevelopment = process.env.NODE_ENV === 'development',
-  buildSourcemaps = isDevelopment;
+const isDevelopment = process.env.NODE_ENV === 'development'
+  ,buildSourcemaps = isDevelopment
+  // ,output_dir = isDevelopment? 'dev' : 'build'
+;
 
 const config = {
   mode: isDevelopment? 'development' : 'production',
@@ -36,10 +38,10 @@ const config = {
   // Where webpack outputs the assets and bundles
 
   output: {
-    path: path.resolve(__dirname, './build'),
+    path: path.resolve(__dirname, './build'), // path.resolve(__dirname, `./public/${output_dir}` ),
     // filename: '[name].js',
     filename: '[name].[contenthash].js',
-    publicPath: 'auto',
+    publicPath: '/', // '/' + output_dir,
     clean: !isDevelopment,
   },
 
@@ -244,8 +246,8 @@ const config = {
             options: {
               hmr: isDevelopment,
               name: '[name].[contenthash].[ext]',
-              outputPath: '/fonts',
-              // publicPath: 'convention23/build/fonts',
+              outputPath: 'fonts', // usato nel manifest
+              // publicPath: `/${output_dir}/fonts`, // usato nel css
               esModule: false,
             }
           }
