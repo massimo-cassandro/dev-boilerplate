@@ -22,7 +22,7 @@ const packages_content = [
 
 ].map( i => {
   return `## ${i.name}\n` +
-    i.packages.map(p => {
+    i.packages.toSorted((a,b) => a.label.toLowerCase().localeCompare(b.label.toLowerCase())).map(p => {
 
       const packages_groups = [];
       let group_index = 0;

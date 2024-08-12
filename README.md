@@ -74,10 +74,6 @@ rm -f .eslintrc.cjs && npm uninstall eslint && npm uninstall @massimo-cassandro/
 rm -f eslint.config.mjs && npm uninstall eslint @eslint/js globals && npm uninstall @massimo-cassandro/eslint-config && npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1 && echo "/* eslint-env node */\n\nmodule.exports = {\n  extends: [/* 'react-app',  */'@massimo-cassandro/eslint-config'], \n  ignorePatterns: []\n};" > .eslintrc.cjs
 ```
 ## Packages
-### React utilities
-```bash
-npm i -D classnames nanoid prop-types
-```
 ### bootstrap
 ```bash
 npm i -S bootstrap
@@ -129,6 +125,10 @@ npm i -S prismjs
 ### react (NB: richiede eslint 8)
 ```bash
 npm i -D @babel/preset-react babel-plugin-transform-react-remove-prop-types eslint-config-react-app && npm i -D classnames nanoid prop-types && npm i -D react-dom react
+```
+### React utilities
+```bash
+npm i -D classnames nanoid prop-types
 ```
 ### react-html-comment
 ```bash
@@ -217,11 +217,11 @@ npm i -S @massimo-cassandro/scss-utilities
 ```bash
 npm i -S @massimo-cassandro/sharing-links
 ```
-### @massimo-cassandro/unsplash-page
-```bash
-npm i -S @massimo-cassandro/unsplash-page
-```
 ### @massimo-cassandro/twig-utilities
 ```bash
 npm i -S @massimo-cassandro/twig-utilities
+```
+### @massimo-cassandro/unsplash-page
+```bash
+npm i -S @massimo-cassandro/unsplash-page
 ```
