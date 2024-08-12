@@ -47,20 +47,6 @@ const basic_packages = [
   }
 ];
 
-basic_packages.unshift(
-  {
-    id: 'basic',
-    label: 'basic (updater, eslint 9, stylelint)',
-    packages: basic_packages.filter(i => ['updater', 'eslint9', 'stylelint'].indexOf(i.id) !== -1).map(i => i.packages).flat(),
-    dev: true,
-  },
-  {
-    id: 'basic8',
-    label: 'basic eslint 8 (updater, eslint 8, stylelint)',
-    packages: basic_packages.filter(i => ['updater', 'eslint8', 'stylelint'].indexOf(i.id) !== -1).map(i => i.packages).flat(),
-    dev: true,
-  }
-);
 
 
 const m_packages = [
@@ -293,6 +279,44 @@ std_packages.sort((a,b) => a.label < b.label? -1 : (a.label > b.label? 1 : 0));
 
 
 const cmds = [
+
+  {
+    label: 'basic (updater, eslint 9, stylelint)',
+    packages: ['updater', 'eslint9', 'stylelint'],
+  },
+  {
+    label: 'basic eslint 8 (updater, eslint 8, stylelint)',
+    packages: ['updater', 'eslint8', 'stylelint']
+  },
+
+
+  {
+    label: 'Crea editorconfig',
+    addConfigFile: ['_editorconfig']
+  },
+
+  {
+    label: 'Crea browserslistrc',
+    addConfigFile: ['_browserslistrc']
+  },
+
+  {
+    label: 'stylelint + config',
+    packages: ['stylelint'],
+    addConfigFile: ['stylelint.config.cjs']
+  },
+
+  {
+    label: 'rollup + config',
+    packages: ['rollup'],
+    addConfigFile: ['rollup.config.mjs']
+  },
+
+  {
+    label: 'postcss + config',
+    packages: ['postcss'],
+    addConfigFile: ['postcss.config.cjs']
+  },
   {
     label: 'Update stylelint config file',
     cmd: 'mv -f .stylelintrc.cjs stylelint.config.cjs'
@@ -311,33 +335,6 @@ const cmds = [
     packages: ['eslint8'],
     addConfigFile: ['_eslintrc.cjs']
   },
-  {
-    label: 'Crea editorconfig',
-    addConfigFile: ['_editorconfig']
-  },
-
-  {
-    label: 'Crea browserslistrc',
-    addConfigFile: ['_browserslistrc']
-  },
-
-  {
-    label: 'stylelint + config files',
-    packages: ['stylelint'],
-    addConfigFile: ['stylelint.config.cjs']
-  },
-
-  {
-    label: 'rollup + config files',
-    packages: ['rollup'],
-    addConfigFile: ['rollup.config.mjs']
-  },
-
-  {
-    label: 'postcss + config files',
-    packages: ['postcss'],
-    addConfigFile: ['postcss.config.cjs']
-  }
 ];
 
 
