@@ -1,12 +1,30 @@
-const basic_packages = [
-  {
-    id: 'updater',
-    label: 'updater',
-    packages: [
-      '@massimo-cassandro/dev-updater'
-    ],
-    dev: true,
-  },
+
+const m_packages = [
+  ['auto-datatables-bs5', false],
+  ['autocomplete', false],
+  ['ckeditor-utilities', false],
+  ['cookie-consent', false],
+  ['create-favicons', true],
+  ['dev-updater', true],
+  ['js-file-uploader', false],
+  ['js-utilities', false],
+  ['json-table', false],
+  ['layout-tools', true],
+  ['modal-alert', false],
+  ['scss-utilities', false],
+  ['sharing-links', false],
+  ['unsplash-page', false],
+  ['twig-utilities', false],
+].map(item =>({
+  id: `@massimo-cassandro/${item[0]}`,
+  label: `@massimo-cassandro/${item[0]}`,
+  packages: [`@massimo-cassandro/${item[0]}`],
+  dev: item[1],
+}));
+
+
+const std_packages = [
+
   {
     id: 'eslint8',
     label: 'eslint 8',
@@ -33,44 +51,7 @@ const basic_packages = [
     ],
     dev: true,
   },
-  {
-    id: 'create-favicons',
-    label: 'create-favicons',
-    packages: ['@massimo-cassandro/create-favicons'],
-    dev: true,
-  },
-  {
-    id: 'layout-tools',
-    label: 'layout-tools',
-    packages: ['@massimo-cassandro/layout-tools'],
-    dev: true,
-  }
-];
 
-
-
-const m_packages = [
-  'auto-datatables-bs5',
-  'autocomplete',
-  'ckeditor-utilities',
-  'cookie-consent',
-  'js-file-uploader',
-  'js-utilities',
-  'json-table',
-  'modal-alert',
-  'scss-utilities',
-  'sharing-links',
-  'unsplash-page',
-  'twig-utilities',
-].map(item =>({
-  id: `@massimo-cassandro/${item}`,
-  label: `@massimo-cassandro/${item}`,
-  packages: [`@massimo-cassandro/${item}`],
-  dev: false,
-}));
-
-
-const std_packages = [
   {
     id: 'rollup',
     label: 'rollup base',
@@ -284,11 +265,19 @@ const cmds = [
     label: 'basic (updater, eslint 9, stylelint)',
     packages: ['updater', 'eslint9', 'stylelint'],
   },
+
   {
     label: 'basic eslint 8 (updater, eslint 8, stylelint)',
     packages: ['updater', 'eslint8', 'stylelint']
   },
-
+  {
+    label: 'create-favicon',
+    packages: ['@massimo-cassandro/create-favicons'],
+  },
+  {
+    label: 'layout-tools',
+    packages: ['@massimo-cassandro/layout-tools'],
+  },
 
   {
     label: 'Crea editorconfig',
@@ -338,4 +327,4 @@ const cmds = [
 ];
 
 
-export {basic_packages, std_packages, m_packages, cmds};
+export {std_packages, m_packages, cmds};

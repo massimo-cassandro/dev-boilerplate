@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { basic_packages, std_packages, m_packages, cmds } from './snippets-list.mjs';
+import { std_packages, m_packages, cmds } from './snippets-list.mjs';
 import { writeFileSync } from 'fs';
 
 import * as path from 'path';
@@ -17,12 +17,11 @@ const parsed_packages = {}; // per utilizzo in cmds
 const md_code_block = code => '```bash\n' + code + '\n```\n';
 
 const packages_content = [
-  {name: 'Base', packages: basic_packages},
-  {name: 'Standard', packages: std_packages},
+  {name: 'Packages', packages: std_packages},
   {name: '@m', packages: m_packages},
 
 ].map( i => {
-  return `### ${i.name}\n` +
+  return `## ${i.name}\n` +
     i.packages.map(p => {
 
       const packages_groups = [];
@@ -42,14 +41,14 @@ const packages_content = [
         return `npm i ${p.dev? '-D' : '-S'} ${pg.join(' ')}`;
       }).join( ' && ');
 
-      return `#### ${p.label}\n` +
+      return `### ${p.label}\n` +
         md_code_block( parsed_packages[p.id] );
     }).join('');
 }).join('\n\n');
 
 
 
-const cmd_content =  '\n\n## Install & config files\n' + '\n' + cmds.map( i => {
+const cmd_content =  '\n\n## Install & config\n' + '\n' + cmds.map( i => {
   const cmds = [
     ...(i.cmd? [i.cmd] : []),
     ...(i.uninstall? [
@@ -80,6 +79,6 @@ const cmd_content =  '\n\n## Install & config files\n' + '\n' + cmds.map( i => {
 
 
 
-writeFileSync(target_file, '# Setup snippets\n' + cmd_content + '## Packages\n' +packages_content, 'utf-8');
+writeFileSync(target_file, '# Setup snippets\n' + cmd_content + packages_content, 'utf-8');
 
 console.log(`...wrote to ${target_file}`);

@@ -1,17 +1,29 @@
 # Setup snippets
 
 
-## Install & config files
+## Install & config
 
 ### basic (updater, eslint 9, stylelint)
 ```bash
-npm i -D @massimo-cassandro/dev-updater && npm i -D eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@^2 && npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint && npm i -D @massimo-cassandro/stylelint-config
+ && npm i -D eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@^2 && npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint && npm i -D @massimo-cassandro/stylelint-config
 ```
 
 
 ### basic eslint 8 (updater, eslint 8, stylelint)
 ```bash
-npm i -D @massimo-cassandro/dev-updater && npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1 && npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint && npm i -D @massimo-cassandro/stylelint-config
+ && npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1 && npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint && npm i -D @massimo-cassandro/stylelint-config
+```
+
+
+### create-favicon
+```bash
+npm i -D @massimo-cassandro/create-favicons
+```
+
+
+### layout-tools
+```bash
+npm i -D @massimo-cassandro/layout-tools
 ```
 
 
@@ -62,158 +74,154 @@ rm -f .eslintrc.cjs && npm uninstall eslint && npm uninstall @massimo-cassandro/
 rm -f eslint.config.mjs && npm uninstall eslint @eslint/js globals && npm uninstall @massimo-cassandro/eslint-config && npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1 && echo "/* eslint-env node */\n\nmodule.exports = {\n  extends: [/* 'react-app',  */'@massimo-cassandro/eslint-config'], \n  ignorePatterns: []\n};" > .eslintrc.cjs
 ```
 ## Packages
-### Base
-#### updater
-```bash
-npm i -D @massimo-cassandro/dev-updater
-```
-#### eslint 8
-```bash
-npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1
-```
-#### eslint 9
-```bash
-npm i -D eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@^2
-```
-#### stylelint
-```bash
-npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint && npm i -D @massimo-cassandro/stylelint-config
-```
-#### create-favicons
-```bash
-npm i -D @massimo-cassandro/create-favicons
-```
-#### layout-tools
-```bash
-npm i -D @massimo-cassandro/layout-tools
-```
-
-
-### Standard
-#### React utilities
+### React utilities
 ```bash
 npm i -D classnames nanoid prop-types
 ```
-#### bootstrap
+### bootstrap
 ```bash
 npm i -S bootstrap
 ```
-#### gulp per icone
+### eslint 8
+```bash
+npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1
+```
+### eslint 9
+```bash
+npm i -D eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@^2
+```
+### gulp per icone
 ```bash
 npm i -D gulp@latest gulp-concat gulp-dom gulp-flatmap gulp-inject-string gulp-jsbeautifier gulp-rename gulp-replace gulp-svgmin gulp-svgstore
 ```
-#### gulp-wrap (aggiunta per icone react)
+### gulp-wrap (aggiunta per icone react)
 ```bash
 npm i -D gulp-wrap
 ```
-#### html-react-parser
+### html-react-parser
 ```bash
 npm i -D html-react-parser
 ```
-#### normalize.css
+### normalize.css
 ```bash
 npm i -S normalize.css
 ```
-#### open-props
+### open-props
 ```bash
 npm i -S open-props
 ```
-#### open-props
+### open-props
 ```bash
 npm i -D postcss-jit-props
 ```
-#### postcss + autoprefixer + purgecss (webpack)
+### postcss + autoprefixer + purgecss (webpack)
 ```bash
 npm i -D postcss @fullhuman/postcss-purgecss autoprefixer
 ```
-#### postcss-banner
+### postcss-banner
 ```bash
 npm i -D postcss-banner
 ```
-#### prismjs
+### prismjs
 ```bash
 npm i -S prismjs
 ```
-#### react (NB: richiede eslint 8)
+### react (NB: richiede eslint 8)
 ```bash
 npm i -D @babel/preset-react babel-plugin-transform-react-remove-prop-types eslint-config-react-app && npm i -D classnames nanoid prop-types && npm i -D react-dom react
 ```
-#### react-html-comment
+### react-html-comment
 ```bash
 npm i -D react-html-comment
 ```
-#### rollup base
+### rollup base
 ```bash
 npm i -D rollup@latest @rollup/plugin-terser @rollup/plugin-node-resolve @rollup/plugin-json @rollup/plugin-image @rollup/plugin-replace @rollup/plugin-commonjs
 ```
-#### rollup-plugin-string-html
+### rollup-plugin-string-html
 ```bash
 npm i -D rollup-plugin-string-html
 ```
-#### sass cli
+### sass cli
 ```bash
 npm i -D sass
 ```
-#### styled-components
+### styled-components
 ```bash
 npm i -D babel-plugin-styled-components styled-components
 ```
-#### typescript per react/webpack
+### stylelint
+```bash
+npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint && npm i -D @massimo-cassandro/stylelint-config
+```
+### typescript per react/webpack
 ```bash
 npm i -D @types/react-dom @types/react ts-loader typescript-plugin-css-modules typescript
 ```
-#### webpack
+### webpack
 ```bash
 npm i -D @babel/core @babel/preset-env babel-loader copy-webpack-plugin css-loader css-minimizer-webpack-plugin dotenv-webpack file-loader html-loader html-webpack-plugin mini-css-extract-plugin postcss-loader postcss-preset-env sass-loader style-loader terser-webpack-plugin && npm i -D webpack-cli webpack-dev-server webpack-manifest-plugin webpack-remove-empty-scripts webpack
 ```
 
 
-### @m
-#### @massimo-cassandro/auto-datatables-bs5
+## @m
+### @massimo-cassandro/auto-datatables-bs5
 ```bash
 npm i -S @massimo-cassandro/auto-datatables-bs5
 ```
-#### @massimo-cassandro/autocomplete
+### @massimo-cassandro/autocomplete
 ```bash
 npm i -S @massimo-cassandro/autocomplete
 ```
-#### @massimo-cassandro/ckeditor-utilities
+### @massimo-cassandro/ckeditor-utilities
 ```bash
 npm i -S @massimo-cassandro/ckeditor-utilities
 ```
-#### @massimo-cassandro/cookie-consent
+### @massimo-cassandro/cookie-consent
 ```bash
 npm i -S @massimo-cassandro/cookie-consent
 ```
-#### @massimo-cassandro/js-file-uploader
+### @massimo-cassandro/create-favicons
+```bash
+npm i -D @massimo-cassandro/create-favicons
+```
+### @massimo-cassandro/dev-updater
+```bash
+npm i -D @massimo-cassandro/dev-updater
+```
+### @massimo-cassandro/js-file-uploader
 ```bash
 npm i -S @massimo-cassandro/js-file-uploader
 ```
-#### @massimo-cassandro/js-utilities
+### @massimo-cassandro/js-utilities
 ```bash
 npm i -S @massimo-cassandro/js-utilities
 ```
-#### @massimo-cassandro/json-table
+### @massimo-cassandro/json-table
 ```bash
 npm i -S @massimo-cassandro/json-table
 ```
-#### @massimo-cassandro/modal-alert
+### @massimo-cassandro/layout-tools
+```bash
+npm i -D @massimo-cassandro/layout-tools
+```
+### @massimo-cassandro/modal-alert
 ```bash
 npm i -S @massimo-cassandro/modal-alert
 ```
-#### @massimo-cassandro/scss-utilities
+### @massimo-cassandro/scss-utilities
 ```bash
 npm i -S @massimo-cassandro/scss-utilities
 ```
-#### @massimo-cassandro/sharing-links
+### @massimo-cassandro/sharing-links
 ```bash
 npm i -S @massimo-cassandro/sharing-links
 ```
-#### @massimo-cassandro/unsplash-page
+### @massimo-cassandro/unsplash-page
 ```bash
 npm i -S @massimo-cassandro/unsplash-page
 ```
-#### @massimo-cassandro/twig-utilities
+### @massimo-cassandro/twig-utilities
 ```bash
 npm i -S @massimo-cassandro/twig-utilities
 ```
