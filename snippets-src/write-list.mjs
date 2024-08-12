@@ -42,7 +42,7 @@ const packages_content = [
         return `npm i ${p.dev? '-D' : '-S'} ${pg.join(' ')}`;
       }).join( ' && ');
 
-      return `### ${p.label}\n` +
+      return `#### ${p.label}\n` +
         md_code_block( parsed_packages[p.id] );
     }).join('');
 }).join('\n\n');
