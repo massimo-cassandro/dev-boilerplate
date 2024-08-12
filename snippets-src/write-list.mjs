@@ -14,6 +14,7 @@ const __dirname = new URL('.', import.meta.url).pathname;
 const target_file = path.resolve(__dirname, '../README.md');
 
 const parsed_packages = {}; // per utilizzo in cmds
+const md_code_block = code => '```bash\n' + code + '\n```\n';
 
 let content = [
   {name: 'Base', packages: basic_packages},
@@ -43,7 +44,7 @@ let content = [
       }).join( ' && ');
 
       return `#### ${p.label}\n` +
-        `${parsed_packages[p.id]}\n\n`;
+        md_code_block( parsed_packages[p.id] );
     }).join('');
 }).join('\n\n');
 
@@ -66,17 +67,13 @@ content +=  '\n\n### Cmds\n' + '-'.repeat(40) + '\n' + cmds.map( i => {
       const filePath = path.resolve(__dirname, `../config_files/${configFile}`),
         file_content = fs.readFileSync(filePath, 'utf8').replace(/\n/g, '\\n');
       cmds.push(
-        'echo "' +
-        file_content.replaceAll('"', '\\"')
-          .replaceAll('*', '\\*')
-          .replaceAll('`', '\\`') +
-        `" > ${configFile.replace(/^_/, '.')}`
+        'echo "' + file_content +`" > ${configFile.replace(/^_/, '.')}`
       );
     });
 
   }
 
-  return `#### ${i.label}\n` + cmds.join(' && ');
+  return `#### ${i.label}\n` + md_code_block(cmds.join(' && '));
 
 }).join('\n\n');
 
