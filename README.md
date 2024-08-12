@@ -45,6 +45,12 @@ npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-conf
 ```
 
 
+### openProps + postcss + config
+```bash
+npm i -S open-props && npm i -D postcss-jit-props && npm i -D postcss @fullhuman/postcss-purgecss autoprefixer && echo "/* eslint-env node */\nconst cssnano = require('cssnano')\n  ,purgecss = require('@fullhuman/postcss-purgecss')\n  ,autoprefixer = require('autoprefixer')\n  ,postcssJitProps = require('postcss-jit-props')\n  ,openProps = require('open-props');\n;\n\n// https://github.com/cssnano/cssnano\n// https://purgecss.com/configuration.html\n// https://github.com/GoogleChromeLabs/postcss-jit-props\n// https://github.com/argyleink/open-props\n\nconst postcssConfig = {\n  plugins: [\n\n    postcssJitProps(openProps),\n\n    autoprefixer,\n\n    purgecss({\n      content: [\n        './node_modules/@massimo-cassandro/**/.js',\n        './templates/**/*.html.twig',\n        './frontend/src/**/*.js'\n      ],\n      // css: ['./AppBundle/Resources/public/css/**/*.css'],\n      // output: ['./AppBundle/Resources/public/css/'],\n      variables: true,\n      // fontFace: true,\n      safelist: {\n        // standard: [],\n        // deep: [],\n        // greedy: [/yellow$/]\n      }\n    }),\n\n  ]\n};\n\n// If we are in production mode, then add cssnano\nif (process.env.NODE_ENV === 'production') {\n  postcssConfig.plugins.push(\n    cssnano({\n      // use the safe preset so that it doesn't\n      // mutate or remove code from our css\n      preset: 'default',\n    })\n  );\n}\n\nmodule.exports = postcssConfig;\n\n" > postcss.config.cjs
+```
+
+
 ### rollup + config
 ```bash
 npm i -D rollup@latest @rollup/plugin-terser @rollup/plugin-node-resolve @rollup/plugin-json @rollup/plugin-image @rollup/plugin-replace @rollup/plugin-commonjs && echo "import terser  from '@rollup/plugin-terser';\nimport fs from 'fs';\nimport node_resolve from '@rollup/plugin-node-resolve';\nimport commonjs from '@rollup/plugin-commonjs';\n\n// https://github.com/hyhappy/rollup-plugin-string-html\n// import htmlString from 'rollup-plugin-string-html';\n\n// https://github.com/exuanbo/rollup-plugin-minify-html-template-literals\n// https://github.com/asyncLiz/minify-html-literals\n// https://github.com/kangax/html-minifier#options-quick-reference\n// import minifyHTML from 'rollup-plugin-minify-html-template-literals';\n\nimport p from '../package.json'; // assert { type: 'json' };\n\nconst terserOptions = {\n    compress: {\n      passes: 2\n    }\n  },\n  anno = new Date().getFullYear(),\n  dirs = [\n    {source_dir: './front-end/js', output_dir: './AppBundle/Resources/public/js'}\n  ];\n\nlet config = [];\n\n// lettura subdir apps e aggiunta a `dirs`\nfs.readdirSync('./front-end/apps').forEach(item => {\n  let stats = fs.statSync(`./front-end/apps/${item}`); // stats.isFile() / stats.isDirectory()\n  if(stats.isDirectory()) {\n    dirs.push({\n      source_dir: `./front-end/apps/${item}`,\n      output_dir: `./AppBundle/Resources/public/apps/${item}`\n    });\n  }\n});\n\ndirs.forEach(dir => {\n\n  fs.readdirSync(dir.source_dir)\n    .filter(f => /\.js$/.test(f))\n    .filter(f => /^[^_]/.test(f)) // ignore files starting with _\n    .forEach(file => {\n\n      let format = 'iife',\n        name = null;\n\n      if(/(-umd\.js)$/.test(file)) {\n        format = 'umd';\n        name = file.replace('-umd.js', '').replace(/-/g, '_');\n      }\n\n      config.push(\n        {\n          // preserveEntrySignatures: false,\n          input: `${dir.source_dir}/${file}`,\n          plugins: [\n            // deve essere il primo\n            // minifyHTML({\n            //   options: {\n            //     minifyOptions: {\n            //       html5: true,\n            //       collapseWhitespace: true,\n            //       collapseInlineTagWhitespace: true,\n            //       conservativeCollapse: true,\n            //       decodeEntities: true\n            //     },\n            //     shouldMinify: () => true\n            //   },\n            // }),\n            node_resolve(),\n            commonjs(),\n            terser(terserOptions),\n          ],\n          output: [{\n            file: `${dir.output_dir}/${file.replace('.js', '-min.js')}`,\n            format: format,\n            sourcemap: true,\n            name: name,\n            banner: `/*! xxxx v.${p.version} - Massimo Cassandro ${anno} */`,\n            // footer: `//! Released on ${new Date().toLocaleString('it-IT', { year: 'numeric',  month: 'short', day: '2-digit', hour12: false, hour:'2-digit', minute:'2-digit' })}`\n          }]\n        }\n      );\n\n    });\n});\n\nexport default config;\n\n\n// versione statica\n\n// export default [\n//   {\n//     input: 'input.js',\n//     plugins: [\n//       node_resolve(),\n//       // commonjs(),\n//       terser({ compress: { passes: 2 } }),\n//     ],\n//     output: [\n//       {\n//         file: 'output.min.js',\n//         format: 'iife',\n//         sourcemap: true,\n\n//         banner: `/*! xxxx v.${p.version} - Massimo Cassandro ${anno} */`,\n//         // footer: `//! Released on ${new Date().toLocaleString('it-IT', { year: 'numeric',  month: 'short', day: '2-digit', hour12: false, hour:'2-digit', minute:'2-digit' })}`\n//       }\n//     ]\n//   },\n//   ...\n// ];\n" > rollup.config.mjs
@@ -106,10 +112,6 @@ npm i -S normalize.css
 ```bash
 npm i -S open-props
 ```
-### open-props
-```bash
-npm i -D postcss-jit-props
-```
 ### postcss + autoprefixer + purgecss (webpack)
 ```bash
 npm i -D postcss @fullhuman/postcss-purgecss autoprefixer
@@ -117,6 +119,10 @@ npm i -D postcss @fullhuman/postcss-purgecss autoprefixer
 ### postcss-banner
 ```bash
 npm i -D postcss-banner
+```
+### postcss-jit-props
+```bash
+npm i -D postcss-jit-props
 ```
 ### prismjs
 ```bash

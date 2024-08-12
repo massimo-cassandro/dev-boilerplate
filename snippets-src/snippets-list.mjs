@@ -154,7 +154,7 @@ const std_packages = [
   },
   {
     id: 'postcss-jit-props',
-    label: 'open-props',
+    label: 'postcss-jit-props',
     packages: ['postcss-jit-props'],
     dev: true,
   },
@@ -294,13 +294,16 @@ const cmds = [
     packages: ['stylelint'],
     addConfigFile: ['stylelint.config.cjs']
   },
-
+  {
+    label: 'openProps + postcss + config',
+    packages: ['open-props','postcss-jit-props', 'postcss'],
+    addConfigFile: ['postcss.config.cjs']
+  },
   {
     label: 'rollup + config',
     packages: ['rollup'],
     addConfigFile: ['rollup.config.mjs']
   },
-
   {
     label: 'postcss + config',
     packages: ['postcss'],
