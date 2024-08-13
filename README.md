@@ -152,9 +152,9 @@ npm i -D rollup-plugin-string-html
 ```bash
 npm i -D sass
 ```
-### solid-js
+### solid-js (webpack)
 ```bash
-npm i -D solid-js
+npm i -D solid-js babel-loader @babel/preset-env @babel/plugin-syntax-jsx babel-preset-solid
 ```
 ### styled-components
 ```bash

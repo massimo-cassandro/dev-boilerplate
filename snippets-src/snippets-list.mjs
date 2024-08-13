@@ -206,9 +206,9 @@ const std_packages = [
     dev_packages: ['html-react-parser'],
   },
   {
-    id: 'solid-js',
-    label: 'solid-js',
-    dev_packages: ['solid-js'],
+    id: 'solid-js-webpack',
+    label: 'solid-js (webpack)',
+    dev_packages: ['solid-js', 'babel-loader', '@babel/preset-env', '@babel/plugin-syntax-jsx', 'babel-preset-solid'],
   },
   {
     id: 'webpack',
