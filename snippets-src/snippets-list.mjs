@@ -1,61 +1,69 @@
 
 const m_packages = [
-  ['auto-datatables-bs5', false],
-  ['autocomplete', false],
-  ['ckeditor-utilities', false],
-  ['cookie-consent', false],
-  ['create-favicons', true],
-  ['dev-updater', true],
-  ['js-file-uploader', false],
-  ['js-utilities', false],
-  ['json-table', false],
-  ['layout-tools', true],
-  ['modal-alert', false],
-  ['scss-utilities', false],
-  ['sharing-links', false],
-  ['unsplash-page', false],
-  ['twig-utilities', false],
-].map(item =>({
-  id: `@massimo-cassandro/${item[0]}`,
-  label: `@massimo-cassandro/${item[0]}`,
-  packages: [`@massimo-cassandro/${item[0]}`],
-  dev: item[1],
-}));
+  {p: 'auto-datatables-bs5', dev: false},
+  {p: 'autocomplete', dev: false},
+  {p: 'ckeditor-utilities', dev: false},
+  {p: 'cookie-consent', dev: false},
+  {p: 'create-favicons', dev: true},
+  {p: 'dev-updater', dev: true},
+  {p: 'js-file-uploader', dev: false},
+  {p: 'js-utilities', dev: false},
+  {p: 'json-table', dev: false},
+  {p: 'layout-tools', dev: true},
+  {p: 'modal-alert', dev: false},
+  {p: 'scss-utilities', dev: false},
+  {p: 'sharing-links', dev: false},
+  {p: 'unsplash-page', dev: false},
+  {p: 'twig-utilities', dev: false},
+].map(item =>{
 
+  const p ={
+    id: `@massimo-cassandro/${item.p}`,
+    label: `@massimo-cassandro/${item.p}`,
+  };
+
+  if(item.dev) {
+    p.dev_packages = [`@massimo-cassandro/${item.p}`];
+  } else {
+    p.packages = [`@massimo-cassandro/${item.p}`];
+
+  }
+  return p;
+});
+
+
+// dev_packages e packages devono contenere solo stringhe o solo array di stringhe
 
 const std_packages = [
 
   {
     id: 'eslint8',
     label: 'eslint 8',
-    packages: ['eslint@^8', ['@massimo-cassandro/eslint-config@^1']],
-    dev: true,
+    dev_packages: [['eslint@^8'], ['@massimo-cassandro/eslint-config@^1']],
   },
   {
     id: 'eslint9',
     label: 'eslint 9',
-    packages: ['eslint@^9', '@eslint/js', 'globals', ['@massimo-cassandro/eslint-config@^2']],
-    dev: true,
+    dev_packages: [['eslint@^9', '@eslint/js', 'globals'], ['@massimo-cassandro/eslint-config@^2']],
   },
   {
     id: 'stylelint',
     label: 'stylelint',
-    packages: [
+    dev_packages: [
       [
         '@stylistic/stylelint-plugin',
         'stylelint-config-css-modules',
         'stylelint-config-twbs-bootstrap',
         'stylelint'
       ],
-      '@massimo-cassandro/stylelint-config',
+      ['@massimo-cassandro/stylelint-config'],
     ],
-    dev: true,
   },
 
   {
     id: 'rollup',
     label: 'rollup base',
-    packages: [
+    dev_packages: [
       'rollup@latest',
       '@rollup/plugin-terser',
       '@rollup/plugin-node-resolve',
@@ -64,13 +72,11 @@ const std_packages = [
       '@rollup/plugin-replace',
       '@rollup/plugin-commonjs',
     ],
-    dev: true
   },
   {
     id: 'rollup-plugin-string-html',
     label: 'rollup-plugin-string-html',
-    packages: ['rollup-plugin-string-html'],
-    dev: true,
+    dev_packages: ['rollup-plugin-string-html'],
   },
 
   // 'npm i --save-dev rollup-plugin-minify-html-template-literals',
@@ -78,19 +84,17 @@ const std_packages = [
   {
     id: 'sass',
     label: 'sass cli',
-    packages: ['sass'],
-    dev: true,
+    dev_packages: ['sass'],
   },
   {
     id: 'postcss',
     label: 'postcss + autoprefixer + purgecss (webpack)',
-    packages: [
+    dev_packages: [
       'postcss',
       '@fullhuman/postcss-purgecss',
       'autoprefixer',
       // 'postcss-csso',
     ],
-    dev: true,
   },
   // {
   //   id: 'postcss_cli',
@@ -101,20 +105,18 @@ const std_packages = [
   {
     id: 'postcss-banner',
     label: 'postcss-banner',
-    packages: ['postcss-banner'],
-    dev: true
+    dev_packages: ['postcss-banner'],
   },
 
   {
     id: 'bootstrap',
     label: 'bootstrap',
     packages: ['bootstrap'],
-    dev: false
   },
   {
     id: 'gulp_icone',
     label: 'gulp per icone',
-    packages: [
+    dev_packages: [
       'gulp@latest',
       'gulp-concat',
       'gulp-dom',
@@ -126,42 +128,39 @@ const std_packages = [
       'gulp-svgmin',
       'gulp-svgstore',
     ],
-    dev: true
   },
   {
     id: 'gulp_wrap',
     label: 'gulp-wrap (aggiunta per icone react)',
-    packages: ['gulp-wrap'],
-    dev: true
+    dev_packages: ['gulp-wrap'],
   },
   {
     id: 'prismjs',
     label: 'prismjs',
     packages: ['prismjs'],
-    dev: false,
   },
   {
     id: 'normalize',
     label: 'normalize.css',
     packages: ['normalize.css'],
-    dev: false,
   },
   {
     id: 'open-props',
-    label: 'open-props',
+    label: 'open-props + postcss-jit-props + postcss-import',
     packages: ['open-props'],
-    dev: false,
+    dev_packages: ['postcss-jit-props'],
   },
   {
-    id: 'postcss-jit-props',
-    label: 'postcss-jit-props',
-    packages: ['postcss-jit-props'],
-    dev: true,
+    id: 'open-props-full',
+    label: 'open-props + postcss-jit-props + postcss-import (per importare il css da node_modules)',
+    packages: ['open-props'],
+    dev_packages: ['postcss-jit-props', 'postcss-import'],
   },
+
   {
     id: 'react',
     label: 'react (NB: richiede eslint 8)',
-    packages: [
+    dev_packages: [
       [
         '@babel/preset-react',
         'babel-plugin-transform-react-remove-prop-types',
@@ -172,65 +171,69 @@ const std_packages = [
         'nanoid',
         'prop-types'
       ],
-      'react-dom',
-      'react',
+      [
+        'react-dom',
+        'react'
+      ]
     ],
-    dev: true,
   },
 
   {
     id: 'react_utilities',
     label: 'React utilities',
-    packages: [
+    dev_packages: [
       'classnames',
       'nanoid',
       'prop-types'
     ],
-    dev: true,
   },
   {
     id: 'styled-components',
     label: 'styled-components',
-    packages: [
+    dev_packages: [
       'babel-plugin-styled-components',
       'styled-components'
     ],
-    dev: true,
   },
   {
     id: 'react-html-comment',
     label: 'react-html-comment',
-    packages: ['react-html-comment'],
-    dev: true,
+    dev_packages: ['react-html-comment'],
   },
   {
     id: 'html-react-parser',
     label: 'html-react-parser',
-    packages: ['html-react-parser'],
-    dev: true,
+    dev_packages: ['html-react-parser'],
+  },
+  {
+    id: 'solid-js',
+    label: 'solid-js',
+    dev_packages: ['solid-js'],
   },
   {
     id: 'webpack',
     label: 'webpack',
-    packages: [
-      '@babel/core',
-      '@babel/preset-env',
-      'babel-loader',
-      // 'clean-webpack-plugin',
-      'copy-webpack-plugin',
-      'css-loader',
-      'css-minimizer-webpack-plugin',
-      // 'csso-webpack-plugin',
-      'dotenv-webpack',
-      'file-loader',
-      'html-loader',
-      'html-webpack-plugin',
-      'mini-css-extract-plugin',
-      'postcss-loader',
-      'postcss-preset-env',
-      'sass-loader',
-      'style-loader',
-      'terser-webpack-plugin',
+    dev_packages: [
+      [
+        '@babel/core',
+        '@babel/preset-env',
+        'babel-loader',
+        // 'clean-webpack-plugin',
+        'copy-webpack-plugin',
+        'css-loader',
+        'css-minimizer-webpack-plugin',
+        // 'csso-webpack-plugin',
+        'dotenv-webpack',
+        'file-loader',
+        'html-loader',
+        'html-webpack-plugin',
+        'mini-css-extract-plugin',
+        'postcss-loader',
+        'postcss-preset-env',
+        'sass-loader',
+        'style-loader',
+        'terser-webpack-plugin'
+      ],
       [
         'webpack-cli',
         'webpack-dev-server',
@@ -239,19 +242,17 @@ const std_packages = [
         'webpack'
       ]
     ],
-    dev: true
   },
   {
     id: 'typescript',
     label: 'typescript per react/webpack',
-    packages: [
+    dev_packages: [
       '@types/react-dom',
       '@types/react',
       'ts-loader',
       'typescript-plugin-css-modules',
       'typescript'
     ],
-    dev: true,
   },
 
 ];
@@ -262,13 +263,13 @@ std_packages.sort((a,b) => a.label < b.label? -1 : (a.label > b.label? 1 : 0));
 const cmds = [
 
   {
-    label: 'basic (updater, eslint 9, stylelint)',
-    packages: ['updater', 'eslint9', 'stylelint'],
+    label: 'basic (dev-updater, eslint 9, stylelint)',
+    packages: ['@massimo-cassandro/dev-updater', 'eslint9', 'stylelint'],
   },
 
   {
-    label: 'basic eslint 8 (updater, eslint 8, stylelint)',
-    packages: ['updater', 'eslint8', 'stylelint']
+    label: 'basic eslint 8 (dev-updater, eslint 8, stylelint)',
+    packages: ['@massimo-cassandro/dev-updater', 'eslint8', 'stylelint']
   },
   {
     label: 'create-favicon',

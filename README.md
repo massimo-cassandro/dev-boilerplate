@@ -3,15 +3,15 @@
 
 ## Install & config
 
-### basic (updater, eslint 9, stylelint)
+### basic (dev-updater, eslint 9, stylelint)
 ```bash
- && npm i -D eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@^2 && npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint && npm i -D @massimo-cassandro/stylelint-config
+npm i -D @massimo-cassandro/dev-updater && npm i -D eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@^2 && npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint && npm i -D @massimo-cassandro/stylelint-config
 ```
 
 
-### basic eslint 8 (updater, eslint 8, stylelint)
+### basic eslint 8 (dev-updater, eslint 8, stylelint)
 ```bash
- && npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1 && npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint && npm i -D @massimo-cassandro/stylelint-config
+npm i -D @massimo-cassandro/dev-updater && npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1 && npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint && npm i -D @massimo-cassandro/stylelint-config
 ```
 
 
@@ -47,7 +47,7 @@ npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-conf
 
 ### openProps + postcss + config
 ```bash
-npm i -S open-props && npm i -D postcss-jit-props && npm i -D postcss @fullhuman/postcss-purgecss autoprefixer && echo "/* eslint-env node */\nconst cssnano = require('cssnano')\n  ,purgecss = require('@fullhuman/postcss-purgecss')\n  ,autoprefixer = require('autoprefixer')\n  ,postcssJitProps = require('postcss-jit-props')\n  ,openProps = require('open-props');\n;\n\n// https://github.com/cssnano/cssnano\n// https://purgecss.com/configuration.html\n// https://github.com/GoogleChromeLabs/postcss-jit-props\n// https://github.com/argyleink/open-props\n\nconst postcssConfig = {\n  plugins: [\n\n    postcssJitProps(openProps),\n\n    autoprefixer,\n\n    purgecss({\n      content: [\n        './node_modules/@massimo-cassandro/**/.js',\n        './templates/**/*.html.twig',\n        './frontend/src/**/*.js'\n      ],\n      // css: ['./AppBundle/Resources/public/css/**/*.css'],\n      // output: ['./AppBundle/Resources/public/css/'],\n      variables: true,\n      // fontFace: true,\n      safelist: {\n        // standard: [],\n        // deep: [],\n        // greedy: [/yellow$/]\n      }\n    }),\n\n  ]\n};\n\n// If we are in production mode, then add cssnano\nif (process.env.NODE_ENV === 'production') {\n  postcssConfig.plugins.push(\n    cssnano({\n      // use the safe preset so that it doesn't\n      // mutate or remove code from our css\n      preset: 'default',\n    })\n  );\n}\n\nmodule.exports = postcssConfig;\n\n" > postcss.config.cjs
+npm i -S open-props && npm i -D postcss-jit-props &&  && npm i -D postcss @fullhuman/postcss-purgecss autoprefixer && echo "/* eslint-env node */\nconst cssnano = require('cssnano')\n  ,purgecss = require('@fullhuman/postcss-purgecss')\n  ,autoprefixer = require('autoprefixer')\n  ,postcssJitProps = require('postcss-jit-props')\n  ,openProps = require('open-props');\n;\n\n// https://github.com/cssnano/cssnano\n// https://purgecss.com/configuration.html\n// https://github.com/GoogleChromeLabs/postcss-jit-props\n// https://github.com/argyleink/open-props\n\nconst postcssConfig = {\n  plugins: [\n\n    postcssJitProps(openProps),\n\n    autoprefixer,\n\n    purgecss({\n      content: [\n        './node_modules/@massimo-cassandro/**/.js',\n        './templates/**/*.html.twig',\n        './frontend/src/**/*.js'\n      ],\n      // css: ['./AppBundle/Resources/public/css/**/*.css'],\n      // output: ['./AppBundle/Resources/public/css/'],\n      variables: true,\n      // fontFace: true,\n      safelist: {\n        // standard: [],\n        // deep: [],\n        // greedy: [/yellow$/]\n      }\n    }),\n\n  ]\n};\n\n// If we are in production mode, then add cssnano\nif (process.env.NODE_ENV === 'production') {\n  postcssConfig.plugins.push(\n    cssnano({\n      // use the safe preset so that it doesn't\n      // mutate or remove code from our css\n      preset: 'default',\n    })\n  );\n}\n\nmodule.exports = postcssConfig;\n\n" > postcss.config.cjs
 ```
 
 
@@ -108,9 +108,13 @@ npm i -D html-react-parser
 ```bash
 npm i -S normalize.css
 ```
-### open-props
+### open-props + postcss-jit-props + postcss-import
 ```bash
-npm i -S open-props
+npm i -S open-props && npm i -D postcss-jit-props
+```
+### open-props + postcss-jit-props + postcss-import (per importare il css da node_modules)
+```bash
+npm i -S open-props && npm i -D postcss-jit-props postcss-import
 ```
 ### postcss + autoprefixer + purgecss (webpack)
 ```bash
@@ -119,10 +123,6 @@ npm i -D postcss @fullhuman/postcss-purgecss autoprefixer
 ### postcss-banner
 ```bash
 npm i -D postcss-banner
-```
-### postcss-jit-props
-```bash
-npm i -D postcss-jit-props
 ```
 ### prismjs
 ```bash
@@ -151,6 +151,10 @@ npm i -D rollup-plugin-string-html
 ### sass cli
 ```bash
 npm i -D sass
+```
+### solid-js
+```bash
+npm i -D solid-js
 ```
 ### styled-components
 ```bash

@@ -16,35 +16,49 @@ const target_file = path.resolve(__dirname, '../README.md');
 const parsed_packages = {}; // per utilizzo in cmds
 const md_code_block = code => '```bash\n' + code + '\n```\n';
 
+const makeInstallString = (packageArray, isDev) => {
+  return `npm i ${isDev? '-D' : '-S'} ${packageArray.join(' ')}`;
+};
+
 const packages_content = [
-  {name: 'Packages', packages: std_packages},
-  {name: '@m', packages: m_packages},
+  {name: 'Packages', packages_array: std_packages},
+  {name: '@m', packages_array: m_packages},
 
 ].map( i => {
   return `## ${i.name}\n` +
-    i.packages.toSorted((a,b) => a.label.toLowerCase().localeCompare(b.label.toLowerCase())).map(p => {
+    i.packages_array.toSorted((a,b) => a.label.toLowerCase().localeCompare(b.label.toLowerCase()))
+      .map(packageObj => {
 
-      const packages_groups = [];
-      let group_index = 0;
-      p.packages.forEach( pp => {
-        if(Array.isArray(pp)) {
-          packages_groups.push(pp);
-          group_index++;
-        } else {
-          packages_groups[group_index] ??= [];
-          packages_groups[group_index].push(pp);
-        }
-      });
+        const temp = [];
 
-      // Object.values -> campatta sparse arrays
-      parsed_packages[p.id] = packages_groups.map(pg => {
-        return `npm i ${p.dev? '-D' : '-S'} ${pg.join(' ')}`;
-      }).join( ' && ');
+        ['packages', 'dev_packages'].forEach( packageType => {
 
-      return `### ${p.label}\n` +
-        md_code_block( parsed_packages[p.id] );
-    }).join('');
-}).join('\n\n');
+          const isDev = packageType === 'dev_packages';
+
+          if(packageObj[packageType] && packageObj[packageType].length) {
+
+            // se il primo elemento è un array si tratta di un array di array
+            if(Array.isArray(packageObj[packageType][0])) {
+              temp.push(
+                packageObj[packageType].map( pp => makeInstallString(pp, isDev)).join(' && ')
+              );
+
+            } else {
+              temp.push(makeInstallString(packageObj[packageType], isDev));
+            }
+
+          }
+
+
+          parsed_packages[packageObj.id]= temp.join( ' && ');
+
+        });
+
+        return `### ${packageObj.label}\n` + md_code_block( parsed_packages[packageObj.id] );
+
+      }).join(''); // end map packageObj
+
+}).join('\n\n'); // end map
 
 
 
