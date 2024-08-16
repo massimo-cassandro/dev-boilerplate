@@ -15,6 +15,7 @@ const target_file = path.resolve(__dirname, '../README.md');
 
 const parsed_packages = {}; // per utilizzo in cmds
 const md_code_block = code => '```bash\n' + code + '\n```\n';
+const md_descr_block = descr_array => descr_array.map( i => `* ${i}`).join('\n');
 
 const makeInstallString = (packageArray, isDev) => {
   return `npm i ${isDev? '-D' : '-S'} ${packageArray.join(' ')}`;
@@ -54,7 +55,9 @@ const packages_content = [
 
         });
 
-        return `### ${packageObj.label}\n` + md_code_block( parsed_packages[packageObj.id] );
+        return `### ${packageObj.label}\n` +
+          (packageObj.descr? '\n' + md_descr_block(packageObj.descr) + '\n\n' : '') +
+          md_code_block( parsed_packages[packageObj.id] );
 
       }).join(''); // end map packageObj
 

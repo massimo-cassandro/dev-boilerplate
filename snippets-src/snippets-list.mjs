@@ -98,12 +98,16 @@ const std_packages = [
       // 'postcss-csso',
     ],
   },
-  // {
-  //   id: 'postcss_cli',
-  //   label: 'postcss cli',
-  //   packages: ['postcss-cli'],
-  //   dev: true
-  // },
+  {
+    id: 'postcss_cli',
+    label: 'postcss cli',
+    descr: [
+      'Per creare file css di test.',
+      '`postcss-import` è necessario per risolvere le importazioni da cli (con webpack non serve, l’operazione è svolta da `css.loader`)',
+      'Comando: `[npx] postcss ./src/notes.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import`'
+    ],
+    dev_packages: ['postcss-cli', 'postcss-import'],
+  },
   {
     id: 'postcss-banner',
     label: 'postcss-banner',
