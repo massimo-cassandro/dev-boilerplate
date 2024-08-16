@@ -49,8 +49,6 @@
     "python server": "python3 -m http.server 8000 # --directory __dirname__ # 8000 = default port",
     "php server": "php -S localhost:8000 # -t root_dir/",
 
-    "css test (postcss)": "postcss ./src/notes.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import",
-
     "webpack PROD": "NODE_ENV=production webpack --config ./webpack-config.cjs"
 
   },
