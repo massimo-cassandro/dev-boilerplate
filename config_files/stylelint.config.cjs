@@ -2,7 +2,7 @@
 
 module.exports = {
   extends: ['@massimo-cassandro/stylelint-config'],
-  ignoreFiles: ['node_modules/**/*.{css,scss}', 'dist/**/*.css', 'build/**/*.css', 'public/**/*.css'],
+  ignoreFiles: ['node_modules/**/*.{css,scss}', 'dist/**/*.css', 'build/**/*.css', 'public/**/*.css', 'test/**/*.css'],
 
   // tailwind
   // 'rules': {

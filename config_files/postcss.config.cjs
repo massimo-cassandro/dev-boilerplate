@@ -24,16 +24,17 @@ const postcssConfig = {
 
     purgecss({
       content: [
-        './node_modules/@massimo-cassandro/**/.js',
+        // './node_modules/@massimo-cassandro/**/.js',
         './templates/**/*.html.twig',
-        './frontend/src/**/*.js'
+        './public/**/*.html',
+        './src/**/*.{js,jsx}',
       ],
       // css: ['./AppBundle/Resources/public/css/**/*.css'],
       // output: ['./AppBundle/Resources/public/css/'],
       variables: true,
       // fontFace: true,
       safelist: {
-        // standard: [],
+        // standard: [/:focus$/],
         // deep: [],
         // greedy: [/yellow$/]
       }
