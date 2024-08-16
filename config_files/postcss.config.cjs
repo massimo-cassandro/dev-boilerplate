@@ -6,10 +6,12 @@ const cssnano = require('cssnano')
   ,openProps = require('open-props');
 ;
 
+// https://github.com/argyleink/open-props
+// https://github.com/GoogleChromeLabs/postcss-jit-props
 // https://github.com/cssnano/cssnano
 // https://purgecss.com/configuration.html
-// https://github.com/GoogleChromeLabs/postcss-jit-props
-// https://github.com/argyleink/open-props
+// https://github.com/postcss/postcss-mixins
+// https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media
 
 const postcssConfig = {
   plugins: [
