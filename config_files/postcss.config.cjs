@@ -1,26 +1,36 @@
 /* eslint-env node */
-const cssnano = require('cssnano')
+const path = require('path')
+
+  ,cssnano = require('cssnano')
   ,purgecss = require('@fullhuman/postcss-purgecss')
   ,autoprefixer = require('autoprefixer')
-  ,postcssJitProps = require('postcss-jit-props')
-  ,openProps = require('open-props');
+  ,openProps = require('open-props')
 ;
 
-// https://github.com/argyleink/open-props
-// https://github.com/GoogleChromeLabs/postcss-jit-props
 // https://github.com/cssnano/cssnano
 // https://purgecss.com/configuration.html
+// https://github.com/GoogleChromeLabs/postcss-jit-props
+// https://github.com/argyleink/open-props
 // https://github.com/postcss/postcss-mixins
 // https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media
-
-// https://github.com/postcss/postcss-cli
 
 const postcssConfig = {
   plugins: [
 
-    postcssJitProps(openProps),
+    require('postcss-mixins')({
+      mixinsDir: path.resolve(__dirname, './src/css')
+    }),
+
+    // postcssJitProps(openProps),
+    require('postcss-jit-props')({
+      ...openProps,
+      custom_selector: ':root'
+    }),
 
     autoprefixer,
+    require('postcss-custom-media')({
+      preserve: false
+    }),
 
     purgecss({
       content: [
@@ -29,12 +39,13 @@ const postcssConfig = {
         './public/**/*.html',
         './src/**/*.{js,jsx}',
       ],
-      // css: ['./AppBundle/Resources/public/css/**/*.css'],
+      // css: ['./src/css/custom-properties-figma.css'],
       // output: ['./AppBundle/Resources/public/css/'],
-      variables: true,
+      // variables: true,
       // fontFace: true,
+      // keyframes: true,
       safelist: {
-        // standard: [/:focus$/],
+        standard: [/:focus$/],
         // deep: [],
         // greedy: [/yellow$/]
       }
@@ -43,7 +54,6 @@ const postcssConfig = {
   ]
 };
 
-// If we are in production mode, then add cssnano
 if (process.env.NODE_ENV === 'production') {
   postcssConfig.plugins.push(
     cssnano({
