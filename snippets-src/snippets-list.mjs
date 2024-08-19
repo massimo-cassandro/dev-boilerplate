@@ -95,6 +95,7 @@ const std_packages = [
       'autoprefixer',
       'postcss-custom-media',
       'postcss-mixins'
+      '@csstools/postcss-global-data'
       // 'postcss-csso',
     ],
   },
