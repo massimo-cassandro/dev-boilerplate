@@ -94,7 +94,7 @@ const std_packages = [
       '@fullhuman/postcss-purgecss',
       'autoprefixer',
       'postcss-custom-media',
-      'postcss-mixins'
+      'postcss-mixins',
       '@csstools/postcss-global-data'
       // 'postcss-csso',
     ],
