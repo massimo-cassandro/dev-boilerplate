@@ -104,7 +104,7 @@ const std_packages = [
     label: 'postcss cli',
     descr: [
       'Per creare file css di test.',
-      '`postcss-import` è necessario per risolvere le importazioni da cli (con webpack non serve, l’operazione è svolta da `css-loader`)',
+      '*postcss-import* è necessario per risolvere le importazioni da cli (con webpack non serve, l’operazione è svolta da *css-loader*)',
       'Comando: `[npx] postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch`'
     ],
     dev_packages: ['postcss-cli', 'postcss-import'],
@@ -123,6 +123,7 @@ const std_packages = [
   {
     id: 'gulp_icone',
     label: 'gulp per icone',
+    descr: ['package.json script: `"build_icons": "cd ./path/to/icone && gulp"`'],
     dev_packages: [
       'gulp@latest',
       'gulp-concat',
@@ -280,6 +281,10 @@ const cmds = [
   },
   {
     label: 'create-favicon',
+    descr:[
+      '`npx create-favicons init`',
+      '`npx create-favicons --dir=./`'
+    ],
     packages: ['@massimo-cassandro/create-favicons'],
   },
   {

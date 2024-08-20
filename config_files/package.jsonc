@@ -29,7 +29,6 @@
     "postcss-cli": "npx postcss ../public/css/**/*.css --dir ../public/css/ --config ./scripts/ --map --verbose --watch",
     "webpack DEV": "NODE_ENV=development webpack serve --config ./webpack-config.cjs",
     "build-css-custom-prop-list": "node './scripts/get-css-custom-properties-list.mjs'",
-    "build_icons": "cd ./front-end/icone && gulp",
 
     "build-breakpoints-scss": "node ./scripts/build-scss-breakpoint.mjs --input-type=module",
     "email-css": "npx sass ./front-end/email/:./AppBundle/Resources/views/_email/_tpl --load-path=./node_modules/ --no-source-map --style=compressed --watch",
@@ -40,9 +39,6 @@
     "UPD-version": "npx update-version  --config=./dev-utilities.config.mjs",
     "UPD-version (parametri di default)": "npx update-version # --config=./dev-utilities.config.mjs",
     "upd@m": "npx upd@m",
-
-    "create favicons init": "npx create-favicons init",
-    "create favicons": "npx create-favicons --dir=./",
 
     "npm-update": "npm update",
     "npm-publish": "npm publish",

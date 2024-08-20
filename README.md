@@ -93,6 +93,9 @@ npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1
 npm i -D eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@^2
 ```
 ### gulp per icone
+
+* package.json script: `"build_icons": "cd ./path/to/icone && gulp"`
+
 ```bash
 npm i -D gulp@latest gulp-concat gulp-dom gulp-flatmap gulp-inject-string gulp-jsbeautifier gulp-rename gulp-replace gulp-svgmin gulp-svgstore
 ```
@@ -123,7 +126,7 @@ npm i -D postcss @fullhuman/postcss-purgecss autoprefixer postcss-custom-media p
 ### postcss cli
 
 * Per creare file css di test.
-* `postcss-import` è necessario per risolvere le importazioni da cli (con webpack non serve, l’operazione è svolta da `css-loader`)
+* *postcss-import* è necessario per risolvere le importazioni da cli (con webpack non serve, l’operazione è svolta da *css-loader*)
 * Comando: `[npx] postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch`
 
 ```bash
