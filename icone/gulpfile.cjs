@@ -19,27 +19,23 @@ const gulp = require('gulp')
 ;
 
 
-let icon_list = []; // lista delle icone, utilizzate per il file demo
+let icons_list = []; // lista delle icone, utilizzate per il file demo
 
-const svg_files_folder = 'svg-files',
+const svg_files_folder = 'svg-src',
   svg_files_prefix = '',
-  dest_folder = '../../ada-sf/public/imgs/',
-  dest_folder2 = '../imgs/',
-  components_source_folder = './svg-files-dashboard',
-  components_extra_icons = [ // eventuali icone del set standard da elaborare anche come componenti
-    `${svg_files_folder}/ui-info.svg`,
-    `${svg_files_folder}/ui-danger.svg`,
-    `${svg_files_folder}/ui-success.svg`,
-    `${svg_files_folder}/ui-warning.svg`,
-  ],
-  components_dest_folder = '../apps-react/icon-components',
-  components_dest_src_folder = 'src', // all'interno di components_dest_folder
-  components_remove_strings = ['ui-'],
-  components_file = 'icons.jsx', // all'interno di components_dest_folder
-  output_file = 'icone-ada.svg',
-  icon_list_file = 'icon-list.mjs',
+  dest_folder = '../imgs/',
+  // dest_folder2 = '../imgs/',
+  // components_source_folder = './svg-files-dashboard',
+  // components_extra_icons = [ // eventuali icone del set standard da elaborare anche come componenti
+  // ],
+  // components_dest_folder = '../apps-react/icon-components',
+  // components_dest_src_folder = 'src', // all'interno di components_dest_folder
+  // components_remove_strings = ['ui-'],
+  // components_file = 'icons.jsx', // all'interno di components_dest_folder
+  output_file = 'icone.svg',
+  icons_list_file = 'icon-list.mjs',
   tpl_demo_file = './tpl/demo-icone-tpl.html',
-  svg_to_scss = ['freccia', 'ui-danger', 'ui-info', 'ui-success', 'ui-warning', 'ada-icona'], // icone da convertire in variabili scss
+  svg_to_scss = [], // icone da convertire in variabili scss
   icons_scss_file = '_icone-svg.scss',
 
   opacity_classes = {
@@ -85,7 +81,7 @@ gulp.task('icone', function() {
       //   path.basename = path.basename.replace(/-line$/, '');
       //   line_icons.push(path.basename);
       // }
-      icon_list.push(path.basename);
+      icons_list.push(path.basename);
 
       return path;
     }))
@@ -120,7 +116,7 @@ gulp.task('icone', function() {
 
     .pipe( rename(output_file) )
     // .pipe(chmod(0o755))
-    .pipe(gulp.dest(dest_folder2))
+    // .pipe(gulp.dest(dest_folder2))
     .pipe(gulp.dest(dest_folder));
 
   // copia nella dir di sviluppo per facilitare il debug
@@ -129,14 +125,14 @@ gulp.task('icone', function() {
 });
 
 
-gulp.task('icon_list', function(cb) {
+gulp.task('icons_list', function(cb) {
   var str = '// lista id icone per demo e altro\n' +
     '// NB: questo file è generato dinamicamente, eventuali modifiche saranno sovrascritte\n\n' +
-    'export const icon_list = ' + JSON.stringify(icon_list.sort(), null, '  ').replace(/"/g, '\'') + ';';
+    'export const icons_list = ' + JSON.stringify(icons_list.sort(), null, '  ').replace(/"/g, '\'') + ';';
 
-  //str +=  '\n\nexport default icon_list;';
+  //str +=  '\n\nexport default icons_list;';
 
-  return fs.writeFile(icon_list_file, str, cb);
+  return fs.writeFile(icons_list_file, str, cb);
 });
 
 // creazione file html standalone per la consultazione
@@ -148,7 +144,7 @@ gulp.task('demo_file', function() {
     .pipe(dom(function(){
       const wrapper = this.querySelector('.icon-wrapper');
       wrapper.insertAdjacentHTML('afterend',
-        `<script>const icon_list = ${JSON.stringify(icon_list.sort(), null, '  ').replace(/"/g, '\'')};</script>`
+        `<script>const icons_list = ${JSON.stringify(icons_list.sort(), null, '  ').replace(/"/g, '\'')};</script>`
       );
       return this.body.insertAdjacentHTML('beforeend',
         icone
@@ -292,12 +288,12 @@ gulp.task('default',
     // 'icone',
     gulp.parallel(
       'icone',
-      'icon_components'
+      // 'icon_components'
     ),
     gulp.parallel(
-      'icon_list',
-      'icons_component_main',
-      'svg2scss',
+      'icons_list',
+      // 'icons_component_main',
+      // 'svg2scss',
       'demo_file'
     )
   )
