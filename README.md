@@ -94,10 +94,14 @@ npm i -D eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-conf
 ```
 ### gulp per icone
 
-* package.json script: `"build_icons": "cd ./path/to/icone && gulp"`
+* package.json script: `"build_icons": "cd ./path/to/icone && gulp",`
 
 ```bash
-npm i -D gulp@latest gulp-concat gulp-dom gulp-flatmap gulp-inject-string gulp-jsbeautifier gulp-rename gulp-replace gulp-svgmin gulp-svgstore
+npm i -D gulp@latest gulp-concat gulp-dom gulp-flatmap gulp-inject-string gulp-rename gulp-replace gulp-svgmin gulp-svgstore gulp-wrap
+```
+### gulp-jsbeautifier (aggiunta per icone react)
+```bash
+npm i -D gulp-jsbeautifier
 ```
 ### gulp-wrap (aggiunta per icone react)
 ```bash

@@ -123,24 +123,29 @@ const std_packages = [
   {
     id: 'gulp_icone',
     label: 'gulp per icone',
-    descr: ['package.json script: `"build_icons": "cd ./path/to/icone && gulp"`'],
+    descr: ['package.json script: `"build_icons": "cd ./path/to/icone && gulp",`'],
     dev_packages: [
       'gulp@latest',
       'gulp-concat',
       'gulp-dom',
       'gulp-flatmap',
       'gulp-inject-string',
-      'gulp-jsbeautifier',
       'gulp-rename',
       'gulp-replace',
       'gulp-svgmin',
       'gulp-svgstore',
+      'gulp-wrap',
     ],
   },
   {
-    id: 'gulp_wrap',
+    id: 'gulp-wrap',
     label: 'gulp-wrap (aggiunta per icone react)',
     dev_packages: ['gulp-wrap'],
+  },
+  {
+    id: 'gulp-jsbeautifier',
+    label: 'gulp-jsbeautifier (aggiunta per icone react)',
+    dev_packages: ['gulp-jsbeautifier'],
   },
   {
     id: 'prismjs',
