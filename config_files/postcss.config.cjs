@@ -13,6 +13,7 @@ const path = require('path')
 // https://github.com/argyleink/open-props
 // https://github.com/postcss/postcss-mixins
 // https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media
+// https://github.com/postcss/postcss-simple-vars
 
 const postcssConfig = {
   plugins: [
