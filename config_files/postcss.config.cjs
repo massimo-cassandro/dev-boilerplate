@@ -10,6 +10,8 @@
 // https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media
 // https://github.com/postcss/postcss-simple-vars
 
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 const postcssConfig = {
   plugins: [
 
@@ -27,7 +29,7 @@ const postcssConfig = {
 
     require('autoprefixer'),
     require('postcss-custom-media')({
-      preserve: false
+      preserve: isDevelopment
     }),
 
     require('@fullhuman/postcss-purgecss')({
