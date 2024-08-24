@@ -1,5 +1,6 @@
 /* eslint-env node */
-const path = require('path');
+
+// const path = require('path');
 
 // https://github.com/cssnano/cssnano
 // https://purgecss.com/configuration.html
@@ -7,13 +8,18 @@ const path = require('path');
 // https://github.com/argyleink/open-props
 // https://github.com/postcss/postcss-mixins
 // https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media
+// https://github.com/postcss/postcss-simple-vars
+
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 const postcssConfig = {
   plugins: [
 
-    require('postcss-mixins')({
-      mixinsDir: path.resolve(__dirname, './src/css')
-    }),
+    // require('postcss-simple-vars'),
+
+    // require('postcss-mixins')({
+    //   mixinsDir: path.resolve(__dirname, './src/css')
+    // }),
 
     // require('postcss-jit-props')(require('open-props')),
     require('postcss-jit-props')({
@@ -23,7 +29,7 @@ const postcssConfig = {
 
     require('autoprefixer'),
     require('postcss-custom-media')({
-      preserve: false
+      preserve: isDevelopment
     }),
 
     require('@fullhuman/postcss-purgecss')({
