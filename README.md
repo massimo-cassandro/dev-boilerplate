@@ -15,13 +15,19 @@ npm i -D @massimo-cassandro/dev-updater && npm i -D eslint@^8 && npm i -D @massi
 ```
 
 
-### Crea editorconfig
+### Crea .editorconfig
 ```bash
 echo "# https://editorconfig.org\n\n# top-most EditorConfig file\nroot = true\n\n[*]\ncharset = utf-8\nend_of_line = lf\nindent_size = 2\nindent_style = space\ninsert_final_newline = true\ntrim_trailing_whitespace = true\n\n[*.md]\nmax_line_length = off\ntrim_trailing_whitespace = false\n\n[*.{yml,yaml}]\nindent_size = 4\n" > .editorconfig
 ```
 
 
-### Crea browserslistrc
+### Crea .gitignore
+```bash
+echo "*~\n.DS_Store\n**/*.mwb.bak\n**/*.mwb.beforefix\n\nnode_modules\nbower_components\nvendor\npackage-lock.json\ncomposer.lock\n\n.env\n.env.local\n.env.development\n.env.test\n.env.development.local\n.env.test.local\n.env.production.local\n\n*.sass-cache\n/@files-repo\n/@db-backup\n/pswd\n/**/.vscode/\n*.code-workspace\n*.sketch\n*.ai\n*.psd\n/progetto\n*TODO*.md\n\n\n" > .gitignore
+```
+
+
+### Crea .browserslistrc
 ```bash
 echo "# https://github.com/browserslist/browserslist\n# https://browsersl.ist/\n\nlast 2 major versions\nsince 2023\nnot dead\n\nnot op_mini all\nnot op_mob > 0\nnot and_uc > 0\nnot and_qq > 0\nnot baidu > 0\nnot kaios > 0\nnot android > 0\nnot ie > 0\nnot ie_mob > 0\nnot bb > 0\n\nsafari >= 16\nios_saf >= 16\nedge >= 109\nchrome >= 109\nfirefox esr\nopera >= 95\nsamsung >= 20\n\n> 3% in IT\n" > .browserslistrc
 ```

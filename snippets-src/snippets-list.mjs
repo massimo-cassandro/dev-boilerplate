@@ -310,12 +310,16 @@ const cmds = [
   },
 
   {
-    label: 'Crea editorconfig',
+    label: 'Crea .editorconfig',
     addConfigFile: ['_editorconfig']
+  },
+  {
+    label: 'Crea .gitignore',
+    addConfigFile: ['_gitignore']
   },
 
   {
-    label: 'Crea browserslistrc',
+    label: 'Crea .browserslistrc',
     addConfigFile: ['_browserslistrc']
   },
 
