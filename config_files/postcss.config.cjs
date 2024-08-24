@@ -1,11 +1,5 @@
 /* eslint-env node */
-const path = require('path')
-
-  ,cssnano = require('cssnano')
-  ,purgecss = require('@fullhuman/postcss-purgecss')
-  ,autoprefixer = require('autoprefixer')
-  ,openProps = require('open-props')
-;
+const path = require('path');
 
 // https://github.com/cssnano/cssnano
 // https://purgecss.com/configuration.html
@@ -21,18 +15,18 @@ const postcssConfig = {
       mixinsDir: path.resolve(__dirname, './src/css')
     }),
 
-    // postcssJitProps(openProps),
+    // require('postcss-jit-props')(require('open-props')),
     require('postcss-jit-props')({
-      ...openProps,
-      custom_selector: ':root'
+      ...require('open-props'),
+      custom_selector: ':where(html)'
     }),
 
-    autoprefixer,
+    require('autoprefixer'),
     require('postcss-custom-media')({
       preserve: false
     }),
 
-    purgecss({
+    require('@fullhuman/postcss-purgecss')({
       content: [
         // './node_modules/@massimo-cassandro/**/.js',
         './templates/**/*.html.twig',
@@ -56,7 +50,7 @@ const postcssConfig = {
 
 if (process.env.NODE_ENV === 'production') {
   postcssConfig.plugins.push(
-    cssnano({
+    require('cssnano')({
       // use the safe preset so that it doesn't
       // mutate or remove code from our css
       preset: 'default',

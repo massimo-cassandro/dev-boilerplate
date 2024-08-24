@@ -23,7 +23,7 @@ let icons_list = []; // lista delle icone, utilizzate per il file demo
 
 const svg_files_folder = 'svg-src',
   svg_files_prefix = '',
-  dest_folder = '../imgs/',
+  dest_folder = './',
   // dest_folder2 = '../imgs/',
   // components_source_folder = './svg-files-dashboard',
   // components_extra_icons = [ // eventuali icone del set standard da elaborare anche come componenti
@@ -32,7 +32,7 @@ const svg_files_folder = 'svg-src',
   // components_dest_src_folder = 'src', // all'interno di components_dest_folder
   // components_remove_strings = ['ui-'],
   // components_file = 'icons.jsx', // all'interno di components_dest_folder
-  output_file = 'icone.svg',
+  output_file = 'icons.svg',
   icons_list_file = 'icon-list.mjs',
   tpl_demo_file = './tpl/demo-icone-tpl.html',
   svg_to_scss = [], // icone da convertire in variabili scss
