@@ -14,7 +14,7 @@ const __dirname = new URL('.', import.meta.url).pathname;
 const target_file = path.resolve(__dirname, '../README.md');
 
 const parsed_packages = {}; // per utilizzo in cmds
-const md_code_block = code => '```bash\n' + code + '\n```\n';
+const md_code_block = code => code? '```bash\n' + code + '\n```\n' : '';
 const md_descr_block = descr_array => descr_array.map( i => `* ${i}`).join('\n');
 
 const makeInstallString = (packageArray, isDev) => {
@@ -89,7 +89,9 @@ const cmd_content =  '\n\n## Install & config\n' + '\n' + cmds.map( i => {
 
   }
 
-  return `### ${i.label}\n` + md_code_block(cmds.join(' && '));
+  return `### ${i.label}\n` +
+    (i.descr? '\n' + md_descr_block(i.descr) + '\n\n' : '') +
+    md_code_block(cmds.join(' && '));
 
 }).join('\n\n');
 

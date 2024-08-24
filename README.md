@@ -15,18 +15,6 @@ npm i -D @massimo-cassandro/dev-updater && npm i -D eslint@^8 && npm i -D @massi
 ```
 
 
-### create-favicon
-```bash
-npm i -D @massimo-cassandro/create-favicons
-```
-
-
-### layout-tools
-```bash
-npm i -D @massimo-cassandro/layout-tools
-```
-
-
 ### Crea editorconfig
 ```bash
 echo "# https://editorconfig.org\n\n# top-most EditorConfig file\nroot = true\n\n[*]\ncharset = utf-8\nend_of_line = lf\nindent_size = 2\nindent_style = space\ninsert_final_newline = true\ntrim_trailing_whitespace = true\n\n[*.md]\nmax_line_length = off\ntrim_trailing_whitespace = false\n\n[*.{yml,yaml}]\nindent_size = 4\n" > .editorconfig
@@ -47,7 +35,7 @@ npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-conf
 
 ### openProps + postcss + config
 ```bash
-npm i -S open-props && npm i -D postcss-jit-props &&  && npm i -D postcss @fullhuman/postcss-purgecss autoprefixer postcss-custom-media postcss-mixins @csstools/postcss-global-data && echo "/* eslint-env node */\nconst path = require('path')\n\n  ,cssnano = require('cssnano')\n  ,purgecss = require('@fullhuman/postcss-purgecss')\n  ,autoprefixer = require('autoprefixer')\n  ,openProps = require('open-props')\n;\n\n// https://github.com/cssnano/cssnano\n// https://purgecss.com/configuration.html\n// https://github.com/GoogleChromeLabs/postcss-jit-props\n// https://github.com/argyleink/open-props\n// https://github.com/postcss/postcss-mixins\n// https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media\n\nconst postcssConfig = {\n  plugins: [\n\n    require('postcss-mixins')({\n      mixinsDir: path.resolve(__dirname, './src/css')\n    }),\n\n    // postcssJitProps(openProps),\n    require('postcss-jit-props')({\n      ...openProps,\n      custom_selector: ':root'\n    }),\n\n    autoprefixer,\n    require('postcss-custom-media')({\n      preserve: false\n    }),\n\n    purgecss({\n      content: [\n        // './node_modules/@massimo-cassandro/**/.js',\n        './templates/**/*.html.twig',\n        './public/**/*.html',\n        './src/**/*.{js,jsx}',\n      ],\n      // css: ['./src/css/custom-properties-figma.css'],\n      // output: ['./AppBundle/Resources/public/css/'],\n      // variables: true,\n      // fontFace: true,\n      // keyframes: true,\n      safelist: {\n        standard: [/:focus$/],\n        // deep: [],\n        // greedy: [/yellow$/]\n      }\n    }),\n\n  ]\n};\n\nif (process.env.NODE_ENV === 'production') {\n  postcssConfig.plugins.push(\n    cssnano({\n      // use the safe preset so that it doesn't\n      // mutate or remove code from our css\n      preset: 'default',\n    })\n  );\n}\n\nmodule.exports = postcssConfig;\n\n" > postcss.config.cjs
+npm i -S open-props && npm i -D postcss-jit-props &&  && npm i -D postcss @fullhuman/postcss-purgecss autoprefixer postcss-custom-media postcss-mixins @csstools/postcss-global-data postcss-simple-vars && echo "/* eslint-env node */\n\n// const path = require('path');\n\n// https://github.com/cssnano/cssnano\n// https://purgecss.com/configuration.html\n// https://github.com/GoogleChromeLabs/postcss-jit-props\n// https://github.com/argyleink/open-props\n// https://github.com/postcss/postcss-mixins\n// https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media\n// https://github.com/postcss/postcss-simple-vars\n\nconst isDevelopment = process.env.NODE_ENV === 'development';\n\nconst postcssConfig = {\n  plugins: [\n\n    // require('postcss-simple-vars'),\n\n    // require('postcss-mixins')({\n    //   mixinsDir: path.resolve(__dirname, './src/css')\n    // }),\n\n    // require('postcss-jit-props')(require('open-props')),\n    require('postcss-jit-props')({\n      ...require('open-props'),\n      custom_selector: ':where(html)'\n    }),\n\n    require('autoprefixer'),\n    require('postcss-custom-media')({\n      preserve: isDevelopment\n    }),\n\n    require('@fullhuman/postcss-purgecss')({\n      content: [\n        // './node_modules/@massimo-cassandro/**/.js',\n        './templates/**/*.html.twig',\n        './public/**/*.html',\n        './src/**/*.{js,jsx}',\n      ],\n      // css: ['./src/css/custom-properties-figma.css'],\n      // output: ['./AppBundle/Resources/public/css/'],\n      // variables: true,\n      // fontFace: true,\n      // keyframes: true,\n      safelist: {\n        standard: [/:focus$/],\n        // deep: [],\n        // greedy: [/yellow$/]\n      }\n    }),\n\n  ]\n};\n\nif (process.env.NODE_ENV === 'production') {\n  postcssConfig.plugins.push(\n    require('cssnano')({\n      // use the safe preset so that it doesn't\n      // mutate or remove code from our css\n      preset: 'default',\n    })\n  );\n}\n\nmodule.exports = postcssConfig;\n\n" > postcss.config.cjs
 ```
 
 
@@ -59,8 +47,16 @@ npm i -D rollup@latest @rollup/plugin-terser @rollup/plugin-node-resolve @rollup
 
 ### postcss + config
 ```bash
-npm i -D postcss @fullhuman/postcss-purgecss autoprefixer postcss-custom-media postcss-mixins @csstools/postcss-global-data && echo "/* eslint-env node */\nconst path = require('path')\n\n  ,cssnano = require('cssnano')\n  ,purgecss = require('@fullhuman/postcss-purgecss')\n  ,autoprefixer = require('autoprefixer')\n  ,openProps = require('open-props')\n;\n\n// https://github.com/cssnano/cssnano\n// https://purgecss.com/configuration.html\n// https://github.com/GoogleChromeLabs/postcss-jit-props\n// https://github.com/argyleink/open-props\n// https://github.com/postcss/postcss-mixins\n// https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media\n\nconst postcssConfig = {\n  plugins: [\n\n    require('postcss-mixins')({\n      mixinsDir: path.resolve(__dirname, './src/css')\n    }),\n\n    // postcssJitProps(openProps),\n    require('postcss-jit-props')({\n      ...openProps,\n      custom_selector: ':root'\n    }),\n\n    autoprefixer,\n    require('postcss-custom-media')({\n      preserve: false\n    }),\n\n    purgecss({\n      content: [\n        // './node_modules/@massimo-cassandro/**/.js',\n        './templates/**/*.html.twig',\n        './public/**/*.html',\n        './src/**/*.{js,jsx}',\n      ],\n      // css: ['./src/css/custom-properties-figma.css'],\n      // output: ['./AppBundle/Resources/public/css/'],\n      // variables: true,\n      // fontFace: true,\n      // keyframes: true,\n      safelist: {\n        standard: [/:focus$/],\n        // deep: [],\n        // greedy: [/yellow$/]\n      }\n    }),\n\n  ]\n};\n\nif (process.env.NODE_ENV === 'production') {\n  postcssConfig.plugins.push(\n    cssnano({\n      // use the safe preset so that it doesn't\n      // mutate or remove code from our css\n      preset: 'default',\n    })\n  );\n}\n\nmodule.exports = postcssConfig;\n\n" > postcss.config.cjs
+npm i -D postcss @fullhuman/postcss-purgecss autoprefixer postcss-custom-media postcss-mixins @csstools/postcss-global-data postcss-simple-vars && echo "/* eslint-env node */\n\n// const path = require('path');\n\n// https://github.com/cssnano/cssnano\n// https://purgecss.com/configuration.html\n// https://github.com/GoogleChromeLabs/postcss-jit-props\n// https://github.com/argyleink/open-props\n// https://github.com/postcss/postcss-mixins\n// https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media\n// https://github.com/postcss/postcss-simple-vars\n\nconst isDevelopment = process.env.NODE_ENV === 'development';\n\nconst postcssConfig = {\n  plugins: [\n\n    // require('postcss-simple-vars'),\n\n    // require('postcss-mixins')({\n    //   mixinsDir: path.resolve(__dirname, './src/css')\n    // }),\n\n    // require('postcss-jit-props')(require('open-props')),\n    require('postcss-jit-props')({\n      ...require('open-props'),\n      custom_selector: ':where(html)'\n    }),\n\n    require('autoprefixer'),\n    require('postcss-custom-media')({\n      preserve: isDevelopment\n    }),\n\n    require('@fullhuman/postcss-purgecss')({\n      content: [\n        // './node_modules/@massimo-cassandro/**/.js',\n        './templates/**/*.html.twig',\n        './public/**/*.html',\n        './src/**/*.{js,jsx}',\n      ],\n      // css: ['./src/css/custom-properties-figma.css'],\n      // output: ['./AppBundle/Resources/public/css/'],\n      // variables: true,\n      // fontFace: true,\n      // keyframes: true,\n      safelist: {\n        standard: [/:focus$/],\n        // deep: [],\n        // greedy: [/yellow$/]\n      }\n    }),\n\n  ]\n};\n\nif (process.env.NODE_ENV === 'production') {\n  postcssConfig.plugins.push(\n    require('cssnano')({\n      // use the safe preset so that it doesn't\n      // mutate or remove code from our css\n      preset: 'default',\n    })\n  );\n}\n\nmodule.exports = postcssConfig;\n\n" > postcss.config.cjs
 ```
+
+
+### Local servers
+
+* `"python server": "python3 -m http.server 8000 # --directory __dirname__ # 8000 = default port",`
+* `"php server": "php -S localhost:8000 # -t root_dir/",`
+* `"symfony local server": "symfony serve -d",`
+
 
 
 ### Update stylelint config file
@@ -125,13 +121,13 @@ npm i -S open-props && npm i -D postcss-jit-props postcss-import
 ```
 ### postcss + autoprefixer + purgecss (webpack)
 ```bash
-npm i -D postcss @fullhuman/postcss-purgecss autoprefixer postcss-custom-media postcss-mixins @csstools/postcss-global-data
+npm i -D postcss @fullhuman/postcss-purgecss autoprefixer postcss-custom-media postcss-mixins @csstools/postcss-global-data postcss-simple-vars
 ```
 ### postcss cli
 
 * Per creare file css di test.
 * *postcss-import* è necessario per risolvere le importazioni da cli (con webpack non serve, l’operazione è svolta da *css-loader*)
-* Comando: `[npx] postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch`
+* `[npx] postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch`
 
 ```bash
 npm i -D postcss-cli postcss-import
@@ -157,6 +153,9 @@ npm i -D classnames nanoid prop-types
 npm i -D react-html-comment
 ```
 ### rollup base
+
+* `"rollup": "npx rollup --config ./config/rollup.config.mjs --watch",`
+
 ```bash
 npm i -D rollup@latest @rollup/plugin-terser @rollup/plugin-node-resolve @rollup/plugin-json @rollup/plugin-image @rollup/plugin-replace @rollup/plugin-commonjs
 ```
@@ -185,6 +184,10 @@ npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-conf
 npm i -D @types/react-dom @types/react ts-loader typescript-plugin-css-modules typescript
 ```
 ### webpack
+
+* `"webpack DEV": "NODE_ENV=development webpack serve --config ./webpack-config.cjs"`,
+* `"webpack PROD": "NODE_ENV=production webpack --config ./webpack-config.cjs",`
+
 ```bash
 npm i -D @babel/core @babel/preset-env babel-loader copy-webpack-plugin css-loader css-minimizer-webpack-plugin dotenv-webpack file-loader html-loader html-webpack-plugin mini-css-extract-plugin postcss-loader postcss-preset-env sass-loader style-loader terser-webpack-plugin && npm i -D webpack-cli webpack-dev-server webpack-manifest-plugin webpack-remove-empty-scripts webpack
 ```
@@ -208,14 +211,29 @@ npm i -S @massimo-cassandro/ckeditor-utilities
 npm i -S @massimo-cassandro/cookie-consent
 ```
 ### @massimo-cassandro/create-favicons
+
+* <https://github.com/massimo-cassandro/create-favicons?tab=readme-ov-file#create-favicons>
+* `npx create-favicons init`
+* `npx create-favicons --dir=./`
+
 ```bash
 npm i -D @massimo-cassandro/create-favicons
 ```
 ### @massimo-cassandro/dev-updater
+
+* <https://github.com/massimo-cassandro/dev-updater?tab=readme-ov-file#dev-updaters>
+* `"UPD-version": "npx update-version  --config=./dev-utilities.config.mjs",`
+* `"UPD-version (parametri di default)": "npx update-version # --config=./dev-utilities.config.mjs",`
+* `"upd@m": "npx upd@m",`
+
 ```bash
 npm i -D @massimo-cassandro/dev-updater
 ```
 ### @massimo-cassandro/js-file-uploader
+
+* <https://github.com/massimo-cassandro/js-file-uploader?tab=readme-ov-file#fileuploader>
+* <https://massimo-cassandro.github.io/js-file-uploader/demo/>
+
 ```bash
 npm i -S @massimo-cassandro/js-file-uploader
 ```

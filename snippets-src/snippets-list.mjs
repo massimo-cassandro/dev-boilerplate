@@ -4,9 +4,21 @@ const m_packages = [
   {p: 'autocomplete', dev: false},
   {p: 'ckeditor-utilities', dev: false},
   {p: 'cookie-consent', dev: false},
-  {p: 'create-favicons', dev: true},
-  {p: 'dev-updater', dev: true},
-  {p: 'js-file-uploader', dev: false},
+  {p: 'create-favicons', dev: true, descr: [
+    '<https://github.com/massimo-cassandro/create-favicons?tab=readme-ov-file#create-favicons>',
+    '`npx create-favicons init`',
+    '`npx create-favicons --dir=./`'
+  ]},
+  {p: 'dev-updater', dev: true, descr: [
+    '<https://github.com/massimo-cassandro/dev-updater?tab=readme-ov-file#dev-updaters>',
+    '`"UPD-version": "npx update-version  --config=./dev-utilities.config.mjs",`',
+    '`"UPD-version (parametri di default)": "npx update-version # --config=./dev-utilities.config.mjs",`',
+    '`"upd@m": "npx upd@m",`',
+  ]},
+  {p: 'js-file-uploader', dev: false, descr: [
+    '<https://github.com/massimo-cassandro/js-file-uploader?tab=readme-ov-file#fileuploader>',
+    '<https://massimo-cassandro.github.io/js-file-uploader/demo/>'
+  ]},
   {p: 'js-utilities', dev: false},
   {p: 'json-table', dev: false},
   {p: 'layout-tools', dev: true},
@@ -21,6 +33,10 @@ const m_packages = [
     id: `@massimo-cassandro/${item.p}`,
     label: `@massimo-cassandro/${item.p}`,
   };
+
+  if(item.descr) {
+    p.descr = item.descr;
+  }
 
   if(item.dev) {
     p.dev_packages = [`@massimo-cassandro/${item.p}`];
@@ -63,6 +79,9 @@ const std_packages = [
   {
     id: 'rollup',
     label: 'rollup base',
+    descr: [
+      '`"rollup": "npx rollup --config ./config/rollup.config.mjs --watch",`'
+    ],
     dev_packages: [
       'rollup@latest',
       '@rollup/plugin-terser',
@@ -106,7 +125,7 @@ const std_packages = [
     descr: [
       'Per creare file css di test.',
       '*postcss-import* è necessario per risolvere le importazioni da cli (con webpack non serve, l’operazione è svolta da *css-loader*)',
-      'Comando: `[npx] postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch`'
+      '`[npx] postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch`'
     ],
     dev_packages: ['postcss-cli', 'postcss-import'],
   },
@@ -227,6 +246,10 @@ const std_packages = [
   {
     id: 'webpack',
     label: 'webpack',
+    descr: [
+      '`"webpack DEV": "NODE_ENV=development webpack serve --config ./webpack-config.cjs"`,',
+      '`"webpack PROD": "NODE_ENV=production webpack --config ./webpack-config.cjs",`'
+    ],
     dev_packages: [
       [
         '@babel/core',
@@ -285,18 +308,6 @@ const cmds = [
     label: 'basic eslint 8 (dev-updater, eslint 8, stylelint)',
     packages: ['@massimo-cassandro/dev-updater', 'eslint8', 'stylelint']
   },
-  {
-    label: 'create-favicon',
-    descr:[
-      '`npx create-favicons init`',
-      '`npx create-favicons --dir=./`'
-    ],
-    packages: ['@massimo-cassandro/create-favicons'],
-  },
-  {
-    label: 'layout-tools',
-    packages: ['@massimo-cassandro/layout-tools'],
-  },
 
   {
     label: 'Crea editorconfig',
@@ -327,6 +338,14 @@ const cmds = [
     label: 'postcss + config',
     packages: ['postcss'],
     addConfigFile: ['postcss.config.cjs']
+  },
+  {
+    label: 'Local servers',
+    descr: [
+      '`"python server": "python3 -m http.server 8000 # --directory __dirname__ # 8000 = default port",`',
+      '`"php server": "php -S localhost:8000 # -t root_dir/",`',
+      '`"symfony local server": "symfony serve -d",`'
+    ]
   },
   {
     label: 'Update stylelint config file',
