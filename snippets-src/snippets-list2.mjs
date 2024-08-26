@@ -1,57 +1,115 @@
+/*
 
-const m_packages = [
-  {p: 'auto-datatables-bs5', dev: false},
-  {p: 'autocomplete', dev: false},
-  {p: 'ckeditor-utilities', dev: false},
-  {p: 'cookie-consent', dev: false},
-  {p: 'create-favicons', dev: true, descr: [
-    '<https://github.com/massimo-cassandro/create-favicons?tab=readme-ov-file#create-favicons>',
-    '`npx create-favicons init`',
-    '`npx create-favicons --dir=./`'
-  ]},
-  {p: 'dev-updater', dev: true, descr: [
-    '<https://github.com/massimo-cassandro/dev-updater?tab=readme-ov-file#dev-updaters>',
-    '`"UPD-version": "npx update-version  --config=./dev-utilities.config.mjs",`',
-    '`"UPD-version (parametri di default)": "npx update-version # --config=./dev-utilities.config.mjs",`',
-    '`"upd@m": "npx upd@m",`',
-  ]},
-  {p: 'js-file-uploader', dev: false, descr: [
-    '<https://github.com/massimo-cassandro/js-file-uploader?tab=readme-ov-file#fileuploader>',
-    '<https://massimo-cassandro.github.io/js-file-uploader/demo/>'
-  ]},
-  {p: 'js-utilities', dev: false},
-  {p: 'json-table', dev: false},
-  {p: 'layout-tools', dev: true},
-  {p: 'modal-alert', dev: false},
-  {p: 'scss-utilities', dev: false},
-  {p: 'sharing-links', dev: false},
-  {p: 'unsplash-page', dev: false},
-  {p: 'twig-utilities', dev: false},
-].map(item =>{
+[
+  {
+    id: '__id__',      <- id univoco
+    label: 'xxx',
+    descr: [],         <- renderizzati come '* ...'
+    descr_cmds: [],    <- renderizzati come '* `...`'
+    cmds: [],          <- renderizzati come '``` ... ```'
 
-  const p ={
-    id: `@massimo-cassandro/${item.p}`,
-    label: `@massimo-cassandro/${item.p}`,
-  };
+    packages: [],      <- renderizzati come `npm i --S ...` o `--D ...`, se presenti dei subarray
+    dev_packages: [],  <- vengono renderizati come `npm i` distinti
 
-  if(item.descr) {
-    p.descr = item.descr;
-  }
+    addConfigFile: [], <- files in `config_files` da rirpodurre con `echo` e `>>`
 
-  if(item.dev) {
-    p.dev_packages = [`@massimo-cassandro/${item.p}`];
-  } else {
-    p.packages = [`@massimo-cassandro/${item.p}`];
+    resolve: [],            <- lista di id del json, vengono risolti secondo le indicazioni di ciascun oggetto indicato
+    resolve_uninstall: [],  <- lista di id del json, i pacchetti relativi vengono renderizzati come `npm uninstall ...`
+    fav: false,             <- se true, il pacchetto viene considerato tra i preferiti e messo in cima alla lista
+  },
+  ...
+]
 
-  }
-  return p;
-});
+il json viene ordinato per label
 
+*/
 
-// dev_packages e packages devono contenere solo stringhe o solo array di stringhe
+// =>> snippets
+const snippets = [
+  {
+    label: 'basic (dev-updater, eslint 9, stylelint)',
+    resolve: ['@m-dev-updater', 'eslint9', 'stylelint'],
+    fav: true
+  },
 
-const std_packages = [
+  {
+    label: 'basic eslint 8 (dev-updater, eslint 8, stylelint)',
+    resolve: ['@m-dev-updater', 'eslint8', 'stylelint'],
+    fav: true
+  },
 
+  {
+    label: 'Crea .editorconfig',
+    addConfigFile: ['_editorconfig'],
+    fav: true
+  },
+  {
+    label: 'Crea .gitignore',
+    addConfigFile: ['_gitignore'],
+    fav: true
+  },
+
+  {
+    label: 'Crea .browserslistrc',
+    addConfigFile: ['_browserslistrc'],
+    fav: true
+  },
+
+  {
+    label: 'stylelint + config',
+    resolve: ['stylelint'],
+    addConfigFile: ['stylelint.config.cjs'],
+    fav: true
+  },
+  {
+    label: 'openProps + postcss + config',
+    resolve: ['open-props','postcss-jit-props', 'postcss'],
+    addConfigFile: ['postcss.config.cjs'],
+    fav: true
+  },
+  {
+    label: 'rollup + config',
+    resolve: ['rollup'],
+    addConfigFile: ['rollup.config.mjs'],
+    fav: true
+  },
+  {
+    label: 'postcss + config',
+    resolve: ['postcss'],
+    addConfigFile: ['postcss.config.cjs'],
+    fav: true
+  },
+  {
+    label: 'Local servers',
+    descr: [
+      '`"python server": "python3 -m http.server 8000 # --directory __dirname__ # 8000 = default port",`',
+      '`"php server": "php -S localhost:8000 # -t root_dir/",`',
+      '`"symfony local server": "symfony serve -d",`'
+    ],
+    fav: true
+  },
+  {
+    label: 'Update stylelint config file',
+    cmds: ['mv -f .stylelintrc.cjs stylelint.config.cjs']
+  },
+  {
+    label: 'Update eslint 8 → 9',
+    cmds: ['rm -f .eslintrc.cjs'],
+    resolve_uninstall: ['eslint8'],
+    resolve: ['eslint9'],
+    addConfigFile: ['eslint.config.mjs']
+  },
+  {
+    label: 'Downgrade eslint 9 → 8',
+    cmds: ['rm -f eslint.config.mjs'],
+    resolve_uninstall: ['eslint9'],
+    resolve: ['eslint8'],
+    addConfigFile: ['_eslintrc.cjs']
+  },
+];
+
+// =>> packages
+const packages = [
   {
     id: 'eslint8',
     label: 'eslint 8',
@@ -79,8 +137,8 @@ const std_packages = [
   {
     id: 'rollup',
     label: 'rollup base',
-    descr: [
-      '`"rollup": "npx rollup --config ./config/rollup.config.mjs --watch",`'
+    descr_cmds: [
+      '"rollup": "npx rollup --config ./config/rollup.config.mjs --watch",'
     ],
     dev_packages: [
       'rollup@latest',
@@ -117,7 +175,6 @@ const std_packages = [
       '@csstools/postcss-global-data',
       'postcss-simple-vars',
       'postcss-extend',
-
       // 'postcss-csso',
     ],
   },
@@ -127,7 +184,9 @@ const std_packages = [
     descr: [
       'Per creare file css di test.',
       '*postcss-import* è necessario per risolvere le importazioni da cli (con webpack non serve, l’operazione è svolta da *css-loader*)',
-      '`[npx] postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch`'
+    ],
+    descr_cmds: [
+      '[npx] postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch'
     ],
     dev_packages: ['postcss-cli', 'postcss-import'],
   },
@@ -145,7 +204,7 @@ const std_packages = [
   {
     id: 'gulp_icone',
     label: 'gulp per icone',
-    descr: ['package.json script: `"build_icons": "cd ./path/to/icone && gulp",`'],
+    descr_cmds: ['"build_icons": "cd ./path/to/icone && gulp",'],
     dev_packages: [
       'gulp@latest',
       'gulp-concat',
@@ -247,11 +306,14 @@ const std_packages = [
   },
   {
     id: 'webpack',
-    label: 'webpack',
-    descr: [
-      '`"webpack DEV": "NODE_ENV=development webpack serve --config ./webpack-config.cjs"`,',
-      '`"webpack PROD": "NODE_ENV=production webpack --config ./webpack-config.cjs",`'
+    label: 'webpack + postcss',
+    fav: true,
+    descr_cmds: [
+      '"webpack DEV": "NODE_ENV=development webpack serve --config ./webpack-config.cjs",',
+      '"webpack PROD": "NODE_ENV=production webpack --config ./webpack-config.cjs",'
     ],
+    addConfigFile: ['webpack-config.cjs'],
+    resolve: ['postcss'],
     dev_packages: [
       [
         '@babel/core',
@@ -293,85 +355,62 @@ const std_packages = [
       'typescript'
     ],
   },
-
 ];
 
-std_packages.sort((a,b) => a.label < b.label? -1 : (a.label > b.label? 1 : 0));
+// =>> @m
+const m = [...[
+  {p: 'auto-datatables-bs5', dev: false},
+  {p: 'autocomplete', dev: false},
+  {p: 'ckeditor-utilities', dev: false},
+  {p: 'cookie-consent', dev: false},
+  {p: 'create-favicons', dev: true,
 
-
-const cmds = [
-
-  {
-    label: 'basic (dev-updater, eslint 9, stylelint)',
-    packages: ['@massimo-cassandro/dev-updater', 'eslint9', 'stylelint'],
-  },
-
-  {
-    label: 'basic eslint 8 (dev-updater, eslint 8, stylelint)',
-    packages: ['@massimo-cassandro/dev-updater', 'eslint8', 'stylelint']
-  },
-
-  {
-    label: 'Crea .editorconfig',
-    addConfigFile: ['_editorconfig']
-  },
-  {
-    label: 'Crea .gitignore',
-    addConfigFile: ['_gitignore']
-  },
-
-  {
-    label: 'Crea .browserslistrc',
-    addConfigFile: ['_browserslistrc']
-  },
-
-  {
-    label: 'stylelint + config',
-    packages: ['stylelint'],
-    addConfigFile: ['stylelint.config.cjs']
-  },
-  {
-    label: 'openProps + postcss + config',
-    packages: ['open-props','postcss-jit-props', 'postcss'],
-    addConfigFile: ['postcss.config.cjs']
-  },
-  {
-    label: 'rollup + config',
-    packages: ['rollup'],
-    addConfigFile: ['rollup.config.mjs']
-  },
-  {
-    label: 'postcss + config',
-    packages: ['postcss'],
-    addConfigFile: ['postcss.config.cjs']
-  },
-  {
-    label: 'Local servers',
-    descr: [
-      '`"python server": "python3 -m http.server 8000 # --directory __dirname__ # 8000 = default port",`',
-      '`"php server": "php -S localhost:8000 # -t root_dir/",`',
-      '`"symfony local server": "symfony serve -d",`'
+    descr_cmds: [
+      'npx create-favicons init',
+      'npx create-favicons --dir=./'
     ]
   },
-  {
-    label: 'Update stylelint config file',
-    cmd: 'mv -f .stylelintrc.cjs stylelint.config.cjs'
+  {p: 'dev-updater', dev: true,
+
+    descr_cmds: [
+      '"UPD-version": "npx update-version  # --config=./dev-utilities.config.mjs",',
+      '"upd@m": "npx upd@m",',
+    ]
   },
-  {
-    label: 'Update eslint 8 → 9',
-    cmd: 'rm -f .eslintrc.cjs',
-    uninstall: ['eslint8'],
-    packages: ['eslint9'],
-    addConfigFile: ['eslint.config.mjs']
+  {p: 'js-file-uploader', dev: false,
+    descr: [
+      '<https://massimo-cassandro.github.io/js-file-uploader/demo/>'
+    ]
   },
-  {
-    label: 'Downgrade eslint 9 → 8',
-    cmd: 'rm -f eslint.config.mjs',
-    uninstall: ['eslint9'],
-    packages: ['eslint8'],
-    addConfigFile: ['_eslintrc.cjs']
-  },
-];
+  {p: 'js-utilities', dev: false},
+  {p: 'json-table', dev: false},
+  {p: 'layout-tools', dev: true},
+  {p: 'modal-alert', dev: false},
+  {p: 'scss-utilities', dev: false},
+  {p: 'sharing-links', dev: false},
+  {p: 'unsplash-page', dev: false},
+  {p: 'twig-utilities', dev: false},
+].map(item =>{
+
+  const p = {
+    id: `@m-${item.p}`,
+    label: `${item.p}`,
+  };
+
+  p.descr = [...(item.descr??[]), ...[`<https://github.com/massimo-cassandro/${item.p}>`]];
+
+  if(item.descr_cmds) {
+    p.descr_cmds = item.descr_cmds;
+  }
+
+  if(item.dev) {
+    p.dev_packages = [`@m-${item.p}`];
+  } else {
+    p.packages = [`@m-${item.p}`];
+
+  }
+  return p;
+})];
 
 
-export {std_packages, m_packages, cmds};
+export default [...m, ...packages, ...snippets];
