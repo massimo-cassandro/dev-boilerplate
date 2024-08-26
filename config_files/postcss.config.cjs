@@ -15,11 +15,17 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 const postcssConfig = {
   plugins: [
 
-    // require('postcss-simple-vars'),
-
-    // require('postcss-mixins')({
-    //   mixinsDir: path.resolve(__dirname, './src/css')
-    // }),
+    require('@csstools/postcss-global-data')({
+      files: [
+        './node_modules/open-props/media.min.css',
+        './frontend/css/custom-properties.css',
+      ]
+    }),
+    require('postcss-extend'),
+    require('postcss-mixins')({
+      mixinsDir: path.resolve(__dirname, './src/css')
+    }),
+    require('postcss-simple-vars'),
 
     // require('postcss-jit-props')(require('open-props')),
     require('postcss-jit-props')({
@@ -28,6 +34,7 @@ const postcssConfig = {
     }),
 
     require('autoprefixer'),
+    
     require('postcss-custom-media')({
       preserve: isDevelopment
     }),
