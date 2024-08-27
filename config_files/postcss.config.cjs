@@ -9,6 +9,7 @@
 // https://github.com/postcss/postcss-mixins
 // https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media
 // https://github.com/postcss/postcss-simple-vars
+// https://github.com/travco/postcss-extend
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
