@@ -304,11 +304,13 @@ const cmds = [
   {
     label: 'basic (dev-updater, eslint 9, stylelint)',
     packages: ['@massimo-cassandro/dev-updater', 'eslint9', 'stylelint'],
+    addConfigFile: ['eslint.config.mjs', 'stylelint.config.cjs']
   },
 
   {
     label: 'basic eslint 8 (dev-updater, eslint 8, stylelint)',
-    packages: ['@massimo-cassandro/dev-updater', 'eslint8', 'stylelint']
+    packages: ['@massimo-cassandro/dev-updater', 'eslint8', 'stylelint'],
+    addConfigFile: ['_eslintrc.cjs', 'stylelint.config.cjs']
   },
 
   {
@@ -329,6 +331,11 @@ const cmds = [
     label: 'stylelint + config',
     packages: ['stylelint'],
     addConfigFile: ['stylelint.config.cjs']
+  },
+  {
+    label: 'eslint9 + config',
+    packages: ['eslint9'],
+    addConfigFile: ['eslint.config.mjs']
   },
   {
     label: 'openProps + postcss + config',
