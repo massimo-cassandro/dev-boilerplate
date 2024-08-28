@@ -29,12 +29,14 @@ const snippets = [
   {
     label: 'basic (dev-updater, eslint 9, stylelint)',
     resolve: ['@m-dev-updater', 'eslint9', 'stylelint'],
+    addConfigFile: ['eslint.config.mjs', 'stylelint.config.cjs'],
     fav: true
   },
 
   {
     label: 'basic eslint 8 (dev-updater, eslint 8, stylelint)',
     resolve: ['@m-dev-updater', 'eslint8', 'stylelint'],
+    addConfigFile: ['_eslintrc.cjs', 'stylelint.config.cjs'],
     fav: true
   },
 
@@ -62,8 +64,14 @@ const snippets = [
     fav: true
   },
   {
+    label: 'eslint9 + config',
+    resolve: ['eslint9'],
+    addConfigFile: ['eslint.config.mjs'],
+    fav: true
+  },
+  {
     label: 'openProps + postcss + config',
-    resolve: ['open-props','postcss-jit-props', 'postcss'],
+    resolve: ['open-props', 'postcss'],
     addConfigFile: ['postcss.config.cjs'],
     fav: true
   },
@@ -171,10 +179,7 @@ const packages = [
       '@fullhuman/postcss-purgecss',
       'autoprefixer',
       'postcss-custom-media',
-      'postcss-mixins',
       '@csstools/postcss-global-data',
-      'postcss-simple-vars',
-      'postcss-extend',
       // 'postcss-csso',
     ],
   },

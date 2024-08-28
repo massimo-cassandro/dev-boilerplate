@@ -113,10 +113,7 @@ const std_packages = [
       '@fullhuman/postcss-purgecss',
       'autoprefixer',
       'postcss-custom-media',
-      'postcss-mixins',
       '@csstools/postcss-global-data',
-      'postcss-simple-vars',
-      'postcss-extend',
 
       // 'postcss-csso',
     ],

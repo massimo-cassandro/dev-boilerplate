@@ -25,6 +25,9 @@ const default_obj = {
   fav: false,             // se true, il pacchetto viene considerato tra i preferiti e messo in cima alla lista
 };
 
+// chiavi da escludere dalla risoluzione
+const keys_not_to_solve = ['id,', 'label','resolve', 'fav'];
+
 
 const __dirname = new URL('.', import.meta.url).pathname
   // ,target_file = path.resolve(__dirname, '../README.md');
@@ -41,7 +44,6 @@ const __dirname = new URL('.', import.meta.url).pathname
     return `npm i ${isDev? '-D' : '-S'} ${packageArray.join(' ')}`;
   }
 ;
-console.log(snippets_list);
 try {
 
   // check duplicated id
@@ -54,9 +56,28 @@ try {
 
 
   const content = snippets_list
-    .toSorted((a, b) => a.label.localeCompare(b.label) || Number(a.fav?? 0) - Number(b.fav?? 0))
+    .toSorted((a, b) => Number(b.fav?? 0) - Number(a.fav?? 0) || a.label.localeCompare(b.label))
     .map( item => {
       item = {...default_obj, ...item};
+
+
+      item.resolve.forEach( r => {
+
+        const resolved = snippets_list.filter(s => s.id === r)[0];
+
+        if(!resolved) {
+          throw `Unresolved id: ${r} (${item.label})`;
+        }
+
+        Object.keys(resolved)
+          .filter(key => keys_not_to_solve.indexOf(key) === -1)
+          .forEach( key => {
+            item[key] = [...(item[key]?? []), ...resolved[key]];
+          });
+      });
+
+      console.log(item);
+
 
       return [
         '## ' + (item.label?? '???'),
@@ -69,7 +90,7 @@ try {
 
     });
 
-  writeFileSync(target_file, '# Setup snippets\n' + content.join('\n\n'), 'utf-8');
+  writeFileSync(target_file, '# Setup snippets\n\n' + content.join('\n\n'), 'utf-8');
   console.log('');
   console.log(chalk.bgGreen.bold(` Done -> ${target_file} `));
   console.log('');
