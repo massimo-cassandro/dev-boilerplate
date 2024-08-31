@@ -1,69 +1,69 @@
+/*
 
-const m_packages = [
-  {p: 'auto-datatables-bs5', dev: false},
-  {p: 'autocomplete', dev: false},
-  {p: 'ckeditor-utilities', dev: false},
-  {p: 'cookie-consent', dev: false},
-  {p: 'create-favicons', dev: true, descr: [
-    '<https://github.com/massimo-cassandro/create-favicons?tab=readme-ov-file#create-favicons>',
-    '`npx create-favicons init`',
-    '`npx create-favicons --dir=./`'
-  ]},
-  {p: 'dev-updater', dev: true, descr: [
-    '<https://github.com/massimo-cassandro/dev-updater?tab=readme-ov-file#dev-updaters>',
-    '`"UPD-version": "npx update-version  --config=./dev-utilities.config.mjs",`',
-    '`"UPD-version (parametri di default)": "npx update-version # --config=./dev-utilities.config.mjs",`',
-    '`"upd@m": "npx upd@m",`',
-  ]},
-  {p: 'js-file-uploader', dev: false, descr: [
-    '<https://github.com/massimo-cassandro/js-file-uploader?tab=readme-ov-file#fileuploader>',
-    '<https://massimo-cassandro.github.io/js-file-uploader/demo/>'
-  ]},
-  {p: 'js-utilities', dev: false},
-  {p: 'json-table', dev: false},
-  {p: 'layout-tools', dev: true},
-  {p: 'modal-alert', dev: false},
-  {p: 'scss-utilities', dev: false},
-  {p: 'sharing-links', dev: false},
-  {p: 'unsplash-page', dev: false},
-  {p: 'twig-utilities', dev: false},
-].map(item =>{
+[
+  {
+    label: 'xxx',
+    descr: [],         <- renderizzati come '* ...'
+    snippets: [],      <- renderizzati come '* `...`'
 
-  const p ={
-    id: `@massimo-cassandro/${item.p}`,
-    label: `@massimo-cassandro/${item.p}`,
-  };
+    packages: [],      <- renderizzati come `npm i --S ...` o `--D ...`, se presenti dei subarray
+    dev_packages: [],  <- vengono renderizati come `npm i` distinti
 
-  if(item.descr) {
-    p.descr = item.descr;
-  }
+    addConfigFile: [], <- files in `config_files` da rirpodurre con `echo` e `>>`
 
-  if(item.dev) {
-    p.dev_packages = [`@massimo-cassandro/${item.p}`];
-  } else {
-    p.packages = [`@massimo-cassandro/${item.p}`];
+    uninstall: [],     <- i pacchetti indicati vengono renderizzati come `npm uninstall ...`
+    fav: false,        <- se true, il pacchetto viene considerato tra i preferiti e messo in cima alla lista
+  },
+  ...
+]
 
-  }
-  return p;
-});
+il json viene ordinato per label
 
+*/
 
-// dev_packages e packages devono contenere solo stringhe o solo array di stringhe
-
-const std_packages = [
+const snippets = [
+  {
+    label: '.editorconfig',
+    addConfigFile: ['_editorconfig'],
+    fav: true
+  },
+  {
+    label: '.gitignore',
+    addConfigFile: ['_gitignore'],
+    fav: true
+  },
 
   {
-    id: 'eslint8',
+    label: '.browserslistrc',
+    addConfigFile: ['_browserslistrc'],
+    fav: true
+  },
+
+  {
+    label: 'Local servers',
+    descr: [
+      '`"python server": "python3 -m http.server 8000 # --directory __dirname__ # 8000 = default port",`',
+      '`"php server": "php -S localhost:8000 # -t root_dir/",`',
+      '`"symfony local server": "symfony serve -d",`'
+    ],
+    fav: true
+  },
+  {
+    label: 'Update stylelint config file',
+    snippets: ['mv -f .stylelintrc.cjs stylelint.config.cjs']
+  },
+
+  {
     label: 'eslint 8',
     dev_packages: [['eslint@^8'], ['@massimo-cassandro/eslint-config@^1']],
   },
   {
-    id: 'eslint9',
-    label: 'eslint 9',
+    label: 'eslint9 (+ uninstall eslint8)',
+    uninstall: ['eslint', '@massimo-cassandro/eslint-config'],
     dev_packages: [['eslint@^9', '@eslint/js', 'globals'], ['@massimo-cassandro/eslint-config@^2']],
+    addConfigFile: ['eslint.config.mjs'],
   },
   {
-    id: 'stylelint',
     label: 'stylelint',
     dev_packages: [
       [
@@ -74,14 +74,16 @@ const std_packages = [
       ],
       ['@massimo-cassandro/stylelint-config'],
     ],
+    addConfigFile: ['stylelint.config.cjs'],
+    fav: true,
   },
 
   {
-    id: 'rollup',
     label: 'rollup base',
-    descr: [
-      '`"rollup": "npx rollup --config ./config/rollup.config.mjs --watch",`'
+    snippets: [
+      '"rollup": "npx rollup --config ./config/rollup.config.mjs --watch",'
     ],
+    addConfigFile: ['rollup.config.mjs'],
     dev_packages: [
       'rollup@latest',
       '@rollup/plugin-terser',
@@ -93,7 +95,6 @@ const std_packages = [
     ],
   },
   {
-    id: 'rollup-plugin-string-html',
     label: 'rollup-plugin-string-html',
     dev_packages: ['rollup-plugin-string-html'],
   },
@@ -101,48 +102,46 @@ const std_packages = [
   // 'npm i --save-dev rollup-plugin-minify-html-template-literals',
 
   {
-    id: 'sass',
     label: 'sass cli',
     dev_packages: ['sass'],
+    fav: true
   },
   {
-    id: 'postcss',
     label: 'postcss + autoprefixer + purgecss (webpack)',
     dev_packages: [
       'postcss',
+      'postcss-preset-env',
       '@fullhuman/postcss-purgecss',
       'autoprefixer',
       'postcss-custom-media',
       '@csstools/postcss-global-data',
-
       // 'postcss-csso',
     ],
+    addConfigFile: ['postcss.config.cjs'],
   },
   {
-    id: 'postcss_cli',
     label: 'postcss cli',
     descr: [
       'Per creare file css di test.',
       '*postcss-import* è necessario per risolvere le importazioni da cli (con webpack non serve, l’operazione è svolta da *css-loader*)',
-      '`[npx] postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch`'
+    ],
+    snippets: [
+      '[npx] postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch'
     ],
     dev_packages: ['postcss-cli', 'postcss-import'],
   },
   {
-    id: 'postcss-banner',
     label: 'postcss-banner',
     dev_packages: ['postcss-banner'],
   },
 
   {
-    id: 'bootstrap',
     label: 'bootstrap',
     packages: ['bootstrap'],
   },
   {
-    id: 'gulp_icone',
     label: 'gulp per icone',
-    descr: ['package.json script: `"build_icons": "cd ./path/to/icone && gulp",`'],
+    snippets: ['"build_icons": "cd ./path/to/icone && gulp",'],
     dev_packages: [
       'gulp@latest',
       'gulp-concat',
@@ -157,40 +156,29 @@ const std_packages = [
     ],
   },
   {
-    id: 'gulp-wrap',
     label: 'gulp-wrap (aggiunta per icone react)',
     dev_packages: ['gulp-wrap'],
   },
   {
-    id: 'gulp-jsbeautifier',
     label: 'gulp-jsbeautifier (aggiunta per icone react)',
     dev_packages: ['gulp-jsbeautifier'],
   },
   {
-    id: 'prismjs',
     label: 'prismjs',
     packages: ['prismjs'],
   },
   {
-    id: 'normalize',
     label: 'normalize.css',
     packages: ['normalize.css'],
   },
   {
-    id: 'open-props',
-    label: 'open-props + postcss-jit-props + postcss-import',
+    label: 'open-props + postcss-jit-props',
     packages: ['open-props'],
     dev_packages: ['postcss-jit-props'],
-  },
-  {
-    id: 'open-props-full',
-    label: 'open-props + postcss-jit-props + postcss-import (per importare il css da node_modules)',
-    packages: ['open-props'],
-    dev_packages: ['postcss-jit-props', 'postcss-import'],
+    fav: true
   },
 
   {
-    id: 'react',
     label: 'react (NB: richiede eslint 8)',
     dev_packages: [
       [
@@ -211,7 +199,6 @@ const std_packages = [
   },
 
   {
-    id: 'react_utilities',
     label: 'React utilities',
     dev_packages: [
       'classnames',
@@ -220,7 +207,6 @@ const std_packages = [
     ],
   },
   {
-    id: 'styled-components',
     label: 'styled-components',
     dev_packages: [
       'babel-plugin-styled-components',
@@ -228,27 +214,26 @@ const std_packages = [
     ],
   },
   {
-    id: 'react-html-comment',
     label: 'react-html-comment',
     dev_packages: ['react-html-comment'],
   },
   {
-    id: 'html-react-parser',
     label: 'html-react-parser',
     dev_packages: ['html-react-parser'],
   },
   {
-    id: 'solid-js-webpack',
     label: 'solid-js (webpack)',
     dev_packages: ['solid-js', 'babel-loader', '@babel/preset-env', '@babel/plugin-syntax-jsx', 'babel-preset-solid'],
   },
   {
-    id: 'webpack',
     label: 'webpack',
-    descr: [
-      '`"webpack DEV": "NODE_ENV=development webpack serve --config ./webpack-config.cjs"`,',
-      '`"webpack PROD": "NODE_ENV=production webpack --config ./webpack-config.cjs",`'
+    fav: true,
+    descr: ['Non include Postcss'],
+    snippets: [
+      '"webpack DEV": "NODE_ENV=development webpack serve --config ./webpack.config.cjs",',
+      '"webpack PROD": "NODE_ENV=production webpack --config ./webpack.config.cjs",'
     ],
+    addConfigFile: ['webpack.config.cjs'],
     dev_packages: [
       [
         '@babel/core',
@@ -280,7 +265,6 @@ const std_packages = [
     ],
   },
   {
-    id: 'typescript',
     label: 'typescript per react/webpack',
     dev_packages: [
       '@types/react-dom',
@@ -290,92 +274,61 @@ const std_packages = [
       'typescript'
     ],
   },
-
 ];
 
-std_packages.sort((a,b) => a.label < b.label? -1 : (a.label > b.label? 1 : 0));
+// =>> @m
+const m = [...[
+  {p: 'auto-datatables-bs5', dev: false},
+  {p: 'autocomplete', dev: false},
+  {p: 'ckeditor-utilities', dev: false},
+  {p: 'cookie-consent', dev: false},
+  {p: 'create-favicons', dev: true,
 
-
-const cmds = [
-
-  {
-    label: 'basic (dev-updater, eslint 9, stylelint)',
-    packages: ['@massimo-cassandro/dev-updater', 'eslint9', 'stylelint'],
-    addConfigFile: ['eslint.config.mjs', 'stylelint.config.cjs']
-  },
-
-  {
-    label: 'basic eslint 8 (dev-updater, eslint 8, stylelint)',
-    packages: ['@massimo-cassandro/dev-updater', 'eslint8', 'stylelint'],
-    addConfigFile: ['_eslintrc.cjs', 'stylelint.config.cjs']
-  },
-
-  {
-    label: 'Crea .editorconfig',
-    addConfigFile: ['_editorconfig']
-  },
-  {
-    label: 'Crea .gitignore',
-    addConfigFile: ['_gitignore']
-  },
-
-  {
-    label: 'Crea .browserslistrc',
-    addConfigFile: ['_browserslistrc']
-  },
-
-  {
-    label: 'stylelint + config',
-    packages: ['stylelint'],
-    addConfigFile: ['stylelint.config.cjs']
-  },
-  {
-    label: 'eslint9 + config',
-    packages: ['eslint9'],
-    addConfigFile: ['eslint.config.mjs']
-  },
-  {
-    label: 'openProps + postcss + config',
-    packages: ['open-props','postcss-jit-props', 'postcss'],
-    addConfigFile: ['postcss.config.cjs']
-  },
-  {
-    label: 'rollup + config',
-    packages: ['rollup'],
-    addConfigFile: ['rollup.config.mjs']
-  },
-  {
-    label: 'postcss + config',
-    packages: ['postcss'],
-    addConfigFile: ['postcss.config.cjs']
-  },
-  {
-    label: 'Local servers',
-    descr: [
-      '`"python server": "python3 -m http.server 8000 # --directory __dirname__ # 8000 = default port",`',
-      '`"php server": "php -S localhost:8000 # -t root_dir/",`',
-      '`"symfony local server": "symfony serve -d",`'
+    snippets: [
+      'npx create-favicons init',
+      'npx create-favicons --dir=./'
     ]
   },
-  {
-    label: 'Update stylelint config file',
-    cmd: 'mv -f .stylelintrc.cjs stylelint.config.cjs'
+  {p: 'dev-updater', dev: true,
+
+    snippets: [
+      '"UPD-version": "npx update-version  # --config=./dev-utilities.config.mjs",',
+      '"upd@m": "npx upd@m",',
+    ]
   },
-  {
-    label: 'Update eslint 8 → 9',
-    cmd: 'rm -f .eslintrc.cjs',
-    uninstall: ['eslint8'],
-    packages: ['eslint9'],
-    addConfigFile: ['eslint.config.mjs']
+  {p: 'js-file-uploader', dev: false,
+    descr: [
+      '<https://massimo-cassandro.github.io/js-file-uploader/demo/>'
+    ]
   },
-  {
-    label: 'Downgrade eslint 9 → 8',
-    cmd: 'rm -f eslint.config.mjs',
-    uninstall: ['eslint9'],
-    packages: ['eslint8'],
-    addConfigFile: ['_eslintrc.cjs']
-  },
-];
+  {p: 'js-utilities', dev: false},
+  {p: 'json-table', dev: false},
+  {p: 'layout-tools', dev: true},
+  {p: 'modal-alert', dev: false},
+  {p: 'scss-utilities', dev: false},
+  {p: 'sharing-links', dev: false},
+  {p: 'unsplash-page', dev: false},
+  {p: 'twig-utilities', dev: false},
+].map(item =>{
+
+  const p = {
+    label: `${item.p}`,
+  };
+
+  p.descr = [...(item.descr??[]), ...[`<https://github.com/massimo-cassandro/${item.p}>`]];
+
+  if(item.snippets) {
+    p.snippets = item.snippets;
+  }
+
+  if(item.dev) {
+    p.dev_packages = [`@m-${item.p}`];
+  } else {
+    p.packages = [`@m-${item.p}`];
+
+  }
+  return p;
+})];
 
 
-export {std_packages, m_packages, cmds};
+export default [...m, ...snippets];

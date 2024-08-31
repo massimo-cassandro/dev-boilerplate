@@ -41,7 +41,7 @@ const config = {
     path: path.resolve(__dirname, './build'), // path.resolve(__dirname, `./public/${output_dir}` ),
     // filename: '[name].js',
     filename: '[name].[contenthash].js',
-    publicPath: '/', // '/' + output_dir,
+    publicPath: '/', // `/${output_dir}/`, // usato per i percorsi degli elementi importati nei js
     clean: !isDevelopment,
   },
 

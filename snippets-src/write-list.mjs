@@ -1,103 +1,111 @@
 /* eslint-disable no-console */
 
-import { std_packages, m_packages, cmds } from './snippets-list.mjs';
+import snippets_list from './snippets-list.mjs';
+import chalk from 'chalk';
+
 import { writeFileSync } from 'fs';
-
 import * as path from 'path';
-
 import * as fs from 'fs';
 
-// oppure
-const __dirname = new URL('.', import.meta.url).pathname;
 
+const default_obj = {
+  label: null,
+  descr: [],              // renderizzati come '* ...'
+  snippets: [],           // renderizzati come '* `...`'
 
-const target_file = path.resolve(__dirname, '../README.md');
+  packages: [],           // renderizzati come `npm i --S ...` o `--D ...`, se presenti dei subarray
+  dev_packages: [],       // vengono renderizati come `npm i` distinti
+  addConfigFile: [],      // files in `config_files` da rirpodurre con `echo` e `>>`
 
-const parsed_packages = {}; // per utilizzo in cmds
-const md_code_block = code => code? '```bash\n' + code + '\n```\n' : '';
-const md_descr_block = descr_array => descr_array.map( i => `* ${i}`).join('\n');
+  uninstall: [],          // i pacchetti indicati vengono renderizzati come `npm uninstall ...`
 
-const makeInstallString = (packageArray, isDev) => {
-  return `npm i ${isDev? '-D' : '-S'} ${packageArray.join(' ')}`;
+  fav: false,             // se true, il pacchetto viene considerato tra i preferiti e messo in cima alla lista
 };
 
-const packages_content = [
-  {name: 'Packages', packages_array: std_packages},
-  {name: '@m', packages_array: m_packages},
-
-].map( i => {
-  return `## ${i.name}\n` +
-    i.packages_array.toSorted((a,b) => a.label.toLowerCase().localeCompare(b.label.toLowerCase()))
-      .map(packageObj => {
-
-        const temp = [];
-
-        ['packages', 'dev_packages'].forEach( packageType => {
-
-          const isDev = packageType === 'dev_packages';
-
-          if(packageObj[packageType] && packageObj[packageType].length) {
-
-            // se il primo elemento è un array si tratta di un array di array
-            if(Array.isArray(packageObj[packageType][0])) {
-              temp.push(
-                packageObj[packageType].map( pp => makeInstallString(pp, isDev)).join(' && ')
-              );
-
-            } else {
-              temp.push(makeInstallString(packageObj[packageType], isDev));
-            }
-
-          }
+// chiavi da escludere dalla risoluzione
 
 
-          parsed_packages[packageObj.id]= temp.join( ' && ');
+const __dirname = new URL('.', import.meta.url).pathname
+  ,target_file = path.resolve(__dirname, '../README.md')
 
-        });
+  ,md_code_block = (code, flag='') => code? '```bash\n' + flag + code + '\n```\n\n' : null
 
-        return `### ${packageObj.label}\n` +
-          (packageObj.descr? '\n' + md_descr_block(packageObj.descr) + '\n\n' : '') +
-          md_code_block( parsed_packages[packageObj.id] );
+  ,md_descr_block = (descr_array) => {
+    return (descr_array && descr_array.length)? descr_array
+      .map( i => '* ' + i ).join('\n') : null;
+  }
 
-      }).join(''); // end map packageObj
-
-}).join('\n\n'); // end map
+  ,makeInstallString = (packageArray, isDev) => {
+    return `npm i ${isDev? '-D' : '-S'} ${packageArray.join(' ')}`;
+  }
+;
 
 
 
-const cmd_content =  '\n\n## Install & config\n' + '\n' + cmds.map( i => {
-  const cmds = [
-    ...(i.cmd? [i.cmd] : []),
-    ...(i.uninstall? [
-      `${i.uninstall.map(p =>
-        parsed_packages[p].replace(/(@\^?[\d|.]+)/g, '').replace(/npm i -./g, 'npm uninstall')
-      ).join(' && ')}`
-    ] : []),
-    ...(i.packages? [`${i.packages.map(p => parsed_packages[p]).join(' && ')}`] : []),
-    // ...(i.addConfigFile? i.addConfigFile.map(f => `cp -f ${f} .`) : [])
-  ];
 
-  if(i.addConfigFile && Array.isArray(i.addConfigFile)) {
+const content = snippets_list
+  .toSorted((a, b) => Number(b.fav?? 0) - Number(a.fav?? 0) || a.label.localeCompare(b.label))
+  .map( item => {
+    item = {...default_obj, ...item};
 
-    i.addConfigFile.forEach( configFile => {
+    const temp = [], install_string = [];
+
+    const parsed_item = [
+      '## ' + (item.label?? '???'),
+      md_descr_block(item.descr)
+    ];
+
+    if(item.snippets && item.snippets.length) {
+      parsed_item.push( item.snippets.map(i => '* `' + i + '`').join('\n') );
+
+    }
+
+    if(item.uninstall && item.uninstall.length) {
+      parsed_item.push( md_code_block( 'npm uninstall ' + item.uninstall.join(' ')) );
+    }
+
+
+    ['packages', 'dev_packages'].forEach( packageType => {
+
+      const isDev = packageType === 'dev_packages';
+
+      if(item[packageType] && item[packageType].length) {
+
+        // se il primo elemento è un array si tratta di un array di array
+        if(Array.isArray(item[packageType][0])) {
+          temp.push(
+            item[packageType].map( pp => makeInstallString(pp, isDev)).join(' && ')
+          );
+
+        } else {
+          temp.push(makeInstallString(item[packageType], isDev));
+        }
+
+      }
+    });
+
+    install_string.push(...temp);
+
+    if(install_string.length) {
+      parsed_item.push( md_code_block(install_string.join(' && ')) );
+    }
+
+    (item.addConfigFile??[]).forEach( configFile => {
+
       const filePath = path.resolve(__dirname, `../config_files/${configFile}`),
         file_content = fs.readFileSync(filePath, 'utf8').replace(/\n/g, '\\n');
-      cmds.push(
-        'echo "' + file_content +`" > ${configFile.replace(/^_/, '.')}`
+
+      parsed_item.push(
+        '*' + configFile.replace(/^_/, '.') + '*:\n\n' +
+        md_code_block('echo "' + file_content +`" > ${configFile.replace(/^_/, '.')}`)
       );
     });
 
-  }
 
-  return `### ${i.label}\n` +
-    (i.descr? '\n' + md_descr_block(i.descr) + '\n\n' : '') +
-    md_code_block(cmds.join(' && '));
+    return parsed_item.filter(i => i !== null).join('\n');
+  });
 
-}).join('\n\n');
-
-
-
-
-writeFileSync(target_file, '# Setup snippets\n' + cmd_content + packages_content, 'utf-8');
-
-console.log(`...wrote to ${target_file}`);
+writeFileSync(target_file, '# Setup snippets\n\n' + content.join('\n\n'), 'utf-8');
+console.log('');
+console.log(chalk.bgGreen.bold(` Done -> ${target_file} `));
+console.log('');
