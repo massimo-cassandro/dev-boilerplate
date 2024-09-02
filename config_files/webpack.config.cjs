@@ -215,10 +215,16 @@ const config = {
       },
 
       // inline svg
-      {
-        test: /\.inline\.svg$/i,
-        type: 'asset/inline'
-      },
+      // {
+      //   test: /\.svg$/i, // /\.inline\.svg$/i,
+      //   type: 'asset/inline', // inline as base 64
+      //   loader: 'raw-loader'
+      // },
+      // {
+      //   test: /\.svg$/i, // /\.inline\.svg$/i,
+      //   type: 'asset/source', // inline as svg
+      //   loader: 'raw-loader'
+      // },
 
       // Images / svg: Copy image files to build folder
       {
