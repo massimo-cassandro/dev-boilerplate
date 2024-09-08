@@ -256,6 +256,7 @@ const snippets = [
         'postcss-preset-env',
         'sass-loader',
         'style-loader',
+        'raw-loader',
         'terser-webpack-plugin'
       ],
       [
