@@ -47,6 +47,10 @@ npm i -D sass
 
 
 ## stylelint
+* `## upd config file:`
+* `mv -f .stylelintrc.cjs stylelint.config.cjs`
+* `## uunistall versione prec.:`
+* `npm uninstall @massimo-cassandro/stylelint-config stylelint stylelint-config-css-modules stylelint-config-twbs-bootstrap`
 ```bash
 npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint && npm i -D @massimo-cassandro/stylelint-config
 ```
@@ -371,7 +375,3 @@ npm i -D @types/react-dom @types/react ts-loader typescript-plugin-css-modules t
 npm i -S @m-unsplash-page
 ```
 
-
-
-## Update stylelint config file
-* `mv -f .stylelintrc.cjs stylelint.config.cjs`

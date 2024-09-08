@@ -48,10 +48,7 @@ const snippets = [
     ],
     fav: true
   },
-  {
-    label: 'Update stylelint config file',
-    snippets: ['mv -f .stylelintrc.cjs stylelint.config.cjs']
-  },
+
 
   {
     label: 'eslint 8',
@@ -65,6 +62,12 @@ const snippets = [
   },
   {
     label: 'stylelint',
+    snippets: [
+      '## upd config file:',
+      'mv -f .stylelintrc.cjs stylelint.config.cjs',
+      '## uunistall versione prec.:',
+      'npm uninstall @massimo-cassandro/stylelint-config stylelint stylelint-config-css-modules stylelint-config-twbs-bootstrap',
+    ],
     dev_packages: [
       [
         '@stylistic/stylelint-plugin',
