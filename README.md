@@ -27,6 +27,25 @@ echo "*~\n.DS_Store\n**/*.mwb.bak\n**/*.mwb.beforefix\n\nnode_modules\nbower_com
 
 
 
+## eslint9 (+ uninstall eslint8)
+```bash
+npm uninstall eslint @massimo-cassandro/eslint-config
+```
+
+
+```bash
+npm i -D eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@^2
+```
+
+
+*eslint.config.mjs*:
+
+```bash
+echo "import eslint_config from '@massimo-cassandro/eslint-config';\n\nexport default [\n  ...eslint_config,\n  // {\n  //   files: ['src/**/*.js'],\n  //   ignores: [\n  //     'dist/',\n  //     'build/',\n  //     '**/vendor/'\n  //   ],\n  // }\n];\n" > eslint.config.mjs
+```
+
+
+
 ## Local servers
 * `"python server": "python3 -m http.server 8000 # --directory __dirname__ # 8000 = default port",`
 * `"php server": "php -S localhost:8000 # -t root_dir/",`
@@ -69,14 +88,14 @@ echo "/* eslint-env node */\n\nmodule.exports = {\n  extends: ['@massimo-cassand
 * `"webpack DEV": "NODE_ENV=development webpack serve --config ./webpack.config.cjs",`
 * `"webpack PROD": "NODE_ENV=production webpack --config ./webpack.config.cjs",`
 ```bash
-npm i -D @babel/core @babel/preset-env babel-loader copy-webpack-plugin css-loader css-minimizer-webpack-plugin dotenv-webpack file-loader html-loader html-webpack-plugin mini-css-extract-plugin postcss-loader postcss-preset-env sass-loader style-loader terser-webpack-plugin && npm i -D webpack-cli webpack-dev-server webpack-manifest-plugin webpack-remove-empty-scripts webpack
+npm i -D @babel/core @babel/preset-env babel-loader copy-webpack-plugin css-loader css-minimizer-webpack-plugin dotenv-webpack file-loader html-loader html-webpack-plugin mini-css-extract-plugin postcss-loader postcss-preset-env sass-loader style-loader raw-loader terser-webpack-plugin && npm i -D webpack-cli webpack-dev-server webpack-manifest-plugin webpack-remove-empty-scripts webpack
 ```
 
 
 *webpack.config.cjs*:
 
 ```bash
-echo "/* eslint-env node */\n\nconst webpack = require('webpack');\nconst HtmlWebpackPlugin = require('html-webpack-plugin');\nconst CopyWebpackPlugin = require('copy-webpack-plugin');\nconst MiniCssExtractPlugin = require('mini-css-extract-plugin');\nconst { WebpackManifestPlugin } = require('webpack-manifest-plugin');\nconst TerserPlugin = require('terser-webpack-plugin');\n\nconst CssMinimizerPlugin = require('css-minimizer-webpack-plugin');\n\nconst {BannerPlugin} = require('webpack');\nconst PACKAGE = require('./package.json');\nconst path = require('path');\n\n\n\n// const Dotenv = require('dotenv-webpack');\nconst isDevelopment = process.env.NODE_ENV === 'development'\n  ,buildSourcemaps = isDevelopment\n  // ,output_dir = isDevelopment? 'dev' : 'build'\n;\n\nconst config = {\n  mode: isDevelopment? 'development' : 'production',\n\n  // watch: isDevelopment,\n\n  // Control how source maps are generated\n  // devtool: isDevelopment? 'inline-source-map' : 'source-map', // false, <== false non aggiunge la sourcemap ,\n  devtool: isDevelopment? 'inline-source-map' : false,\n  // devtool: 'source-map',\n\n  // Where webpack looks to start building the bundle\n  entry: {\n    'my-app-name': './src/index.tsx',\n  },\n  // Where webpack outputs the assets and bundles\n\n  output: {\n    path: path.resolve(__dirname, './build'), // path.resolve(__dirname, `./public/${output_dir}` ),\n    // filename: '[name].js',\n    filename: '[name].[contenthash].js',\n    publicPath: '/', // `/${output_dir}/`, // usato per i percorsi degli elementi importati nei js\n    clean: !isDevelopment,\n  },\n\n\n  optimization: {\n    minimize: !isDevelopment,\n    minimizer: [\n      new CssMinimizerPlugin(),\n      new TerserPlugin({\n        // terserOptions: {\n        //   format: {\n        //     comments: false,\n        //   },\n        // },\n        extractComments: false,\n      }),\n    ],\n    runtimeChunk: 'single',\n    // splitChunks: {\n    //   chunks: 'all',\n    // },\n    // runtimeChunk: {\n    //   name: 'runtime',\n    // },\n    usedExports: true,\n  },\n  performance: {\n    hints: false,\n    maxEntrypointSize: 512000,\n    maxAssetSize: 512000,\n  },\n\n  // Spin up a server for quick development\n  devServer: {\n    historyApiFallback: true,\n    static: {\n      directory: path.join(__dirname, '/'),\n      serveIndex: true,\n    },\n\n    open: true,\n    compress: true,\n    hot: true,\n    // host: '0.0.0.0',\n    port: 5500,\n    // devMiddleware: { writeToDisk: true } // forza la scrittura su disco anche in modalità dev\n  },\n\n  plugins: [\n\n    // new Dotenv({\n    //   path: isDevelopment? './.env.development' : './.env',\n    //   expand: true,\n    //   ignoreStub: true\n    // }),\n\n    // Removes/cleans build folders and unused assets when rebuilding\n    // non necessario con opzione `clean` di output\n    // new CleanWebpackPlugin(),\n\n    // Extracts CSS into separate files\n    new MiniCssExtractPlugin({\n      filename: isDevelopment? '[name].css' : '[name].[contenthash].css',\n      chunkFilename: isDevelopment? '[id].css' : '[id].[contenthash].css'\n    }),\n\n    // favicons\n    new CopyWebpackPlugin({\n      patterns: [\n        {\n          from: 'public/**/*.{ico,png,svg,webmanifest}',\n          to: '[name][ext]',\n          globOptions: {\n            dot: true,\n            gitignore: true,\n            ignore: ['**/index.html', '**/.DS_Store'],\n          },\n        },\n      ],\n    }),\n\n    // Only update what has changed on hot reload\n    // new webpack.HotModuleReplacementPlugin(), (non necessario con devServer.hot === true)\n\n    // https://github.com/jantimon/html-webpack-plugin#readme\n    new HtmlWebpackPlugin({\n      filename: 'index.html',\n      template: path.resolve(__dirname, './public/index.html'),\n      inject: 'body',\n      title: 'My App',\n      // templateContent: ({htmlWebpackPlugin}) => {\n      //   let tpl = '';\n\n      //   const js_files = typeof htmlWebpackPlugin.files.js === 'object'?\n      //     htmlWebpackPlugin.files.js : [htmlWebpackPlugin.files.js];\n      //   const css_files = typeof htmlWebpackPlugin.files.css === 'object'?\n      //     htmlWebpackPlugin.files.css : [htmlWebpackPlugin.files.css];\n\n      //   if(css_files.length) {\n      //     tpl += css_files.map(item =>\n      //       `<link rel="preload" href="${item}" as="style">` + (isDevelopment? '\n' : '') +\n      //       `<link rel="stylesheet" href="${item}" type="text/css" media="all">`\n      //     ).join(isDevelopment? '\n' : '');\n      //   }\n\n      //   tpl += (css_files.length && js_files.length && isDevelopment)? '\n\n' : '';\n\n      //   if(js_files.length) {\n      //     tpl += js_files.map(item =>\n      //       `<link rel="preload" href="${item}" as="script">` + (isDevelopment? '\n' : '') +\n      //       `<script src="${item}" defer></script>`\n      //     ).join(isDevelopment? '\n' : '');\n      //   }\n\n      //   return tpl;\n      // },\n    }),\n\n    new WebpackManifestPlugin(),\n\n    new BannerPlugin({\n      banner: () => {\n        const date = new Date().toLocaleString('it-IT', { year: 'numeric', month: 'long' });\n\n        // version = /(-alpha|-beta|-rc)/.test(PACKAGE.version)? PACKAGE.version :\n        //   PACKAGE.version.replace(/(\d+\.\d+)\.\d+/, '$1.x');\n\n        return '/*!\n' +\n          ` * My App v.${PACKAGE.version} - Massimo Cassandro ${date}\n` +\n          ' */\n';\n      },\n      raw: true\n    })\n  ],\n\n  // Determine how modules within the project are treated\n  module: {\n    rules: [\n\n      // html files\n      // {\n      //   test: /\.html$/,\n      //   loader: 'html-loader'\n      // },\n\n      // markdown / plain text / raw svg\n      // {\n      //   test: /\.(txt|md|raw\.svg)$/,\n      //   loader: 'raw-loader'\n      // },\n\n      // typescript\n      // {\n      //   test: /\.tsx?$/,\n      //   use: 'ts-loader',\n      //   exclude: /node_modules/,\n      // },\n\n      // JavaScript/JSX: Use Babel to transpile JavaScript files\n      {\n        test: /\.jsx?$/,\n        exclude: /node_modules/,\n        use: {\n          loader: 'babel-loader',\n          options: {\n            presets: [\n              ['@babel/preset-env', { targets: 'defaults' }]\n            ]\n          },\n        },\n      },\n\n      // inline svg\n      {\n        test: /\.inline\.svg$/i,\n        type: 'asset/inline'\n      },\n\n      // Images / svg: Copy image files to build folder\n      {\n        test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif|svg)$/i,\n        // type: 'asset/resource',\n        type: 'javascript/auto',\n        use: [\n          {\n            loader: 'file-loader',\n            options: {\n              name: '[name].[contenthash].[ext]',\n              outputPath: 'imgs/',\n              esModule: false,\n            }\n          }\n        ]\n      },\n\n      // Fonts\n      {\n        test: /\.(woff2?|eot|ttf|otf)$/,\n        //type: 'asset/resource',\n        type: 'javascript/auto',\n        use: [\n          {\n            loader: 'file-loader',\n            options: {\n              hmr: isDevelopment,\n              name: '[name].[contenthash].[ext]',\n              outputPath: 'fonts', // usato nel manifest\n              // publicPath: `/${output_dir}/fonts`, // usato nel css\n              esModule: false,\n            }\n          }\n        ]\n      },\n\n      // css/scss modules\n      {\n        test: /(\.module\.(sass|scss|css))$/,\n        use: [\n          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,\n          {\n            loader: 'css-loader',\n            options: {\n              // importLoaders: 1,\n              // modules: true,\n              modules: {\n                // esModule: false, // abilita importazione in cjs\n                auto: true, // /\.module\.scss$/i.test(filename),\n                // localIdentName: Encore.isProduction()? '[hash:base64]' : '[local]_[hash:base64:6]' // '[name]__[local]_[hash:base64:5]'\n                localIdentName: '[local]_[hash:base64:6]' // '[name]__[local]_[hash:base64:5]'\n              },\n              sourceMap: isDevelopment\n            }\n          },\n          {\n            loader: 'sass-loader',\n            options: {\n              sourceMap: isDevelopment\n            }\n          }\n        ]\n      },\n\n      // css / scss\n      {\n        test: /\.(sass|scss|css)$/,\n        exclude: /(\.module\.s?(a|c)ss)$/,\n        use: [\n          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,\n          {\n            loader: 'css-loader',\n            options: {\n              sourceMap: buildSourcemaps,\n              importLoaders: isDevelopment? 1 : 2,\n              modules: false\n            },\n          },\n          {\n            loader: 'postcss-loader',\n            options: {\n              postcssOptions: {\n                sourceMap: buildSourcemaps\n              },\n            },\n          },\n          {\n            loader: 'sass-loader',\n            options: {\n              sourceMap: buildSourcemaps\n            }\n          },\n        ],\n      },\n    ],\n  },\n\n  resolve: {\n    fallback: {\n      'fs': false,\n      'util': false\n    },\n    modules: ['./', 'node_modules'],\n    extensions: ['.tsx', '.ts', '.js', '.mjs', '.cjs', '.jsx', '.json', '.scss', '.css'],\n    alias: {\n      '@': './',\n      assets:'./build',\n    },\n  }\n\n};\n\n\nmodule.exports = config;\n" > webpack.config.cjs
+echo "/* eslint-env node */\n\nconst webpack = require('webpack');\nconst HtmlWebpackPlugin = require('html-webpack-plugin');\nconst CopyWebpackPlugin = require('copy-webpack-plugin');\nconst MiniCssExtractPlugin = require('mini-css-extract-plugin');\nconst { WebpackManifestPlugin } = require('webpack-manifest-plugin');\nconst TerserPlugin = require('terser-webpack-plugin');\n\nconst CssMinimizerPlugin = require('css-minimizer-webpack-plugin');\n\nconst {BannerPlugin} = require('webpack');\nconst PACKAGE = require('./package.json');\nconst path = require('path');\n\n\n\n// const Dotenv = require('dotenv-webpack');\nconst isDevelopment = process.env.NODE_ENV === 'development'\n  ,buildSourcemaps = isDevelopment\n  // ,output_dir = isDevelopment? 'dev' : 'build'\n;\n\nconst config = {\n  mode: isDevelopment? 'development' : 'production',\n\n  // watch: isDevelopment,\n\n  // Control how source maps are generated\n  // devtool: isDevelopment? 'inline-source-map' : 'source-map', // false, <== false non aggiunge la sourcemap ,\n  devtool: isDevelopment? 'inline-source-map' : false,\n  // devtool: 'source-map',\n\n  // Where webpack looks to start building the bundle\n  entry: {\n    'my-app-name': './src/index.tsx',\n  },\n  // Where webpack outputs the assets and bundles\n\n  output: {\n    path: path.resolve(__dirname, './build'), // path.resolve(__dirname, `./public/${output_dir}` ),\n    // filename: '[name].js',\n    filename: '[name].[contenthash].js',\n    publicPath: '/', // `/${output_dir}/`, // usato per i percorsi degli elementi importati nei js\n    clean: !isDevelopment,\n  },\n\n\n  optimization: {\n    minimize: !isDevelopment,\n    minimizer: [\n      new CssMinimizerPlugin(),\n      new TerserPlugin({\n        // terserOptions: {\n        //   format: {\n        //     comments: false,\n        //   },\n        // },\n        extractComments: false,\n      }),\n    ],\n    runtimeChunk: 'single',\n    // splitChunks: {\n    //   chunks: 'all',\n    // },\n    // runtimeChunk: {\n    //   name: 'runtime',\n    // },\n    usedExports: true,\n  },\n  performance: {\n    hints: false,\n    maxEntrypointSize: 512000,\n    maxAssetSize: 512000,\n  },\n\n  // Spin up a server for quick development\n  devServer: {\n    historyApiFallback: true,\n    static: {\n      directory: path.join(__dirname, '/'),\n      serveIndex: true,\n    },\n\n    open: true,\n    compress: true,\n    hot: true,\n    // host: '0.0.0.0',\n    port: 5500,\n    // devMiddleware: { writeToDisk: true } // forza la scrittura su disco anche in modalità dev\n  },\n\n  plugins: [\n\n    // new Dotenv({\n    //   path: isDevelopment? './.env.development' : './.env',\n    //   expand: true,\n    //   ignoreStub: true\n    // }),\n\n    // Removes/cleans build folders and unused assets when rebuilding\n    // non necessario con opzione `clean` di output\n    // new CleanWebpackPlugin(),\n\n    // Extracts CSS into separate files\n    new MiniCssExtractPlugin({\n      filename: isDevelopment? '[name].css' : '[name].[contenthash].css',\n      chunkFilename: isDevelopment? '[id].css' : '[id].[contenthash].css'\n    }),\n\n    // favicons\n    new CopyWebpackPlugin({\n      patterns: [\n        {\n          from: 'public/**/*.{ico,png,svg,webmanifest}',\n          to: '[name][ext]',\n          globOptions: {\n            dot: true,\n            gitignore: true,\n            ignore: ['**/index.html', '**/.DS_Store'],\n          },\n        },\n      ],\n    }),\n\n    // Only update what has changed on hot reload\n    // new webpack.HotModuleReplacementPlugin(), (non necessario con devServer.hot === true)\n\n    // https://github.com/jantimon/html-webpack-plugin#readme\n    new HtmlWebpackPlugin({\n      filename: 'index.html',\n      template: path.resolve(__dirname, './public/index.html'),\n      inject: 'body',\n      title: 'My App',\n      // templateContent: ({htmlWebpackPlugin}) => {\n      //   let tpl = '';\n\n      //   const js_files = typeof htmlWebpackPlugin.files.js === 'object'?\n      //     htmlWebpackPlugin.files.js : [htmlWebpackPlugin.files.js];\n      //   const css_files = typeof htmlWebpackPlugin.files.css === 'object'?\n      //     htmlWebpackPlugin.files.css : [htmlWebpackPlugin.files.css];\n\n      //   if(css_files.length) {\n      //     tpl += css_files.map(item =>\n      //       `<link rel="preload" href="${item}" as="style">` + (isDevelopment? '\n' : '') +\n      //       `<link rel="stylesheet" href="${item}" type="text/css" media="all">`\n      //     ).join(isDevelopment? '\n' : '');\n      //   }\n\n      //   tpl += (css_files.length && js_files.length && isDevelopment)? '\n\n' : '';\n\n      //   if(js_files.length) {\n      //     tpl += js_files.map(item =>\n      //       `<link rel="preload" href="${item}" as="script">` + (isDevelopment? '\n' : '') +\n      //       `<script src="${item}" defer></script>`\n      //     ).join(isDevelopment? '\n' : '');\n      //   }\n\n      //   return tpl;\n      // },\n    }),\n\n    new WebpackManifestPlugin(),\n\n    new BannerPlugin({\n      banner: () => {\n        const date = new Date().toLocaleString('it-IT', { year: 'numeric', month: 'long' });\n\n        // version = /(-alpha|-beta|-rc)/.test(PACKAGE.version)? PACKAGE.version :\n        //   PACKAGE.version.replace(/(\d+\.\d+)\.\d+/, '$1.x');\n\n        return '/*!\n' +\n          ` * My App v.${PACKAGE.version} - Massimo Cassandro ${date}\n` +\n          ' */\n';\n      },\n      raw: true\n    })\n  ],\n\n  // Determine how modules within the project are treated\n  module: {\n    rules: [\n\n      // html files\n      // {\n      //   test: /\.html$/,\n      //   loader: 'html-loader'\n      // },\n\n      // markdown / plain text / raw svg\n      // {\n      //   test: /\.(txt|md|raw\.svg)$/,\n      //   loader: 'raw-loader'\n      // },\n\n      // typescript\n      // {\n      //   test: /\.tsx?$/,\n      //   use: 'ts-loader',\n      //   exclude: /node_modules/,\n      // },\n\n      // JavaScript/JSX: Use Babel to transpile JavaScript files\n      {\n        test: /\.jsx?$/,\n        exclude: /node_modules/,\n        use: {\n          loader: 'babel-loader',\n          options: {\n            presets: [\n              ['@babel/preset-env', { targets: 'defaults' }]\n            ]\n          },\n        },\n      },\n\n      // inline svg\n      // {\n      //   test: /\.svg$/i, // /\.inline\.svg$/i,\n      //   type: 'asset/inline', // inline as base 64\n      //   loader: 'raw-loader'\n      // },\n      // {\n      //   test: /\.svg$/i, // /\.inline\.svg$/i,\n      //   type: 'asset/source', // inline as svg\n      //   loader: 'raw-loader'\n      // },\n\n      // Images / svg: Copy image files to build folder\n      {\n        test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif|svg)$/i,\n        // type: 'asset/resource',\n        type: 'javascript/auto',\n        use: [\n          {\n            loader: 'file-loader',\n            options: {\n              name: '[name].[contenthash].[ext]',\n              outputPath: 'imgs/',\n              esModule: false,\n            }\n          }\n        ]\n      },\n\n      // Fonts\n      {\n        test: /\.(woff2?|eot|ttf|otf)$/,\n        //type: 'asset/resource',\n        type: 'javascript/auto',\n        use: [\n          {\n            loader: 'file-loader',\n            options: {\n              hmr: isDevelopment,\n              name: '[name].[contenthash].[ext]',\n              outputPath: 'fonts', // usato nel manifest\n              // publicPath: `/${output_dir}/fonts`, // usato nel css\n              esModule: false,\n            }\n          }\n        ]\n      },\n\n      // css/scss modules\n      {\n        test: /(\.module\.(sass|scss|css))$/,\n        use: [\n          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,\n          {\n            loader: 'css-loader',\n            options: {\n              // importLoaders: 1,\n              // modules: true,\n              modules: {\n                // esModule: false, // abilita importazione in cjs\n                auto: true, // /\.module\.scss$/i.test(filename),\n                // localIdentName: Encore.isProduction()? '[hash:base64]' : '[local]_[hash:base64:6]' // '[name]__[local]_[hash:base64:5]'\n                localIdentName: '[local]_[hash:base64:6]' // '[name]__[local]_[hash:base64:5]'\n              },\n              sourceMap: isDevelopment\n            }\n          },\n          {\n            loader: 'sass-loader',\n            options: {\n              sourceMap: isDevelopment\n            }\n          }\n        ]\n      },\n\n      // css / scss\n      {\n        test: /\.(sass|scss|css)$/,\n        exclude: /(\.module\.s?(a|c)ss)$/,\n        use: [\n          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,\n          {\n            loader: 'css-loader',\n            options: {\n              sourceMap: buildSourcemaps,\n              importLoaders: isDevelopment? 1 : 2,\n              modules: false\n            },\n          },\n          {\n            loader: 'postcss-loader',\n            options: {\n              postcssOptions: {\n                sourceMap: buildSourcemaps\n              },\n            },\n          },\n          {\n            loader: 'sass-loader',\n            options: {\n              sourceMap: buildSourcemaps\n            }\n          },\n        ],\n      },\n    ],\n  },\n\n  resolve: {\n    fallback: {\n      'fs': false,\n      'util': false\n    },\n    modules: ['./', 'node_modules'],\n    extensions: ['.tsx', '.ts', '.js', '.mjs', '.cjs', '.jsx', '.json', '.scss', '.css'],\n    alias: {\n      '@': './',\n      assets:'./build',\n    },\n  }\n\n};\n\n\nmodule.exports = config;\n" > webpack.config.cjs
 ```
 
 
@@ -84,7 +103,7 @@ echo "/* eslint-env node */\n\nconst webpack = require('webpack');\nconst HtmlWe
 ## auto-datatables-bs5
 * <https://github.com/massimo-cassandro/auto-datatables-bs5>
 ```bash
-npm i -S @m-auto-datatables-bs5
+npm i -S @massimo-cassandro/auto-datatables-bs5
 ```
 
 
@@ -92,7 +111,7 @@ npm i -S @m-auto-datatables-bs5
 ## autocomplete
 * <https://github.com/massimo-cassandro/autocomplete>
 ```bash
-npm i -S @m-autocomplete
+npm i -S @massimo-cassandro/autocomplete
 ```
 
 
@@ -107,7 +126,7 @@ npm i -S bootstrap
 ## ckeditor-utilities
 * <https://github.com/massimo-cassandro/ckeditor-utilities>
 ```bash
-npm i -S @m-ckeditor-utilities
+npm i -S @massimo-cassandro/ckeditor-utilities
 ```
 
 
@@ -115,7 +134,7 @@ npm i -S @m-ckeditor-utilities
 ## cookie-consent
 * <https://github.com/massimo-cassandro/cookie-consent>
 ```bash
-npm i -S @m-cookie-consent
+npm i -S @massimo-cassandro/cookie-consent
 ```
 
 
@@ -125,7 +144,7 @@ npm i -S @m-cookie-consent
 * `npx create-favicons init`
 * `npx create-favicons --dir=./`
 ```bash
-npm i -D @m-create-favicons
+npm i -D @massimo-cassandro/create-favicons
 ```
 
 
@@ -135,7 +154,7 @@ npm i -D @m-create-favicons
 * `"UPD-version": "npx update-version  # --config=./dev-utilities.config.mjs",`
 * `"upd@m": "npx upd@m",`
 ```bash
-npm i -D @m-dev-updater
+npm i -D @massimo-cassandro/dev-updater
 ```
 
 
@@ -143,25 +162,6 @@ npm i -D @m-dev-updater
 ## eslint 8
 ```bash
 npm i -D eslint@^8 && npm i -D @massimo-cassandro/eslint-config@^1
-```
-
-
-
-## eslint9 (+ uninstall eslint8)
-```bash
-npm uninstall eslint @massimo-cassandro/eslint-config
-```
-
-
-```bash
-npm i -D eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-config@^2
-```
-
-
-*eslint.config.mjs*:
-
-```bash
-echo "import eslint_config from '@massimo-cassandro/eslint-config';\n\nexport default [\n  ...eslint_config,\n  // {\n  //   files: ['src/**/*.js'],\n  //   ignores: [\n  //     'dist/',\n  //     'build/',\n  //     '**/vendor/'\n  //   ],\n  // }\n];\n" > eslint.config.mjs
 ```
 
 
@@ -199,7 +199,7 @@ npm i -D html-react-parser
 * <https://massimo-cassandro.github.io/js-file-uploader/demo/>
 * <https://github.com/massimo-cassandro/js-file-uploader>
 ```bash
-npm i -S @m-js-file-uploader
+npm i -S @massimo-cassandro/js-file-uploader
 ```
 
 
@@ -207,7 +207,7 @@ npm i -S @m-js-file-uploader
 ## js-utilities
 * <https://github.com/massimo-cassandro/js-utilities>
 ```bash
-npm i -S @m-js-utilities
+npm i -S @massimo-cassandro/js-utilities
 ```
 
 
@@ -215,7 +215,7 @@ npm i -S @m-js-utilities
 ## json-table
 * <https://github.com/massimo-cassandro/json-table>
 ```bash
-npm i -S @m-json-table
+npm i -S @massimo-cassandro/json-table
 ```
 
 
@@ -223,7 +223,7 @@ npm i -S @m-json-table
 ## layout-tools
 * <https://github.com/massimo-cassandro/layout-tools>
 ```bash
-npm i -D @m-layout-tools
+npm i -D @massimo-cassandro/layout-tools
 ```
 
 
@@ -231,7 +231,7 @@ npm i -D @m-layout-tools
 ## modal-alert
 * <https://github.com/massimo-cassandro/modal-alert>
 ```bash
-npm i -S @m-modal-alert
+npm i -S @massimo-cassandro/modal-alert
 ```
 
 
@@ -327,7 +327,7 @@ npm i -D rollup-plugin-string-html
 ## scss-utilities
 * <https://github.com/massimo-cassandro/scss-utilities>
 ```bash
-npm i -S @m-scss-utilities
+npm i -S @massimo-cassandro/scss-utilities
 ```
 
 
@@ -335,7 +335,7 @@ npm i -S @m-scss-utilities
 ## sharing-links
 * <https://github.com/massimo-cassandro/sharing-links>
 ```bash
-npm i -S @m-sharing-links
+npm i -S @massimo-cassandro/sharing-links
 ```
 
 
@@ -357,7 +357,7 @@ npm i -D babel-plugin-styled-components styled-components
 ## twig-utilities
 * <https://github.com/massimo-cassandro/twig-utilities>
 ```bash
-npm i -S @m-twig-utilities
+npm i -S @massimo-cassandro/twig-utilities
 ```
 
 
@@ -372,6 +372,6 @@ npm i -D @types/react-dom @types/react ts-loader typescript-plugin-css-modules t
 ## unsplash-page
 * <https://github.com/massimo-cassandro/unsplash-page>
 ```bash
-npm i -S @m-unsplash-page
+npm i -S @massimo-cassandro/unsplash-page
 ```
 

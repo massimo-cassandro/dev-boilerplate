@@ -59,6 +59,7 @@ const snippets = [
     uninstall: ['eslint', '@massimo-cassandro/eslint-config'],
     dev_packages: [['eslint@^9', '@eslint/js', 'globals'], ['@massimo-cassandro/eslint-config@^2']],
     addConfigFile: ['eslint.config.mjs'],
+    fav: true
   },
   {
     label: 'stylelint',
@@ -326,9 +327,9 @@ const m = [...[
   }
 
   if(item.dev) {
-    p.dev_packages = [`@m-${item.p}`];
+    p.dev_packages = [`@massimo-cassandro/${item.p}`];
   } else {
-    p.packages = [`@m-${item.p}`];
+    p.packages = [`@massimo-cassandro/${item.p}`];
 
   }
   return p;
