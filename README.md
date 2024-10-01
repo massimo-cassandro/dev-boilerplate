@@ -27,6 +27,16 @@ echo "*~\n.DS_Store\n**/*.mwb.bak\n**/*.mwb.beforefix\n\nnode_modules\nbower_com
 
 
 
+## dev-updater
+* <https://github.com/massimo-cassandro/dev-updater>
+* `"UPD-version": "npx update-version  # --config=./dev-utilities.config.mjs",`
+* `"upd@m": "npx upd@m",`
+```bash
+npm i -D @massimo-cassandro/dev-updater
+```
+
+
+
 ## eslint9 (+ uninstall eslint8)
 ```bash
 npm uninstall eslint @massimo-cassandro/eslint-config
@@ -145,16 +155,6 @@ npm i -S @massimo-cassandro/cookie-consent
 * `npx create-favicons --dir=./`
 ```bash
 npm i -D @massimo-cassandro/create-favicons
-```
-
-
-
-## dev-updater
-* <https://github.com/massimo-cassandro/dev-updater>
-* `"UPD-version": "npx update-version  # --config=./dev-utilities.config.mjs",`
-* `"upd@m": "npx upd@m",`
-```bash
-npm i -D @massimo-cassandro/dev-updater
 ```
 
 

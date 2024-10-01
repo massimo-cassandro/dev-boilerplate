@@ -294,7 +294,7 @@ const m = [...[
       'npx create-favicons --dir=./'
     ]
   },
-  {p: 'dev-updater', dev: true,
+  {p: 'dev-updater', dev: true, fav: true,
 
     snippets: [
       '"UPD-version": "npx update-version  # --config=./dev-utilities.config.mjs",',
@@ -318,6 +318,7 @@ const m = [...[
 
   const p = {
     label: `${item.p}`,
+    fav: item.fav??false
   };
 
   p.descr = [...(item.descr??[]), ...[`<https://github.com/massimo-cassandro/${item.p}>`]];
@@ -330,7 +331,6 @@ const m = [...[
     p.dev_packages = [`@massimo-cassandro/${item.p}`];
   } else {
     p.packages = [`@massimo-cassandro/${item.p}`];
-
   }
   return p;
 })];
