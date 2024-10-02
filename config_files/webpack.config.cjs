@@ -59,13 +59,10 @@ const config = {
         extractComments: false,
       }),
     ],
+    // splitChunks: { chunks: 'all', },
     runtimeChunk: 'single',
-    // splitChunks: {
-    //   chunks: 'all',
-    // },
-    // runtimeChunk: {
-    //   name: 'runtime',
-    // },
+    // runtimeChunk: false,
+    // runtimeChunk: { name: entrypoint => `runtime~${entrypoint.name}`,
     usedExports: true,
   },
   performance: {
