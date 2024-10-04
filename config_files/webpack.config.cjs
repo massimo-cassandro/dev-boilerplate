@@ -222,17 +222,13 @@ const config = {
       // {
       //   test: /\.svg$/i, // /\.inline\.svg$/i,
       //   type: 'asset/inline', // inline as base 64
-      //   loader: 'raw-loader'
-      // },
-      // {
-      //   test: /\.svg$/i, // /\.inline\.svg$/i,
       //   type: 'asset/source', // inline as svg
       //   loader: 'raw-loader'
       // },
 
       // Images / svg: Copy image files to build folder
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif|svg)$/i,
+        test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif|(?<!inline\.)svg)$/i,
         // type: 'asset/resource',
         type: 'javascript/auto',
         use: [
