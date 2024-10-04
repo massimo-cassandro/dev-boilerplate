@@ -21,7 +21,7 @@ const isDevelopment = process.env.NODE_ENV === 'development'
   // ,output_dir = isDevelopment? 'dev' : 'build'
 
   // https://medium.com/@technoblogueur/webpack-one-manifest-json-from-multiple-configurations-output-fee48578eb92
-  ,manifest_shared_seed = {};
+  // ,manifest_shared_seed = {};
 ;
 
 const config = {
