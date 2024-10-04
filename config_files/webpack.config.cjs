@@ -104,8 +104,10 @@ const config = {
 
     // Extracts CSS into separate files
     new MiniCssExtractPlugin({
-      filename: isDevelopment? '[name].css' : '[name].[contenthash].css',
-      chunkFilename: isDevelopment? '[id].css' : '[id].[contenthash].css'
+      // filename: isDevelopment? '[name].css' : '[name].[contenthash].css',
+      // chunkFilename: isDevelopment? '[id].css' : '[id].[contenthash].css'
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[id].[contenthash].css'
     }),
 
     // favicons
@@ -128,10 +130,12 @@ const config = {
 
     // https://github.com/jantimon/html-webpack-plugin#readme
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: path.resolve(__dirname, './public/index.html'),
+      filename: '[name]-head.html.twig',
+      // template: path.resolve(__dirname, './public/index.html'),
       inject: 'body',
       title: 'My App',
+
+      // inject: false,
       // templateContent: ({htmlWebpackPlugin}) => {
       //   let tpl = '';
 
