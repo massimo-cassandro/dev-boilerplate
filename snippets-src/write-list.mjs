@@ -93,7 +93,7 @@ const content = snippets_list
     (item.addConfigFile??[]).forEach( configFile => {
 
       const filePath = path.resolve(__dirname, `../config_files/${configFile}`),
-        file_content = fs.readFileSync(filePath, 'utf8').replace(/\n/g, '\\n');
+        file_content = fs.readFileSync(filePath, 'utf8').replace(/\n/g, '\\n').replace(/"/g, '\\"');
 
       parsed_item.push(
         '*' + configFile.replace(/^_/, '.') + '*:\n\n' +
