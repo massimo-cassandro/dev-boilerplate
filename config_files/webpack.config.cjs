@@ -110,7 +110,7 @@ const config = {
       chunkFilename: '[id].[contenthash].css'
     }),
 
-    // favicons
+    // =>> favicons
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -124,10 +124,15 @@ const config = {
         },
       ],
     }),
-
+    
+    // =>> HotModuleReplacementPlugin
     // Only update what has changed on hot reload
     // new webpack.HotModuleReplacementPlugin(), (non necessario con devServer.hot === true)
 
+    // =>> WebpackManifestPlugin
+    new WebpackManifestPlugin(/* {seed: manifest_shared_seed} */),
+
+    // =>> HtmlWebpackPlugin
     // https://github.com/jantimon/html-webpack-plugin#readme
     new HtmlWebpackPlugin({
       filename: '[name]-head.html.twig',
@@ -164,8 +169,7 @@ const config = {
       // },
     }),
 
-    new WebpackManifestPlugin(/* {seed: manifest_shared_seed} */),
-
+    // =>> BannerPlugin
     new BannerPlugin({
       banner: () => {
         const date = new Date().toLocaleString('it-IT', { year: 'numeric', month: 'long' });
@@ -181,30 +185,31 @@ const config = {
     })
   ],
 
+  // =>> rules
   // Determine how modules within the project are treated
   module: {
     rules: [
 
-      // html files
+      // =>> html files
       // {
       //   test: /\.html$/,
       //   loader: 'html-loader'
       // },
 
-      // markdown / plain text / raw svg
+      // =>> markdown / plain text / raw svg
       // {
       //   test: /\.(txt|md|raw\.svg)$/,
       //   loader: 'raw-loader'
       // },
 
-      // typescript
+      // =>> typescript
       // {
       //   test: /\.tsx?$/,
       //   use: 'ts-loader',
       //   exclude: /node_modules/,
       // },
 
-      // JavaScript/JSX: Use Babel to transpile JavaScript files
+      // =>> JavaScript/JSX: Use Babel to transpile JavaScript files
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
@@ -218,7 +223,7 @@ const config = {
         },
       },
 
-      // inline svg
+      // =>> inline svg
       // {
       //   test: /\.svg$/i, // /\.inline\.svg$/i,
       //   type: 'asset/inline', // inline as base 64
@@ -226,7 +231,7 @@ const config = {
       //   loader: 'raw-loader'
       // },
 
-      // Images / svg: Copy image files to build folder
+      // =>> Images / svg: Copy image files to build folder
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif|(?<!inline\.)svg)$/i,
         // type: 'asset/resource',
@@ -243,7 +248,7 @@ const config = {
         ]
       },
 
-      // Fonts
+      // =>> Fonts
       {
         test: /\.(woff2?|eot|ttf|otf)$/,
         //type: 'asset/resource',
@@ -262,7 +267,7 @@ const config = {
         ]
       },
 
-      // css/scss modules
+      // =>> css/scss modules
       {
         test: /(\.module\.(sass|scss|css))$/,
         use: [
@@ -290,7 +295,7 @@ const config = {
         ]
       },
 
-      // css / scss
+      // =>> css / scss
       {
         test: /\.(sass|scss|css)$/,
         exclude: /(\.module\.s?(a|c)ss)$/,
@@ -323,6 +328,7 @@ const config = {
     ],
   },
 
+  // =>> resolve
   resolve: {
     fallback: {
       'fs': false,
