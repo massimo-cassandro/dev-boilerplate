@@ -91,11 +91,11 @@ let device_list = breakpoints.map((item, idx) => {
 
 
 const dest = 'ChromeCustomDeviceList.txt',
-  str = '"customEmulatedDeviceList":"'+ JSON.stringify(device_list).replace(/"/g, '\\"') + '",';
+  str = '"custom-emulated-device-list":"'+ JSON.stringify(device_list).replace(/"/g, '\\"') + '",';
 
 fs.writeFileSync(dest, str);
 
 console.log (
-  'copiare in `~/Library/Application Support/Google/Chrome/Default/Preferences` (NB: è un file JSON)\n'+
+  'copiare all\'interno del file `~/Library/Application Support/Google/Chrome/Default/Preferences` (NB: è un file JSON)\n'+
   'vedi: https://stackoverflow.com/a/70905335/743443\n'
 );
