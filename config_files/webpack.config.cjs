@@ -124,7 +124,7 @@ const config = {
         },
       ],
     }),
-    
+
     // =>> HotModuleReplacementPlugin
     // Only update what has changed on hot reload
     // new webpack.HotModuleReplacementPlugin(), (non necessario con devServer.hot === true)
@@ -198,8 +198,8 @@ const config = {
 
       // =>> markdown / plain text / raw svg
       // {
-      //   test: /\.(txt|md|raw\.svg)$/,
-      //   loader: 'raw-loader'
+      //   test: /\.(txt|md)$/,
+      //   type: 'asset/source'
       // },
 
       // =>> typescript
@@ -227,8 +227,7 @@ const config = {
       // {
       //   test: /\.svg$/i, // /\.inline\.svg$/i,
       //   type: 'asset/inline', // inline as base 64
-      //   type: 'asset/source', // inline as svg
-      //   loader: 'raw-loader'
+      //   type: 'asset/source', // inline as svg. Con React necessario
       // },
 
       // =>> Images / svg: Copy image files to build folder
