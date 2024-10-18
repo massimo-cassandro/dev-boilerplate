@@ -233,8 +233,8 @@ const config = {
       // =>> Images / svg: Copy image files to build folder
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif|(?<!inline\.)svg)$/i,
-        type: 'asset/resource',
-        // type: 'javascript/auto',
+        // type: 'asset/resource',
+        type: 'javascript/auto',
         use: [
           {
             loader: 'file-loader',
