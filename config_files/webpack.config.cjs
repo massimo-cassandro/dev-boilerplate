@@ -225,16 +225,16 @@ const config = {
 
       // =>> inline svg
       // {
-      //   test: /\.svg$/i, // /\.inline\.svg$/i,
-      //   type: 'asset/inline', // inline as base 64
+      //   test: /(\.inline\.svg)$/i,
+      //   // type: 'asset/inline', // inline as base 64
       //   type: 'asset/source', // inline as svg. Con React necessario <div dangerouslySetInnerHTML={{ __html: __svg_var__ }} /> oppure usare  https://github.com/remarkablemark/html-react-parser
       // },
 
       // =>> Images / svg: Copy image files to build folder
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif|(?<!inline\.)svg)$/i,
-        // type: 'asset/resource',
-        type: 'javascript/auto',
+        type: 'asset/resource',
+        // type: 'javascript/auto',
         use: [
           {
             loader: 'file-loader',
