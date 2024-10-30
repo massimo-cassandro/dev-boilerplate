@@ -13,7 +13,19 @@ const {BannerPlugin} = require('webpack');
 const PACKAGE = require('./package.json');
 const path = require('path');
 
+/*
+// aliases from jsconfig
+const jsConfig = require(path.join(__dirname, '/jsconfig.json'));
+const aliases = {};
+for(const item in jsConfig.compilerOptions.paths) {
 
+  const key = item.replace(/(\/\*)$/, ''),
+    value = path.resolve(__dirname, jsConfig.compilerOptions.paths[item][0].replace(/(\/\*)$/, ''));
+
+  aliases[key] = value;
+}
+// console.log(aliases);
+*/
 
 // const Dotenv = require('dotenv-webpack');
 const isDevelopment = process.env.NODE_ENV === 'development'
@@ -110,7 +122,7 @@ const config = {
       chunkFilename: '[id].[contenthash].css'
     }),
 
-    // =>> favicons
+    // =>> CopyWebpackPlugin
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -300,6 +312,7 @@ const config = {
         exclude: /(\.module\.s?(a|c)ss)$/,
         use: [
           isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+          // MiniCssExtractPlugin.loader, // per uso con scrittura del css anche in dev (commentando riga precedente)
           {
             loader: 'css-loader',
             options: {
@@ -337,8 +350,8 @@ const config = {
     extensions: ['.tsx', '.ts', '.js', '.mjs', '.cjs', '.jsx', '.json', '.scss', '.css'],
     alias: {
       '@': './',
-      assets:'./build',
     },
+    // alias: aliases
   }
 
 };
