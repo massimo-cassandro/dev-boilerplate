@@ -253,11 +253,12 @@ const snippets = [
         'html-loader',
         'html-webpack-plugin',
         'mini-css-extract-plugin',
+        'mini-svg-data-uri',
         'postcss-loader',
         'postcss-preset-env',
         'sass-loader',
         'style-loader',
-        'terser-webpack-plugin'
+        'terser-webpack-plugin',
       ],
       [
         'webpack-cli',

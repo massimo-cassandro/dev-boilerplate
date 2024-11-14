@@ -6,6 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const svgToMiniDataURI = require('mini-svg-data-uri');
 
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
@@ -235,16 +236,53 @@ const config = {
         },
       },
 
-      // =>> inline svg
-      // {
-      //   test: /(\.inline\.svg)$/i,
-      //   // type: 'asset/inline', // inline as base 64
-      //   type: 'asset/source', // inline as svg. Con React necessario <div dangerouslySetInnerHTML={{ __html: __svg_var__ }} /> oppure usare  https://github.com/remarkablemark/html-react-parser
-      // },
-
-      // =>> Images / svg: Copy image files to build folder
+      // =>> svg
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif|(?<!inline\.)svg)$/i,
+        test: /\.svg$/i,
+        oneOf: [
+          // svg inline in css, base64 (con `?css-inline`)
+          {
+            resourceQuery: /css-inline/,
+            // loader: 'raw-loader',
+            type: 'asset/inline',
+            generator: {
+              dataUrl: content => {
+                content = content.toString();
+                return svgToMiniDataURI(content);
+              }
+            }
+          },
+
+          // svg inline (con `?inline`)
+          {
+            resourceQuery: /inline/,
+            // type: 'asset/inline', // inline as base 64
+            type: 'asset/source', // inline as svg
+            loader: 'raw-loader'
+          },
+
+          // copy image files to build folder
+          {
+            // type: 'asset/resource',
+            type: 'javascript/auto',
+            // resourceQuery: { not: [/(css-)?inline/] },
+            use: [
+              {
+                loader: 'file-loader',
+                options: {
+                  name: '[name].[contenthash].[ext]',
+                  outputPath: 'imgs/',
+                  esModule: false,
+                }
+              }
+            ]
+          },
+        ]
+      },
+
+      // =>> Images
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif)$/i,
         // type: 'asset/resource',
         type: 'javascript/auto',
         use: [
