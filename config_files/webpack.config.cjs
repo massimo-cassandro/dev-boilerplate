@@ -182,6 +182,12 @@ const config = {
       // },
     }),
 
+    // (isDevelopment && new HtmlWebpackPlugin({
+    //   filename: '.gitkeep',
+    //   inject: false,
+    //   templateContent: () => { return ''}
+    // })),
+
     // =>> BannerPlugin
     new BannerPlugin({
       banner: () => {
