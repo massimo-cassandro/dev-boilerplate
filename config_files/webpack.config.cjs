@@ -61,7 +61,6 @@ const config = {
     clean: !isDevelopment,
   },
 
-
   optimization: {
     minimize: !isDevelopment,
     minimizer: [
@@ -75,10 +74,19 @@ const config = {
         extractComments: false,
       }),
     ],
-    // splitChunks: { chunks: 'all', },
     runtimeChunk: 'single',
     // runtimeChunk: false,
     // runtimeChunk: { name: entrypoint => `runtime~${entrypoint.name}`,
+    // splitChunks: { chunks: 'all', },
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    },
     usedExports: true,
   },
   performance: {
