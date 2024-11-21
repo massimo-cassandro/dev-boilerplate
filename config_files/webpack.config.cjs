@@ -272,7 +272,6 @@ const config = {
             resourceQuery: /inline/,
             // type: 'asset/inline', // inline as base 64
             type: 'asset/source', // inline as svg
-            loader: 'raw-loader'
           },
 
           // copy image files to build folder
