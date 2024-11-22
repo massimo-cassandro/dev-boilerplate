@@ -349,6 +349,14 @@ const config = {
             }
           },
           {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                sourceMap: buildSourcemaps
+              },
+            },
+          },
+          {
             loader: 'sass-loader',
             options: {
               sourceMap: isDevelopment
