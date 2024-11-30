@@ -2,6 +2,7 @@
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackInjectPreload = require('@principalstudio/html-webpack-inject-preload');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
@@ -53,6 +54,7 @@ const config = {
   },
   // Where webpack outputs the assets and bundles
 
+  // =>> output
   output: {
     path: path.resolve(__dirname, './build'), // path.resolve(__dirname, `./public/${output_dir}` ),
     // filename: '[name].js',
@@ -61,6 +63,7 @@ const config = {
     clean: !isDevelopment,
   },
 
+  // =>> optimization
   optimization: {
     minimize: !isDevelopment,
     minimizer: [
@@ -111,6 +114,7 @@ const config = {
     // devMiddleware: { writeToDisk: true } // forza la scrittura su disco anche in modalità dev
   },
 
+  // =>> plugins
   plugins: [
 
     // new Dotenv({
@@ -188,6 +192,18 @@ const config = {
 
       //   return tpl;
       // },
+    }),
+    new HtmlWebpackInjectPreload({
+      files: [
+        {
+          match: /.*\.woff2$/,
+          attributes: {as: 'font', type: 'font/woff2', crossorigin: true },
+        },
+        {
+          match: /.*\.css$/,
+          attributes: {as: 'style' },
+        },
+      ]
     }),
 
     // (isDevelopment && new HtmlWebpackPlugin({

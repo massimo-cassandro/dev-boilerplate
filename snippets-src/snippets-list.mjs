@@ -271,9 +271,9 @@ const snippets = [
         'mini-svg-data-uri',
         'postcss-loader',
         'postcss-preset-env',
-        'sass-loader',
         'style-loader',
         'terser-webpack-plugin',
+        '@principalstudio/html-webpack-inject-preload'
       ],
       [
         'webpack-cli',
@@ -293,6 +293,14 @@ const snippets = [
       'typescript-plugin-css-modules',
       'typescript'
     ],
+  },
+  {
+    label: 'sass per webpack',
+    dev_packages: [
+      'sass-loader',
+      'sass'
+    ],
+    fav: true,
   },
 ];
 
