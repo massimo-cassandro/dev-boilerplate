@@ -249,9 +249,9 @@ npm i -S normalize.css
 
 
 
-## postcss + autoprefixer + purgecss (webpack)
+## postcss + plugins (webpack)
 ```bash
-npm i -D postcss postcss-preset-env @fullhuman/postcss-purgecss autoprefixer postcss-custom-media @csstools/postcss-global-data
+npm i -D postcss autoprefixer postcss-custom-media @csstools/postcss-global-data
 ```
 
 

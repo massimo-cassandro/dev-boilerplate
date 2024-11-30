@@ -116,11 +116,11 @@ const snippets = [
     fav: true
   },
   {
-    label: 'postcss + autoprefixer + purgecss (webpack)',
+    label: 'postcss + plugins (webpack)',
     dev_packages: [
       'postcss',
-      'postcss-preset-env',
-      '@fullhuman/postcss-purgecss',
+      // 'postcss-preset-env',
+      // '@fullhuman/postcss-purgecss',
       'autoprefixer',
       'postcss-custom-media',
       '@csstools/postcss-global-data',
