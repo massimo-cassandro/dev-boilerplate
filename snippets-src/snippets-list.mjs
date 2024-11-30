@@ -181,6 +181,14 @@ const snippets = [
     packages: ['normalize.css'],
   },
   {
+    label: 'css reset',
+    descr: [
+      '<https://www.joshwcomeau.com/css/custom-css-reset/#the-css-reset-1>',
+      '<https://meyerweb.com/eric/tools/css/reset/>',
+    ],
+    fav: true
+  },
+  {
     label: 'open-props + postcss-jit-props',
     packages: ['open-props'],
     dev_packages: ['postcss-jit-props'],

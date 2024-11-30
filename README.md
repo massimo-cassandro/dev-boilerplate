@@ -27,6 +27,10 @@ echo "*~\n.DS_Store\n**/*.mwb.bak\n**/*.mwb.beforefix\n\nnode_modules\nbower_com
 
 
 
+## css reset
+* <https://www.joshwcomeau.com/css/custom-css-reset/#the-css-reset-1>
+* <https://meyerweb.com/eric/tools/css/reset/>
+
 ## dev-updater
 * <https://github.com/massimo-cassandro/dev-updater>
 * `"UPD-version": "npx update-version  # --config=./dev-utilities.config.mjs",`
