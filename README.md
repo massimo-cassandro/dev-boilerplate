@@ -81,6 +81,30 @@ npm i -S open-props && npm i -D postcss-jit-props
 
 
 
+## postcss + plugins (webpack)
+```bash
+npm i -D postcss autoprefixer postcss-custom-media @csstools/postcss-global-data
+```
+
+
+*postcss.config.cjs*:
+
+```bash
+echo "/* eslint-env node */\n\n// const path = require('path');\n\n// https://github.com/cssnano/cssnano\n// https://purgecss.com/configuration.html\n// https://github.com/GoogleChromeLabs/postcss-jit-props\n// https://github.com/argyleink/open-props\n// https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media\n\nconst isDevelopment = process.env.NODE_ENV === 'development';\n\nconst postcssConfig = {\n  plugins: [\n\n    require('@csstools/postcss-global-data')({\n      files: [\n        './node_modules/open-props/media.min.css',\n        './frontend/css/custom-properties.css',\n      ]\n    }),\n\n    // require('postcss-jit-props')(require('open-props')),\n    require('postcss-jit-props')({\n      ...require('open-props'),\n      custom_selector: ':where(html)'\n    }),\n\n    require('autoprefixer'),\n\n    require('postcss-custom-media')({\n      preserve: isDevelopment\n    }),\n\n    require('@fullhuman/postcss-purgecss')({\n      content: [\n        // './node_modules/@massimo-cassandro/**/.js',\n        './templates/**/*.html.twig',\n        './public/**/*.html',\n        './src/**/*.{js,jsx}',\n      ],\n      // css: ['./src/css/custom-properties-figma.css'],\n      // output: ['./AppBundle/Resources/public/css/'],\n      // variables: true,\n      // fontFace: true,\n      // keyframes: true,\n      safelist: {\n        standard: [/:focus$/],\n        // deep: [],\n        // greedy: [/yellow$/]\n      }\n    }),\n\n  ]\n};\n\nif (process.env.NODE_ENV === 'production') {\n  postcssConfig.plugins.push(\n    require('cssnano')({\n      // use the safe preset so that it doesn't\n      // mutate or remove code from our css\n      preset: 'default',\n    })\n  );\n}\n\nmodule.exports = postcssConfig;\n\n" > postcss.config.cjs
+```
+
+
+
+## postcss cli
+* Per creare file css di test.
+* *postcss-import* è necessario per risolvere le importazioni da cli (con webpack non serve, l’operazione è svolta da *css-loader*)
+* `[npx] postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch`
+```bash
+npm i -D postcss-cli postcss-import
+```
+
+
+
 ## sass cli
 ```bash
 npm i -D sass
@@ -245,30 +269,6 @@ npm i -S @massimo-cassandro/modal-alert
 ## normalize.css
 ```bash
 npm i -S normalize.css
-```
-
-
-
-## postcss + plugins (webpack)
-```bash
-npm i -D postcss autoprefixer postcss-custom-media @csstools/postcss-global-data
-```
-
-
-*postcss.config.cjs*:
-
-```bash
-echo "/* eslint-env node */\n\n// const path = require('path');\n\n// https://github.com/cssnano/cssnano\n// https://purgecss.com/configuration.html\n// https://github.com/GoogleChromeLabs/postcss-jit-props\n// https://github.com/argyleink/open-props\n// https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media\n\nconst isDevelopment = process.env.NODE_ENV === 'development';\n\nconst postcssConfig = {\n  plugins: [\n\n    require('@csstools/postcss-global-data')({\n      files: [\n        './node_modules/open-props/media.min.css',\n        './frontend/css/custom-properties.css',\n      ]\n    }),\n\n    // require('postcss-jit-props')(require('open-props')),\n    require('postcss-jit-props')({\n      ...require('open-props'),\n      custom_selector: ':where(html)'\n    }),\n\n    require('autoprefixer'),\n\n    require('postcss-custom-media')({\n      preserve: isDevelopment\n    }),\n\n    require('@fullhuman/postcss-purgecss')({\n      content: [\n        // './node_modules/@massimo-cassandro/**/.js',\n        './templates/**/*.html.twig',\n        './public/**/*.html',\n        './src/**/*.{js,jsx}',\n      ],\n      // css: ['./src/css/custom-properties-figma.css'],\n      // output: ['./AppBundle/Resources/public/css/'],\n      // variables: true,\n      // fontFace: true,\n      // keyframes: true,\n      safelist: {\n        standard: [/:focus$/],\n        // deep: [],\n        // greedy: [/yellow$/]\n      }\n    }),\n\n  ]\n};\n\nif (process.env.NODE_ENV === 'production') {\n  postcssConfig.plugins.push(\n    require('cssnano')({\n      // use the safe preset so that it doesn't\n      // mutate or remove code from our css\n      preset: 'default',\n    })\n  );\n}\n\nmodule.exports = postcssConfig;\n\n" > postcss.config.cjs
-```
-
-
-
-## postcss cli
-* Per creare file css di test.
-* *postcss-import* è necessario per risolvere le importazioni da cli (con webpack non serve, l’operazione è svolta da *css-loader*)
-* `[npx] postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch`
-```bash
-npm i -D postcss-cli postcss-import
 ```
 
 

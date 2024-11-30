@@ -127,6 +127,7 @@ const snippets = [
       // 'postcss-csso',
     ],
     addConfigFile: ['postcss.config.cjs'],
+    fav: true
   },
   {
     label: 'postcss cli',
@@ -138,6 +139,7 @@ const snippets = [
       '[npx] postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch'
     ],
     dev_packages: ['postcss-cli', 'postcss-import'],
+    fav: true
   },
   {
     label: 'postcss-banner',
