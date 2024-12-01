@@ -193,10 +193,31 @@ const config = {
       //   return tpl;
       // },
     }),
+    // new HtmlWebpackPlugin({
+    //   templateContent: `<!DOCTYPE html>
+    //     <html lang="it">
+    //       <head>
+    //         <meta charset="utf-8">
+    //         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    //         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    //         <link rel="icon" href="./favicon.ico" sizes="32x32">
+    //         <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    //         <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+    //         <link rel="manifest" href="./manifest.webmanifest">
+    //         <title__TITLE__</title>
+    //       </head>
+    //       <body>
+    //         <div id="root" class="wrapper"></div>
+    //       </body>
+    //     </html>`,
+    //   filename: 'index.html',
+    //   inject: 'body',
+    // }),
     new HtmlWebpackInjectPreload({
       files: [
         {
-          match: /.*\.woff2$/,
+          match: /.*-latin-(?!(ext-)).*\.woff2$/,
+          // match: /.*\.woff2$/,
           attributes: {as: 'font', type: 'font/woff2', crossorigin: true },
         },
         {
