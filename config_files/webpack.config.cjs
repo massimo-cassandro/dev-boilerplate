@@ -256,8 +256,29 @@ const config = {
 
       // =>> html files
       // {
-      //   test: /\.html$/,
-      //   loader: 'html-loader'
+      //   test: /\.html$/i,
+      //   oneOf: [
+
+      //     // copy files to output folder
+      //     {
+      //       type: 'javascript/auto',
+      //       resourceQuery: /as_asset/,
+      //       use: [
+      //         {
+      //           loader: 'file-loader',
+      //           options: {
+      //             name: '[name].[contenthash].[ext]',
+      //             // outputPath: 'imgs/',
+      //             esModule: false,
+      //           }
+      //         }
+      //       ]
+      //     },
+      //     // get html content
+      //     {
+      //       loader: 'html-loader'
+      //     },
+      //   ]
       // },
 
       // =>> markdown / plain text / raw svg
