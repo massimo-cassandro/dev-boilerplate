@@ -256,7 +256,7 @@ const config = {
 
       // =>> html files
       // {
-      //   test: /\.html$/i,
+      // test: /(\.html?)$/i,
       //   oneOf: [
 
       //     // copy files to output folder
@@ -283,7 +283,7 @@ const config = {
 
       // =>> markdown / plain text / raw svg
       // {
-      //   test: /\.(txt|md)$/,
+      //   test: /\.(txt|md)$/i,
       //   type: 'asset/source'
       // },
 
@@ -296,7 +296,7 @@ const config = {
 
       // =>> JavaScript/JSX: Use Babel to transpile JavaScript files
       {
-        test: /\.jsx?$/,
+        test: /(\.jsx?)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -310,7 +310,7 @@ const config = {
 
       // =>> svg
       {
-        test: /\.svg$/i,
+        test: /(\.svg)$/i,
         oneOf: [
           // svg inline in css, base64 (con `?css-inline`)
           {
