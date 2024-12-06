@@ -249,7 +249,7 @@ const snippets = [
     fav: true,
     descr: ['Non include Postcss'],
     snippets: [
-      '"webpack DEV": "NODE_ENV=development webpack serve --config ./webpack.config.cjs",',
+      '"webpack DEV": "NODE_ENV=development webpack serve --config ./webpack.config.cjs #--open-app-name \'Google Chrome\',',
       '"webpack PROD": "NODE_ENV=production webpack --config ./webpack.config.cjs",'
     ],
     // addConfigFile: ['webpack.config.cjs'], // TODO così non funziona
