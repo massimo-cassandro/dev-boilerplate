@@ -123,6 +123,12 @@ const config = {
     //   ignoreStub: true
     // }),
 
+    // permette di accedere a process da scritpprocessati nel browser
+    // richiede `npm install process -D`
+    // new webpack.ProvidePlugin({
+    //   process: 'process/browser',
+    // }),
+
     // Removes/cleans build folders and unused assets when rebuilding
     // non necessario con opzione `clean` di output
     // new CleanWebpackPlugin(),
