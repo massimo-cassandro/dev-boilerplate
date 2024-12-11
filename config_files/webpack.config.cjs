@@ -357,9 +357,9 @@ const config = {
         ]
       },
 
-      // =>> Images
+      // =>> Images // pdf
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif)$/i,
+        test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif|pdf)$/i,
         // type: 'asset/resource',
         type: 'javascript/auto',
         use: [
