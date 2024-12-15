@@ -1,0 +1,53 @@
+{
+  "1280": {
+    "$type": "grid",
+    "$value": [
+      {
+        "pattern": "rows",
+        "visible": true,
+        "alignment": "min",
+        "color": "#ff00001a",
+        "gutterSize": "0px",
+        "count": 1000,
+        "offset": "0px"
+      },
+      {
+        "pattern": "columns",
+        "visible": true,
+        "alignment": "stretch",
+        "color": "#ff00001a",
+        "gutterSize": "24px",
+        "count": 12,
+        "offset": "70px"
+      }
+    ]
+  },
+  "11 cols": {
+    "$type": "grid",
+    "$value": [
+      {
+        "pattern": "columns",
+        "visible": true,
+        "alignment": "stretch",
+        "color": "#2ebdf11a",
+        "gutterSize": "24px",
+        "count": 11,
+        "offset": "70px"
+      }
+    ]
+  },
+  "mobile": {
+    "$type": "grid",
+    "$value": [
+      {
+        "pattern": "columns",
+        "visible": true,
+        "alignment": "stretch",
+        "color": "#ff00001a",
+        "gutterSize": "24px",
+        "count": 2,
+        "offset": "16px"
+      }
+    ]
+  }
+}

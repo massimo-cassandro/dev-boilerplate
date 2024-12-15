@@ -1,0 +1,65 @@
+:root {
+  color-scheme: light dark;
+
+  --font-family: 'Barlow', sans-serif;
+  --font-family-display: 'Bangers', system-ui;
+  --font-family-condensed: 'Barlow Semi Condensed', sans-serif;
+
+  /* --font-weight-light: 300; */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  /* --font-weight-extra-bold: 800; */
+
+  --font-size-regular: 1rem;
+  --font-size-regular-fluid: clamp(.9rem, 9vw, 1.1rem);
+  --font-size-xs: .7rem;
+  --font-size-xs-fluid: clamp(.7rem, 1.5vw, .82rem);
+  --font-size-sm: .8rem; /* 12.8px */
+  /* --font-size-sm-md: .875rem; */ /* 14px */
+  --font-size-sm-fluid: clamp(.8rem, 2vw, .92rem);
+  --font-size-lg-fluid: clamp(1rem, 12vw, 1.3rem);
+  --font-size-lg: 1.3rem;
+  --font-size-xl: 1.8rem;
+
+  --line-height-base: 1.5;
+
+  --form-text-color: var(--cyan-12);
+  --form-bg-color: var(--gray-0);
+  --form-placeholder-color: var(--sand-6);
+  --form-btns-border-radius: var(--radius-sm);
+  --form-btns-padding-y: var(--spacing-xxs);
+  --form-btns-padding-x: var(--spacing-xs);
+  --form-btns-font-size: clamp(.85rem, 6vw, 1rem);
+  --form-btns-sm-font-size: clamp(.75rem, 6vw, .9rem);
+
+  --spacing-xxs: .25rem;
+  --spacing-xs: .5rem;
+  --spacing-sm: .75rem;
+  --spacing-base: 1rem;
+  --spacing-md: 1.2rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* --size-sm-md: 600px; */
+  /* --size-lg-xl: 1280px; */
+
+  --radius-sm: .25rem;
+  --radius-md: .5rem;
+  --radius-lg: 1rem;
+  --radius-pill: 999rem;
+
+  --brk-desktop: 480px;
+
+  --z-index-overlay: 900;
+  --z-index-calendar: 901;
+
+  --std-gray: light-dark(var(--stone-9), var(--stone-5));
+  /* --std-gray-light: light-dark(var(--stone-7), var(--stone-6)); */
+
+}
+
+@custom-media --media-desktop-up (min-width: 480px);
+@custom-media --media-desktop-down (max-width: 479px);

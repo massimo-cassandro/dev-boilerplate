@@ -1,0 +1,36 @@
+{
+  "gradient-green": {
+    "$type": "gradient",
+    "$value": {
+      "type": "linear",
+      "angle": 141,
+      "stops": [
+        {
+          "color": "#80c347",
+          "position": 0
+        },
+        {
+          "color": "#5d8e36",
+          "position": 1
+        }
+      ]
+    }
+  },
+  "gradient-light-green": {
+    "$type": "gradient",
+    "$value": {
+      "type": "linear",
+      "angle": 141,
+      "stops": [
+        {
+          "color": "#c0d837",
+          "position": 0
+        },
+        {
+          "color": "#8d9f2a",
+          "position": 1
+        }
+      ]
+    }
+  }
+}
