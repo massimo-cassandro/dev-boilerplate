@@ -123,6 +123,12 @@ const config = {
     //   ignoreStub: true
     // }),
 
+    // permette di accedere a process da scritpprocessati nel browser
+    // richiede `npm install process -D`
+    // new webpack.ProvidePlugin({
+    //   process: 'process/browser',
+    // }),
+
     // Removes/cleans build folders and unused assets when rebuilding
     // non necessario con opzione `clean` di output
     // new CleanWebpackPlugin(),
@@ -351,9 +357,9 @@ const config = {
         ]
       },
 
-      // =>> Images
+      // =>> Images // pdf
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif)$/i,
+        test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif|pdf)$/i,
         // type: 'asset/resource',
         type: 'javascript/auto',
         use: [
