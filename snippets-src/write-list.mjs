@@ -15,7 +15,7 @@ const default_obj = {
 
   packages: [],           // renderizzati come `npm i --S ...` o `--D ...`, se presenti dei subarray
   dev_packages: [],       // vengono renderizati come `npm i` distinti
-  addConfigFile: [],      // files in `config_files` da rirpodurre con `echo` e `>>`
+  addConfigFile: [],      // files in `config_files` da riprodurre con `echo` e `>>`
 
   uninstall: [],          // i pacchetti indicati vengono renderizzati come `npm uninstall ...`
 
