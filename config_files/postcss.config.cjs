@@ -25,11 +25,11 @@ const postcssConfig = {
       ...require('open-props'),
       custom_selector: ':where(html)'
     }),
-    
-    // per vecchi IOS
+
+    // per vecchi IOS (test)
     // require('postcss-nesting'),
     // require('@csstools/postcss-light-dark-function'),
-      
+
     require('autoprefixer'),
 
     require('postcss-custom-media')({
@@ -60,6 +60,11 @@ const postcssConfig = {
 
 if (process.env.NODE_ENV === 'production') {
   postcssConfig.plugins.push(
+
+    // per vecchi IOS
+    // require('postcss-nesting'),
+    // require('@csstools/postcss-light-dark-function'),
+
     require('cssnano')({
       // use the safe preset so that it doesn't
       // mutate or remove code from our css
