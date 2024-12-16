@@ -30,7 +30,7 @@ const postcssConfig = {
     // https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting
     // https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-light-dark-function#readme
     // require('postcss-nesting'),
-    // require('@csstools/postcss-light-dark-function')({preserve: false}),
+    // require('@csstools/postcss-light-dark-function')({preserve: false}), /* NB non funziona benissimo... */
 
     require('autoprefixer'),
 

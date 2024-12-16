@@ -50,12 +50,12 @@
   line-height: var(--line-height-base);
   color: var(--form-text-color);
   background-color: var(--form-bg-color);
-  border: 1px solid light-dark(var(--green-10), var(--brown-8));
+  border: 1px solid var(--green-10);
   border-radius: var(--form-btns-border-radius);
 
   &:focus {
     /* background-color: var(--purple-2); */
-    outline: 2px solid light-dark(var(--green-9), var(--green-2));
+    outline: 2px solid var(--green-9);
   }
   &::placeholder {
     font-size: var(--form-btns-font-size);
@@ -69,6 +69,13 @@
     opacity: .6;
     &::placeholder {
       font-style: italic;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    border-color: var(--brown-8);
+    &:focus {
+      outline-color: var(--green-2);
     }
   }
 }
@@ -99,7 +106,7 @@ select.form-control {
 }
 
 
-.form-check {
+/* .form-check {
   display: flex;
   flex-flow: row nowrap;
   gap: var(--spacing-xs);
@@ -114,9 +121,28 @@ select.form-control {
     transform-origin: center;
     scale: 1.3;
   }
-  /* .form-label {
+  /*.form-label {
     font-weight: var(--font-size-regular);
-  } */
+  } -/
+} */
+
+
+/* da bs5 */
+/* flex non funziona su safari */
+.form-check {
+  display: block;
+  padding-left: 1.5em;
+  margin-bottom: var(--spacing-sm);
+
+  .form-control {
+    display: inline-block;
+    float: left;
+    width: auto;
+    margin: 4px 0  0 -1.5em;
+    accent-color: var(--primary-200);
+    transform-origin: center;
+    scale: 1.3;
+  }
 }
 
 .form-help-text {
