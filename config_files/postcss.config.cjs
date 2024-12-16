@@ -26,9 +26,11 @@ const postcssConfig = {
       custom_selector: ':where(html)'
     }),
 
-    // per vecchi IOS (test)
+    // per IOS < 17 (test)
+    // https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting
+    // https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-light-dark-function#readme
     // require('postcss-nesting'),
-    // require('@csstools/postcss-light-dark-function'),
+    // require('@csstools/postcss-light-dark-function')({preserve: false}),
 
     require('autoprefixer'),
 
@@ -61,7 +63,7 @@ const postcssConfig = {
 if (process.env.NODE_ENV === 'production') {
   postcssConfig.plugins.push(
 
-    // per vecchi IOS
+    // per IOS < 17
     // require('postcss-nesting'),
     // require('@csstools/postcss-light-dark-function'),
 
