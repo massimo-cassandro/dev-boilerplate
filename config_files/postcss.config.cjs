@@ -26,7 +26,9 @@ const postcssConfig = {
       custom_selector: ':where(html)'
     }),
     
-    // require('postcss-nesting'), // per vecchi IOS
+    // per vecchi IOS
+    // require('postcss-nesting'),
+    // require('@csstools/postcss-light-dark-function'),
       
     require('autoprefixer'),
 
