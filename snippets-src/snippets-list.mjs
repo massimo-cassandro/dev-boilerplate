@@ -145,6 +145,13 @@ const snippets = [
     label: 'postcss-banner',
     dev_packages: ['postcss-banner'],
   },
+  {
+    label: 'postcss-nesting',
+    descr: [
+      'Per utilizzare css nesting con IOS <= 16 e per le email',
+    ],
+    dev_packages: ['postcss-nesting'],
+  },
 
   {
     label: 'bootstrap',
