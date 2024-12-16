@@ -146,11 +146,11 @@ const snippets = [
     dev_packages: ['postcss-banner'],
   },
   {
-    label: 'postcss-nesting',
+    label: 'POSTCSS per supportare nuove funzionalità con browser meno recenti',
     descr: [
-      'Per utilizzare css nesting con IOS <= 16 e per le email',
+      'Per utilizzare css nesting, light-dark() ecc. con IOS <= 16 e per le email',
     ],
-    dev_packages: ['postcss-nesting'],
+    dev_packages: ['postcss-nesting', '@csstools/postcss-light-dark-function'],
   },
 
   {
