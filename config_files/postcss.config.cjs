@@ -25,7 +25,9 @@ const postcssConfig = {
       ...require('open-props'),
       custom_selector: ':where(html)'
     }),
-
+    
+    // require('postcss-nesting'), // per vecchi IOS
+      
     require('autoprefixer'),
 
     require('postcss-custom-media')({
