@@ -29,7 +29,10 @@ const postcssConfig = {
     // per IOS < 17 (test)
     // https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting
     // https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-light-dark-function#readme
-    // require('postcss-nesting'),
+    // require('postcss-nesting')({
+    //  edition: '2021',
+    //  noIsPseudoSelector: true
+    //}),
     // require('@csstools/postcss-light-dark-function')({preserve: false}), /* NB non funziona benissimo... */
 
     require('autoprefixer'),
@@ -64,7 +67,10 @@ if (process.env.NODE_ENV === 'production') {
   postcssConfig.plugins.push(
 
     // per IOS < 17
-    // require('postcss-nesting'),
+    // require('postcss-nesting')({
+    //  edition: '2021',
+    //  noIsPseudoSelector: true
+    //}),
     // require('@csstools/postcss-light-dark-function'),
 
     require('cssnano')({
