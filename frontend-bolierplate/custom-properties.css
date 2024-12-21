@@ -1,9 +1,8 @@
 :root {
   color-scheme: light dark;
 
-  --font-family: 'Barlow', sans-serif;
-  --font-family-display: 'Bangers', system-ui;
-  --font-family-condensed: 'Barlow Semi Condensed', sans-serif;
+  --font-family: 'Rubik Variable', sans-serif;
+
 
   /* --font-weight-light: 300; */
   --font-weight-regular: 400;
@@ -12,7 +11,7 @@
   /* --font-weight-extra-bold: 800; */
 
   --font-size-regular: 1rem;
-  --font-size-regular-fluid: clamp(.9rem, 9vw, 1.1rem);
+  --font-size-regular-fluid: clamp(.85rem, 9vw, 1rem);
   --font-size-xs: .7rem;
   --font-size-xs-fluid: clamp(.7rem, 1.5vw, .82rem);
   --font-size-sm: .8rem; /* 12.8px */
@@ -20,18 +19,54 @@
   --font-size-sm-fluid: clamp(.8rem, 2vw, .92rem);
   --font-size-lg-fluid: clamp(1rem, 12vw, 1.3rem);
   --font-size-lg: 1.3rem;
-  --font-size-xl: 1.8rem;
 
   --line-height-base: 1.5;
 
   --form-text-color: var(--cyan-12);
   --form-bg-color: var(--gray-0);
   --form-placeholder-color: var(--sand-6);
+
   --form-btns-border-radius: var(--radius-sm);
   --form-btns-padding-y: var(--spacing-xxs);
   --form-btns-padding-x: var(--spacing-xs);
   --form-btns-font-size: clamp(.85rem, 6vw, 1rem);
   --form-btns-sm-font-size: clamp(.75rem, 6vw, .9rem);
+  --form-btns-sm-padding-x: .8rem;
+  --form-btns-sm-padding-y: .1rem;
+
+  --btn-primary-bg-color: var(--primary-150);
+  --btn-primary-fg-color: var(--primary-10);
+  --btn-primary-border-color: var(--btn-bg-color);
+  --btn-primary-hover-bg-color: var(--primary-10);
+  --btn-primary-hover-fg-color: var(--primary-150);
+  --btn-primary-hover-border-color: var(--btn-fg-color);
+  --btn-primary-active-bg-color: var(--primary-150);
+  --btn-primary-active-fg-color: var(--primary-10);
+  --btn-primary-active-border-color: var(--btn-bg-color);
+  --btn-primary-focus-outline-color: var(--btn-bg-color); /* color-mix(in srgb, var(--primary-150) 25%, transparent); */
+
+  --btn-secondary-bg-color: var(--primary-150);
+  --btn-secondary-fg-color: var(--primary-10);
+  --btn-secondary-border-color: var(--btn-bg-color);
+  --btn-secondary-hover-bg-color: var(--primary-10);
+  --btn-secondary-hover-fg-color: var(--primary-150);
+  --btn-secondary-hover-border-color: var(--btn-fg-color);
+  --btn-secondary-active-bg-color: var(--primary-150);
+  --btn-secondary-active-fg-color: var(--primary-10);
+  --btn-secondary-active-border-color: var(--btn-bg-color);
+  --btn-secondary-focus-outline-color: var(--btn-bg-color);
+
+  --btn-o-primary-bg-color: var(--primary-150);
+  --btn-o-primary-fg-color: var(--primary-10);
+  --btn-o-primary-border-color: var(--btn-bg-color);
+  --btn-o-primary-hover-bg-color: var(--primary-10);
+  --btn-o-primary-hover-fg-color: var(--primary-150);
+  --btn-o-primary-hover-border-color: var(--btn-fg-color);
+  --btn-o-primary-active-bg-color: var(--primary-150);
+  --btn-o-primary-active-fg-color: var(--primary-10);
+  --btn-o-primary-active-border-color: var(--btn-bg-color);
+  --btn-o-primary-focus-outline-color: var(--btn-bg-color);
+
 
   --spacing-xxs: .25rem;
   --spacing-xs: .5rem;
@@ -51,15 +86,6 @@
   --radius-lg: 1rem;
   --radius-pill: 999rem;
 
-  --brk-desktop: 480px;
-
-  --z-index-overlay: 900;
-  --z-index-calendar: 901;
-
-  --std-gray: light-dark(var(--stone-9), var(--stone-5));
-  /* --std-gray-light: light-dark(var(--stone-7), var(--stone-6)); */
-
+  --text-color: light-dark(var(--gray-11), var(--gray-1));
+  --body-bg-color: light-dark(var(--stone-1), var(--stone-11));
 }
-
-@custom-media --media-desktop-up (min-width: 480px);
-@custom-media --media-desktop-down (max-width: 479px);

@@ -28,8 +28,8 @@ button, [role='button'] {
   } */
 
   &.btn-sm {
-    --form-btns-padding-x: .8rem;
-    --form-btns-padding-y: .1rem;
+    --form-btns-padding-x: var(--form-btns-sm-padding-x);
+    --form-btns-padding-y: var(--form-btns-sm-padding-y);
     font-size: var(--form-btns-sm-font-size);
 
     /* svg {
@@ -55,76 +55,77 @@ button, [role='button'] {
   }
 
   &.btn-primary {
-    --btn-bg-color: var(--primary-150);
-    --btn-fg-color: var(--primary-10);
-    --btn-border-color: var(--btn-bg-color);
+    --btn-bg-color: var(--btn-primary-bg-color);
+    --btn-fg-color: var(--btn-primary-fg-color);
+    --btn-border-color: var(--btn-primary-border-color);
 
     @media (hover: hover) { /* @media (any-hover: hover) { */
       &:hover {
-        --btn-bg-color: var(--primary-10);
-        --btn-fg-color: var(--primary-150);
-        --btn-border-color: var(--btn-fg-color);
+        --btn-bg-color: var(--btn-primary-hover-bg-color);
+        --btn-fg-color: var(--btn-primary-hover-fg-color);
+        --btn-border-color: var(--btn-primary-hover-border-color);
       }
     }
 
     &:focus, &:active {
-      outline: 5px solid color-mix(in srgb, var(--primary-150) 25%, transparent);
+      outline: 5px solid var(--btn-primary-focus-outline-color);
       /* outline-offset: 4px; */
     }
 
     &:active {
-      --btn-bg-color: var(--primary-150);
-      --btn-fg-color: var(--primary-10);
-      --btn-border-color: var(--btn-bg-color);
+      --btn-bg-color: var(--btn-primary-active-bg-color);
+      --btn-fg-color: var(--btn-primary-active-fg-color);
+      --btn-border-color: var(--btn-primary-active-border-color);
     }
   }
+
   &.btn-secondary {
-    --btn-bg-color: var(--secondary-50);
-    --btn-fg-color: var(--secondary-200);
-    --btn-border-color: var(--btn-fg-color);
+    --btn-bg-color: var(--btn-secondary-bg-color);
+    --btn-fg-color: var(--btn-secondary-fg-color);
+    --btn-border-color: var(--btn-secondary-border-color);
 
     @media (hover: hover) { /* @media (any-hover: hover) { */
       &:hover {
-        --btn-bg-color: var(--secondary-200);
-        --btn-fg-color: var(--secondary-50);
-        --btn-border-color: var(--btn-fg-color);
+        --btn-bg-color: var(--btn-secondary-hover-bg-color);
+        --btn-fg-color: var(--btn-secondary-hover-fg-color);
+        --btn-border-color: var(--btn-secondary-hover-border-color);
       }
     }
 
     &:focus, &:active {
-      outline: 5px solid color-mix(in srgb, var(--secondary-150) 50%, transparent);
+      outline: 5px solid var(--btn-secondary-focus-outline-color);
       /* outline-offset: 4px; */
     }
 
     &:active {
-      --btn-bg-color: var(--secondary-200);
-      --btn-fg-color: var(--secondary-50);
-      --btn-border-color: var(--btn-fg-color);
+      --btn-bg-color: var(--btn-secondary-active-bg-color);
+      --btn-fg-color: var(--btn-secondary-active-fg-color);
+      --btn-border-color: var(--btn-secondary-active-border-color);
     }
   }
 
   &.btn-outline-primary {
-    --btn-fg-color: var(--primary-150);
-    --btn-bg-color: var(--primary-10);
-    --btn-border-color: var(--btn-fg-color);
+    --btn-bg-color: var(--btn-o-primary-bg-color);
+    --btn-fg-color: var(--btn-o-primary-fg-color);
+    --btn-border-color: var(--btn-o-primary-border-color);
 
-    @media (hover: hover) {
+    @media (hover: hover) { /* @media (any-hover: hover) { */
       &:hover {
-        --btn-bg-color: var(--primary-150);
-        --btn-fg-color: var(--primary-10);
-        --btn-border-color: var(--btn-bg-color);
+        --btn-bg-color: var(--btn-o-primary-hover-bg-color);
+        --btn-fg-color: var(--btn-o-primary-hover-fg-color);
+        --btn-border-color: var(--btn-o-primary-hover-border-color);
       }
     }
 
     &:focus, &:active {
-      outline: 5px solid color-mix(in srgb, var(--primary-150) 25%, transparent);
+      outline: 5px solid var(--btn-o-primary-focus-outline-color);
+      /* outline-offset: 4px; */
     }
 
     &:active {
-      --btn-bg-color: var(--primary-150);
-      --btn-fg-color: var(--primary-10);
-      --btn-border-color: var(--btn-fg-color);
-
+      --btn-bg-color: var(--btn-o-primary-active-bg-color);
+      --btn-fg-color: var(--btn-o-primary-active-fg-color);
+      --btn-border-color: var(--btn-o-primary-active-border-color);
     }
   }
 
