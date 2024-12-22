@@ -7,11 +7,11 @@
   position: relative;
 }
 
-.mobile-hidden {
+/* .mobile-hidden {
   @media (--media-desktop-down) {
     display: none;
   }
-}
+} */
 
 .w-100 {
   width: 100%;
@@ -29,14 +29,13 @@
 .mt-xl {
   margin-top: var(--spacing-xl);
 }
-@media (--media-desktop-up) {
+/* @media (--media-desktop-up) {
 
   .mt-dsk-lg {
     margin-top: var(--spacing-lg);
   }
-}
+} */
 
-
-.grid-full-row {
+/* .grid-full-row {
   grid-column: 1 / -1;
-}
+} */

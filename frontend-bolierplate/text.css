@@ -1,5 +1,5 @@
 p {
-  margin: 0 0 .6rem;
+  margin: 0 0 var(--spacing-sm);
 }
 
 a:link, .btn-link {
@@ -24,7 +24,7 @@ a, .btn-link {
     text-underline-offset: 2px;
   }
   &:active {
-    color: var(--body-bg);
+    color: var(--body-bg-color);
     background-color: var(--link-color);
     outline: 2px solid var(--link-color);
     offset: 0;
@@ -32,8 +32,7 @@ a, .btn-link {
 }
 
 h2, h3, .h3, h4, .h4 {
-  font-family: var(--font-family-display);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-semibold);
   line-height: 1.2;
   text-align: center;
 }
@@ -67,21 +66,26 @@ h4, .h4 {
   border: 0 !important;
 }
 
-.text-center {
-  text-align: center;
+strong, b {
+  font-weight: 700;
 }
-.italic {
+em, .italic {
   font-style: italic;
 }
 
+.text-center {
+  text-align: center;
+}
 .text-nowrap {
   white-space: nowrap;
 }
-.text-nowrap-dskt {
+
+/* .text-nowrap-dskt {
   @media (--media-desktop-up) {
     white-space: nowrap;
   }
-}
+} */
+
 .font-semibold {
   font-weight: var(--font-weight-semibold);
 }
@@ -90,4 +94,16 @@ h4, .h4 {
 }
 small, .small, .sm {
   font-size: var(--font-size-sm);
+}
+
+.text-muted {
+  color: var(--text-muted-color);
+}
+
+ul {
+  margin: 1rem 0;
+  list-style-type: disc;
+}
+li {
+  margin-left: 1.5rem;
 }
