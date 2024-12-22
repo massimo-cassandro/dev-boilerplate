@@ -34,29 +34,29 @@
   --form-btns-sm-padding-x: .8rem;
   --form-btns-sm-padding-y: .1rem;
 
-  --btn-primary-bg-color: var(--primary-150);
-  --btn-primary-fg-color: var(--primary-10);
-  --btn-primary-border-color: var(--btn-bg-color);
-  --btn-primary-hover-bg-color: var(--primary-10);
-  --btn-primary-hover-fg-color: var(--primary-150);
-  --btn-primary-hover-border-color: var(--btn-fg-color);
-  --btn-primary-active-bg-color: var(--primary-150);
-  --btn-primary-active-fg-color: var(--primary-10);
-  --btn-primary-active-border-color: var(--btn-bg-color);
-  --btn-primary-focus-outline-color: var(--btn-bg-color); /* color-mix(in srgb, var(--primary-150) 25%, transparent); */
+  --btn-primary-bg-color: linear-gradient(45deg, var(--green-9), var(--green-10));
+  --btn-primary-fg-color: var(--gray-0);
+  --btn-primary-border-color: var(--green-10);
+  --btn-primary-hover-bg-color: var(--green-11);
+  --btn-primary-hover-fg-color: var(--btn-primary-fg-color);
+  --btn-primary-hover-border-color: var(--btn-primary-border-color);
+  --btn-primary-active-bg-color: var(--green-12);
+  --btn-primary-active-fg-color: var(--btn-primary-fg-color);
+  --btn-primary-active-border-color: var(--btn-primary-active-bg-color);
+  --btn-primary-focus-outline-color: color-mix(in srgb, var(--btn-primary-border-color) 25%, transparent);
 
-  --btn-secondary-bg-color: var(--primary-150);
-  --btn-secondary-fg-color: var(--primary-10);
-  --btn-secondary-border-color: var(--btn-bg-color);
-  --btn-secondary-hover-bg-color: var(--primary-10);
-  --btn-secondary-hover-fg-color: var(--primary-150);
-  --btn-secondary-hover-border-color: var(--btn-fg-color);
-  --btn-secondary-active-bg-color: var(--primary-150);
-  --btn-secondary-active-fg-color: var(--primary-10);
-  --btn-secondary-active-border-color: var(--btn-bg-color);
-  --btn-secondary-focus-outline-color: var(--btn-bg-color);
+  --btn-secondary-bg-color: var(--stone-4);
+  --btn-secondary-fg-color: var(--stone-9);
+  --btn-secondary-border-color: var(--stone-6);
+  --btn-secondary-hover-bg-color: var(--stone-5);
+  --btn-secondary-hover-fg-color: var(--stone-11);
+  --btn-secondary-hover-border-color: var(--btn-secondary-border-color);
+  --btn-secondary-active-bg-color: var(--stone-11);
+  --btn-secondary-active-fg-color: var(--stone-0);
+  --btn-secondary-active-border-color: var(--btn-secondary-active-bg-color);
+  --btn-secondary-focus-outline-color: color-mix(in srgb, var(--btn-secondary-border-color) 50%, transparent);
 
-  --btn-o-primary-bg-color: var(--primary-150);
+  /* --btn-o-primary-bg-color: var(--primary-150);
   --btn-o-primary-fg-color: var(--primary-10);
   --btn-o-primary-border-color: var(--btn-bg-color);
   --btn-o-primary-hover-bg-color: var(--primary-10);
@@ -65,7 +65,7 @@
   --btn-o-primary-active-bg-color: var(--primary-150);
   --btn-o-primary-active-fg-color: var(--primary-10);
   --btn-o-primary-active-border-color: var(--btn-bg-color);
-  --btn-o-primary-focus-outline-color: var(--btn-bg-color);
+  --btn-o-primary-focus-outline-color: var(--btn-bg-color); */
 
 
   --spacing-xxs: .25rem;
