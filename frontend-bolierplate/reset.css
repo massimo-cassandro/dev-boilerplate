@@ -1,3 +1,11 @@
+:root {
+  font-synthesis: none;
+  /* stylelint-disable-next-line value-keyword-case */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 html, body {
   height: 100%;
   padding: 0;

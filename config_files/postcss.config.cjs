@@ -2,11 +2,6 @@
 
 // const path = require('path');
 
-// https://github.com/cssnano/cssnano
-// https://purgecss.com/configuration.html
-// https://github.com/GoogleChromeLabs/postcss-jit-props
-// https://github.com/argyleink/open-props
-// https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -20,6 +15,8 @@ const postcssConfig = {
       ]
     }),
 
+    // https://github.com/GoogleChromeLabs/postcss-jit-props
+    // https://github.com/argyleink/open-props
     // require('postcss-jit-props')(require('open-props')),
     require('postcss-jit-props')({
       ...require('open-props'),
@@ -37,10 +34,12 @@ const postcssConfig = {
 
     require('autoprefixer'),
 
+    // https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media
     require('postcss-custom-media')({
       preserve: isDevelopment
     }),
 
+    // https://purgecss.com/configuration.html
     // require('@fullhuman/postcss-purgecss')({
     //   content: [
     //     // './node_modules/@massimo-cassandro/**/.js',
@@ -71,8 +70,9 @@ if (process.env.NODE_ENV === 'production') {
     //  edition: '2021',
     //  noIsPseudoSelector: true
     //}),
-    // require('@csstools/postcss-light-dark-function'),
+    // require('@csstools/postcss-light-dark-function'), /* NB non funziona benissimo... */
 
+    // https://github.com/cssnano/cssnano
     require('cssnano')({
       // use the safe preset so that it doesn't
       // mutate or remove code from our css
