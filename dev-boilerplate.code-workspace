@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"accessibility.signals.terminalBell": {
+			"sound": "on"
+		},
+		"terminal.integrated.enableVisualBell": true,
+		"terminal.integrated.bellDuration": 5000
+	}
+}

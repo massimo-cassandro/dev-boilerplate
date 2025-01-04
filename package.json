@@ -1,0 +1,13 @@
+{
+  "name": "dev-boilerplate",
+  "scripts": {
+    "write install list file": "node ./snippets-src/write-list.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.3.0",
+    "@massimo-cassandro/eslint-config": "^2.0.2",
+    "chalk": "^5.3.0",
+    "eslint": "^9.3.0",
+    "globals": "^15.3.0"
+  }
+}
