@@ -318,9 +318,9 @@ const config = {
       {
         test: /(\.svg)$/i,
         oneOf: [
-          // svg inline in css, base64 (con `?css-inline`)
+          // svg inline base64 per css (con `?inline-base64`)
           {
-            resourceQuery: /css-inline/,
+            resourceQuery: /inline-base64/,
             // loader: 'raw-loader',
             type: 'asset/inline',
             generator: {
