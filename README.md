@@ -156,6 +156,14 @@ npm i -D @babel/core @babel/preset-env babel-loader copy-webpack-plugin css-load
 
 
 
+## webpack-remove-empty-scripts
+* <https://github.com/webdiscus/webpack-remove-empty-scripts#readme>
+```bash
+npm i -D webpack-remove-empty-scripts
+```
+
+
+
 ## auto-datatables-bs5
 * <https://github.com/massimo-cassandro/auto-datatables-bs5>
 ```bash

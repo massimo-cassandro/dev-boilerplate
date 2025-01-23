@@ -298,6 +298,14 @@ const snippets = [
     ],
   },
   {
+    label: 'webpack-remove-empty-scripts',
+    fav: true,
+    descr: ['<https://github.com/webdiscus/webpack-remove-empty-scripts#readme>'],
+    dev_packages: [
+      'webpack-remove-empty-scripts'
+    ],
+  },
+  {
     label: 'typescript per react/webpack',
     dev_packages: [
       '@types/react-dom',
