@@ -27,6 +27,15 @@ echo "*~\n.DS_Store\n**/*.mwb.bak\n**/*.mwb.beforefix\n\nnode_modules\nbower_com
 
 
 
+## .prettierrc
+*.prettierrc*:
+
+```bash
+echo "{\n  \"endOfLine\": \"lf\",\n  \"tabWidth\": 2,\n  \"useTabs\": false,\n  \"semi\": true,\n  \"singleQuote\": true,\n  \"trailingComma\": \"es5\",\n  \"bracketSpacing\": true\n}\n" > .prettierrc
+```
+
+
+
 ## css reset
 * <https://www.joshwcomeau.com/css/custom-css-reset/#the-css-reset-1>
 * <https://meyerweb.com/eric/tools/css/reset/>
@@ -174,14 +183,6 @@ npm i -S bootstrap
 * <https://github.com/massimo-cassandro/ckeditor-utilities>
 ```bash
 npm i -S @massimo-cassandro/ckeditor-utilities
-```
-
-
-
-## cookie-consent
-* <https://github.com/massimo-cassandro/cookie-consent>
-```bash
-npm i -S @massimo-cassandro/cookie-consent
 ```
 
 
@@ -372,6 +373,15 @@ npm i -D solid-js babel-loader @babel/preset-env @babel/plugin-syntax-jsx babel-
 ## styled-components
 ```bash
 npm i -D babel-plugin-styled-components styled-components
+```
+
+
+
+## svg-icons-tools
+* <https://github.com/massimo-cassandro/svg-icons-tools?tab=readme-ov-file#svg-icons-tools>
+* <https://github.com/massimo-cassandro/svg-icons-tools>
+```bash
+npm i -S @massimo-cassandro/svg-icons-tools
 ```
 
 

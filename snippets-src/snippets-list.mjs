@@ -43,6 +43,11 @@ const snippets = [
     addConfigFile: ['jsconfig.json'],
     fav: true
   },
+  {
+    label: '.prettierrc',
+    addConfigFile: ['_prettierrc'],
+    fav: true
+  },
 
   {
     label: 'Local servers',
@@ -317,7 +322,12 @@ const m = [...[
   {p: 'auto-datatables-bs5', dev: false},
   {p: 'autocomplete', dev: false},
   {p: 'ckeditor-utilities', dev: false},
-  {p: 'cookie-consent', dev: false},
+  // {p: 'cookie-consent', dev: false},
+  {p: 'svg-icons-tools', dev: false,
+    descr: [
+      '<https://github.com/massimo-cassandro/svg-icons-tools?tab=readme-ov-file#svg-icons-tools>'
+    ]
+  },
   {p: 'create-favicons', dev: true,
 
     snippets: [
