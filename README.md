@@ -148,7 +148,7 @@ echo "/* eslint-env node */\n\nmodule.exports = {\n  extends: ['@massimo-cassand
 
 ## webpack
 * Non include Postcss
-* `"webpack DEV": "NODE_ENV=development webpack serve --config ./webpack.config.cjs #--open-app-name 'Google Chrome',`
+* `"webpack DEV": "NODE_ENV=development webpack serve --config ./webpack.config.cjs #--open-app-name 'Google Chrome'",`
 * `"webpack PROD": "NODE_ENV=production webpack --config ./webpack.config.cjs",`
 ```bash
 npm i -D @babel/core @babel/preset-env babel-loader copy-webpack-plugin css-loader css-minimizer-webpack-plugin dotenv-webpack file-loader html-loader html-webpack-plugin mini-css-extract-plugin mini-svg-data-uri postcss-loader postcss-preset-env style-loader terser-webpack-plugin @principalstudio/html-webpack-inject-preload && npm i -D webpack-cli webpack-dev-server webpack-manifest-plugin webpack-remove-empty-scripts webpack
