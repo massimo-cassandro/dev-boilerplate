@@ -331,7 +331,7 @@ const m = [...[
   {p: 'autocomplete', dev: false},
   {p: 'ckeditor-utilities', dev: false},
   // {p: 'cookie-consent', dev: false},
-  {p: 'svg-icons-tools', dev: false,
+  {p: 'svg-icons-tools', dev: true,
     descr: [
       '<https://github.com/massimo-cassandro/svg-icons-tools?tab=readme-ov-file#svg-icons-tools>'
     ]

@@ -389,7 +389,7 @@ npm i -D babel-plugin-styled-components styled-components
 * <https://github.com/massimo-cassandro/svg-icons-tools?tab=readme-ov-file#svg-icons-tools>
 * <https://github.com/massimo-cassandro/svg-icons-tools>
 ```bash
-npm i -S @massimo-cassandro/svg-icons-tools
+npm i -D @massimo-cassandro/svg-icons-tools
 ```
 
 
