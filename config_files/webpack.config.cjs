@@ -33,6 +33,7 @@ for(const item in jsConfig.compilerOptions.paths) {
 const isDevelopment = process.env.NODE_ENV === 'development'
   ,buildSourcemaps = isDevelopment
   // ,output_dir = isDevelopment? 'dev' : 'build'
+  ,favicons_path = /src\/favicons\/output/
 
   // https://medium.com/@technoblogueur/webpack-one-manifest-json-from-multiple-configurations-output-fee48578eb92
   // ,manifest_shared_seed = {};
@@ -322,9 +323,27 @@ const config = {
         },
       },
 
+      // =>> favicons
+      {
+        test: /\.(?:ico|png|svg|webmanifest)$/i,
+        type: 'javascript/auto',
+        include: favicons_path,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]?_=[contenthash]',
+              outputPath: '',
+              esModule: false,
+            }
+          }
+        ]
+      },
+
       // =>> svg
       {
         test: /(\.svg)$/i,
+        exclude: favicons_path,
         oneOf: [
           // svg inline base64 per css (con `?inline-base64`)
           {
@@ -370,6 +389,7 @@ const config = {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif|pdf)$/i,
         // type: 'asset/resource',
         type: 'javascript/auto',
+        exclude: favicons_path,
         use: [
           {
             loader: 'file-loader',
