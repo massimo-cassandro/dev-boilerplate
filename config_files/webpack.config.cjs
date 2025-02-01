@@ -154,6 +154,20 @@ const config = {
             ignore: ['**/index.html', '**/.DS_Store'],
           },
         },
+
+        // (isDevelopment && new HtmlWebpackPlugin({
+        //   filename: '.gitkeep',
+        //   inject: false,
+        //   templateContent: () => { return ''}
+        // })),
+
+        // {
+        //   from: 'src/assets/**/_{htaccess,htpasswd}',
+        //   to: ({ context, absoluteFilename }) => {
+        //     return path.join(output_dir,  path.basename(absoluteFilename).replace(/^_/, '.'));
+        //   },
+        //   toType: 'file',
+        // },
       ],
     }),
 
