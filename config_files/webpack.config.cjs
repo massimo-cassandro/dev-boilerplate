@@ -165,40 +165,40 @@ const config = {
 
     // =>> HtmlWebpackPlugin
     // https://github.com/jantimon/html-webpack-plugin#readme
-    new HtmlWebpackPlugin({
-      filename: '[name]-head.html.twig',
-      // template: path.resolve(__dirname, './public/index.html'),
-      inject: 'body',
-      title: 'My App',
+    // new HtmlWebpackPlugin({
+    //   filename: '[name]-head.html.twig',
+    //   inject: 'body',
+    //   title: 'My App',
 
-      // inject: false,
-      // templateContent: ({htmlWebpackPlugin}) => {
-      //   let tpl = '';
+    //   inject: false,
+    //   templateContent: ({htmlWebpackPlugin}) => {
+    //     let tpl = '';
 
-      //   const js_files = typeof htmlWebpackPlugin.files.js === 'object'?
-      //     htmlWebpackPlugin.files.js : [htmlWebpackPlugin.files.js];
-      //   const css_files = typeof htmlWebpackPlugin.files.css === 'object'?
-      //     htmlWebpackPlugin.files.css : [htmlWebpackPlugin.files.css];
+    //     const js_files = typeof htmlWebpackPlugin.files.js === 'object'?
+    //       htmlWebpackPlugin.files.js : [htmlWebpackPlugin.files.js];
+    //     const css_files = typeof htmlWebpackPlugin.files.css === 'object'?
+    //       htmlWebpackPlugin.files.css : [htmlWebpackPlugin.files.css];
 
-      //   if(css_files.length) {
-      //     tpl += css_files.map(item =>
-      //       `<link rel="preload" href="${item}" as="style">` + (isDevelopment? '\n' : '') +
-      //       `<link rel="stylesheet" href="${item}" type="text/css" media="all">`
-      //     ).join(isDevelopment? '\n' : '');
-      //   }
+    //     if(css_files.length) {
+    //       tpl += css_files.map(item =>
+    //         `<link rel="preload" href="${item}" as="style">` + (isDevelopment? '\n' : '') +
+    //         `<link rel="stylesheet" href="${item}" type="text/css" media="all">`
+    //       ).join(isDevelopment? '\n' : '');
+    //     }
 
-      //   tpl += (css_files.length && js_files.length && isDevelopment)? '\n\n' : '';
+    //     tpl += (css_files.length && js_files.length && isDevelopment)? '\n\n' : '';
 
-      //   if(js_files.length) {
-      //     tpl += js_files.map(item =>
-      //       `<link rel="preload" href="${item}" as="script">` + (isDevelopment? '\n' : '') +
-      //       `<script src="${item}" defer></script>`
-      //     ).join(isDevelopment? '\n' : '');
-      //   }
+    //     if(js_files.length) {
+    //       tpl += js_files.map(item =>
+    //         `<link rel="preload" href="${item}" as="script">` + (isDevelopment? '\n' : '') +
+    //         `<script src="${item}" defer></script>`
+    //       ).join(isDevelopment? '\n' : '');
+    //     }
 
-      //   return tpl;
-      // },
-    }),
+    //     return tpl;
+    //   },
+    // }),
+
     // new HtmlWebpackPlugin({
     //   templateContent: `<!DOCTYPE html>
     //     <html lang="it">
@@ -219,6 +219,14 @@ const config = {
     //   filename: 'index.html',
     //   inject: 'body',
     // }),
+
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+        template: path.resolve(__dirname, './src/public/index.html'),
+        inject: 'body',
+        title: 'XXXX',
+    }),
+
     new HtmlWebpackInjectPreload({
       files: [
         {
