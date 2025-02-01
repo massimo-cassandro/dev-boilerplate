@@ -155,12 +155,6 @@ const config = {
           },
         },
 
-        // (isDevelopment && new HtmlWebpackPlugin({
-        //   filename: '.gitkeep',
-        //   inject: false,
-        //   templateContent: () => { return ''}
-        // })),
-
         // {
         //   from: 'src/assets/**/_{htaccess,htpasswd}',
         //   to: ({ context, absoluteFilename }) => {
