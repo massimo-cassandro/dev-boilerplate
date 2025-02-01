@@ -8,6 +8,7 @@
     <!-- alternativa per favicons include < % = require('html-loader!./favicons/favicon.html').default %> -->
     <title><%= htmlWebpackPlugin.options.title %></title>
     <%= htmlWebpackPlugin.tags.headTags %> <!-- param `inject: false` -->
+  </head>
   <body>
     <div id="root" class="wrapper"></div>
     <%= htmlWebpackPlugin.tags.bodyTags %> <!-- param `inject: false` -->
