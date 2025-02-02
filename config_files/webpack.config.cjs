@@ -99,7 +99,8 @@ const config = {
     maxAssetSize: 512000,
   },
 
-  // Spin up a server for quick development
+  // =>> devServer
+  // https://webpack.js.org/configuration/dev-server/
   devServer: {
     historyApiFallback: true,
     static: {
@@ -107,7 +108,7 @@ const config = {
       serveIndex: true,
     },
 
-    open: true,
+    open: true, // oppure nel comando cli: --open | --no-open, cambia browser: --open-app-name 'Google Chrome'
     compress: true,
     hot: true,
     // host: '0.0.0.0',
