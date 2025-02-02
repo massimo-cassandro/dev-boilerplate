@@ -118,14 +118,16 @@ const config = {
   // =>> plugins
   plugins: [
 
+    // =>> Dotenv
+    // richiede `npm install -D dotenv-webpack`
     // new Dotenv({
     //   path: isDevelopment? './.env.development' : './.env',
     //   expand: true,
-    //   ignoreStub: true
+    //   ignoreStub: true,
+    //   allowEmptyValues: true,
     // }),
-
-    // permette di accedere a process da scritpprocessati nel browser
-    // richiede `npm install process -D`
+    // permette di accedere a process da script eseguiti nel browser
+    // richiede dotenv-webpack e `npm install -D process`
     // new webpack.ProvidePlugin({
     //   process: 'process/browser',
     // }),
