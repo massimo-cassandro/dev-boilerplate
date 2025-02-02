@@ -50,6 +50,14 @@ npm i -D @massimo-cassandro/dev-updater
 
 
 
+## dotenv per browsers (con webpack)
+* <https://github.com/motdotla/dotenv>
+```bash
+npm i -D dotenv
+```
+
+
+
 ## eslint9 (+ uninstall eslint8)
 ```bash
 npm uninstall eslint @massimo-cassandro/eslint-config
