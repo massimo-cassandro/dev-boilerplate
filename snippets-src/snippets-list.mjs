@@ -306,14 +306,6 @@ const snippets = [
     ],
   },
   {
-    label: 'dotenv per browsers (con webpack)',
-    fav: true,
-    descr: ['<https://github.com/motdotla/dotenv>'],
-    dev_packages: [
-      'dotenv'
-    ],
-  },
-  {
     label: 'typescript per react/webpack',
     dev_packages: [
       '@types/react-dom',
