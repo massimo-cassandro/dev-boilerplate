@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 
 import snippets_list from './snippets-list.mjs';
-import chalk from 'chalk';
+// https://nodejs.org/api/util.html#utilstyletextformat-text-options
+import { styleText } from 'node:util';
 
 import { writeFileSync } from 'fs';
 import * as path from 'path';
@@ -107,5 +108,5 @@ const content = snippets_list
 
 writeFileSync(target_file, '# Setup snippets\n\n' + content.join('\n\n'), 'utf-8');
 console.log('');
-console.log(chalk.bgGreen.bold(` Done -> ${target_file} `));
+console.log( styleText(['bgGreen', 'bold'], ` Done -> ${target_file} ` ) );
 console.log('');
