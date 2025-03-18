@@ -307,7 +307,7 @@ const config = {
       //   ]
       // },
 
-      // =>> markdown / plain text / raw svg
+      // =>> markdown / plain text
       // {
       //   test: /\.(txt|md)$/i,
       //   type: 'asset/source'
