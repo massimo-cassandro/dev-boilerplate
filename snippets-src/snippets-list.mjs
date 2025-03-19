@@ -141,7 +141,7 @@ const snippets = [
       '*postcss-import* è necessario per risolvere le importazioni da cli (con webpack non serve, l’operazione è svolta da *css-loader*)',
     ],
     snippets: [
-      '[npx] postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch'
+      '"build css test": "npx postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch",'
     ],
     dev_packages: ['postcss-cli', 'postcss-import'],
     fav: true

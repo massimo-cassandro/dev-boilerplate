@@ -107,7 +107,7 @@ echo "/* eslint-env node */\n\n// const path = require('path');\n\n\nconst isDev
 ## postcss cli
 * Per creare file css di test.
 * *postcss-import* è necessario per risolvere le importazioni da cli (con webpack non serve, l’operazione è svolta da *css-loader*)
-* `[npx] postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch`
+* `"build css test": "npx postcss ./src/source.css -o ./test/test.css --no-map --verbose --env development --config ./ --use postcss-import --watch",`
 ```bash
 npm i -D postcss-cli postcss-import
 ```
