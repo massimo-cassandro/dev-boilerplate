@@ -50,7 +50,7 @@ npm i -D @massimo-cassandro/dev-updater
 
 
 
-## eslint9 (+ uninstall eslint8)
+## eslint9 (+ uninstall)
 ```bash
 npm uninstall eslint @eslint/js globals @massimo-cassandro/eslint-config
 ```

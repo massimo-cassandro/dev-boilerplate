@@ -65,7 +65,7 @@ const snippets = [
     dev_packages: [['eslint@^8'], ['@massimo-cassandro/eslint-config@^1']],
   },
   {
-    label: 'eslint9 (+ uninstall eslint8)',
+    label: 'eslint9 (+ uninstall)',
     uninstall: ['eslint', '@eslint/js', 'globals', '@massimo-cassandro/eslint-config'],
     dev_packages: [['eslint@^9', '@eslint/js', 'globals'], ['@massimo-cassandro/eslint-config@^2']],
     addConfigFile: ['eslint.config.mjs'],
