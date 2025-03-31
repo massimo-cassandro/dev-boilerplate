@@ -52,7 +52,7 @@ npm i -D @massimo-cassandro/dev-updater
 
 ## eslint9 (+ uninstall eslint8)
 ```bash
-npm uninstall eslint @massimo-cassandro/eslint-config
+npm uninstall eslint @eslint/js globals @massimo-cassandro/eslint-config
 ```
 
 
@@ -131,7 +131,7 @@ npm i -D sass-loader sass
 ## stylelint
 * `## upd config file:`
 * `mv -f .stylelintrc.cjs stylelint.config.cjs`
-* `## uunistall versione prec.:`
+* `## unistall versione prec.:`
 * `npm uninstall @massimo-cassandro/stylelint-config stylelint stylelint-config-css-modules stylelint-config-twbs-bootstrap`
 ```bash
 npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-config-twbs-bootstrap stylelint && npm i -D @massimo-cassandro/stylelint-config
