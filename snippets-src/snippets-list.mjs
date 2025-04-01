@@ -286,7 +286,6 @@ const snippets = [
         'postcss-preset-env',
         'style-loader',
         'terser-webpack-plugin',
-        '@principalstudio/html-webpack-inject-preload'
       ],
       [
         'webpack-cli',
@@ -302,6 +301,14 @@ const snippets = [
     descr: ['<https://github.com/webdiscus/webpack-remove-empty-scripts#readme>'],
     dev_packages: [
       'webpack-remove-empty-scripts'
+    ],
+  },
+  {
+    label: 'html-webpack-inject-preload',
+    fav: true,
+    descr: ['<https://github.com/principalstudio/html-webpack-inject-preload#readme>'],
+    dev_packages: [
+      '@principalstudio/html-webpack-inject-preload'
     ],
   },
   {

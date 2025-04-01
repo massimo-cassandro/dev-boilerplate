@@ -69,6 +69,14 @@ echo "import eslint_config from '@massimo-cassandro/eslint-config';\n\nexport de
 
 
 
+## html-webpack-inject-preload
+* <https://github.com/principalstudio/html-webpack-inject-preload#readme>
+```bash
+npm i -D @principalstudio/html-webpack-inject-preload
+```
+
+
+
 ## jsconfig.json
 *jsconfig.json*:
 
@@ -151,7 +159,7 @@ echo "/* eslint-env node */\n\nmodule.exports = {\n  extends: ['@massimo-cassand
 * `"webpack DEV": "NODE_ENV=development webpack serve --config ./webpack.config.cjs #--open-app-name 'Google Chrome'",`
 * `"webpack PROD": "NODE_ENV=production webpack --config ./webpack.config.cjs",`
 ```bash
-npm i -D @babel/core @babel/preset-env babel-loader copy-webpack-plugin css-loader css-minimizer-webpack-plugin dotenv-webpack file-loader html-loader html-webpack-plugin mini-css-extract-plugin mini-svg-data-uri postcss-loader postcss-preset-env style-loader terser-webpack-plugin @principalstudio/html-webpack-inject-preload && npm i -D webpack-cli webpack-dev-server webpack-manifest-plugin webpack
+npm i -D @babel/core @babel/preset-env babel-loader copy-webpack-plugin css-loader css-minimizer-webpack-plugin dotenv-webpack file-loader html-loader html-webpack-plugin mini-css-extract-plugin mini-svg-data-uri postcss-loader postcss-preset-env style-loader terser-webpack-plugin && npm i -D webpack-cli webpack-dev-server webpack-manifest-plugin webpack
 ```
 
 
