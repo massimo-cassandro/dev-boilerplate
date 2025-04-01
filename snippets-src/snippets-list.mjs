@@ -292,7 +292,6 @@ const snippets = [
         'webpack-cli',
         'webpack-dev-server',
         'webpack-manifest-plugin',
-        'webpack-remove-empty-scripts',
         'webpack'
       ]
     ],
