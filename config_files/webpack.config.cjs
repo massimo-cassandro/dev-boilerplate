@@ -91,13 +91,15 @@ const config = {
       }
     },
     usedExports: true,
-  },
+  }, // end optimization
+  
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
     maxAssetSize: 512000,
-  },
+  }, // end perfomance
 
+  
   // =>> devServer
   // https://webpack.js.org/configuration/dev-server/
   devServer: {
