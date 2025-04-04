@@ -167,7 +167,7 @@ const config = {
         //   toType: 'file',
         // },
       ],
-    }),
+    }), // end CopyWebpackPlugin
 
     // =>> HotModuleReplacementPlugin
     // Only update what has changed on hot reload
@@ -210,7 +210,7 @@ const config = {
 
     //     return tpl;
     //   },
-    // }),
+    // }), // HtmlWebpackPlugin
 
     // new HtmlWebpackPlugin({
     //   templateContent: `<!DOCTYPE html>
@@ -231,14 +231,14 @@ const config = {
     //     </html>`,
     //   filename: 'index.html',
     //   inject: 'body',
-    // }),
+    // }), // end HtmlWebpackPlugin
 
     new HtmlWebpackPlugin({
       filename: 'index.html',
         template: path.resolve(__dirname, './src/public/index.html'),
         inject: 'body',
         title: 'XXXX',
-    }),
+    }), // end HtmlWebpackPlugin
 
     new HtmlWebpackInjectPreload({
       files: [
@@ -252,7 +252,7 @@ const config = {
           attributes: {as: 'style' },
         },
       ]
-    }),
+    }), // end HtmlWebpackInjectPreload
 
     // (isDevelopment && new HtmlWebpackPlugin({
     //   filename: '.gitkeep',
@@ -273,12 +273,13 @@ const config = {
           ' */\n';
       },
       raw: true
-    })
+    }) // end BannerPlugin
   ],
 
-  // =>> rules
-  // Determine how modules within the project are treated
   module: {
+    
+    // =>> rules
+    // Determine how modules within the project are treated
     rules: [
 
       // =>> html files
@@ -306,7 +307,7 @@ const config = {
       //       loader: 'html-loader'
       //     },
       //   ]
-      // },
+      // }, // end html files
 
       // =>> markdown / plain text
       // {
@@ -350,7 +351,7 @@ const config = {
             }
           }
         ]
-      },
+      }, // end favicons
 
       // =>> svg
       {
@@ -394,9 +395,9 @@ const config = {
             ]
           },
         ]
-      },
+      }, // end svg
 
-      // =>> Images // pdf
+      // =>> Images / pdf
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif|pdf)$/i,
         // type: 'asset/resource',
@@ -412,7 +413,7 @@ const config = {
             }
           }
         ]
-      },
+      }, // end Images / pdf
 
       // =>> Fonts
       {
@@ -431,7 +432,7 @@ const config = {
             }
           }
         ]
-      },
+      }, // end fonts
 
       // =>> css/scss modules
       {
@@ -467,7 +468,7 @@ const config = {
             }
           }
         ]
-      },
+      }, // end css/scss modules
 
       // =>> css / scss
       {
@@ -499,9 +500,10 @@ const config = {
             }
           },
         ],
-      },
-    ],
-  },
+      }, // end css / scss
+      
+    ], // end rules
+  }, // end module
 
   // =>> resolve
   resolve: {
