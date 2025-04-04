@@ -31,7 +31,6 @@ for(const item in jsConfig.compilerOptions.paths) {
 
 // const Dotenv = require('dotenv-webpack');
 const isDevelopment = process.env.NODE_ENV === 'development'
-  ,buildSourcemaps = isDevelopment
   // ,output_dir = isDevelopment? 'dev' : 'build'
   ,favicons_path = /src\/favicons\/output/
 
@@ -277,7 +276,7 @@ const config = {
   ],
 
   module: {
-    
+
     // =>> rules
     // Determine how modules within the project are treated
     rules: [
@@ -447,7 +446,7 @@ const config = {
               modules: {
                 // esModule: false, // abilita importazione in cjs
                 auto: true, // /\.module\.scss$/i.test(filename),
-                // localIdentName: Encore.isProduction()? '[hash:base64]' : '[local]_[hash:base64:6]' // '[name]__[local]_[hash:base64:5]'
+                // localIdentName: isDevelopment? '[local]_[hash:base64:6]' : '[hash:base64]' // '[name]__[local]_[hash:base64:5]'
                 localIdentName: '[local]_[hash:base64:6]' // '[name]__[local]_[hash:base64:5]'
               },
               sourceMap: isDevelopment
@@ -457,7 +456,7 @@ const config = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                sourceMap: buildSourcemaps
+                sourceMap: isDevelopment
               },
             },
           },
@@ -480,7 +479,7 @@ const config = {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: buildSourcemaps,
+              sourceMap: isDevelopment,
               importLoaders: isDevelopment? 1 : 2,
               modules: false
             },
@@ -489,19 +488,19 @@ const config = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                sourceMap: buildSourcemaps
+                sourceMap: isDevelopment
               },
             },
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: buildSourcemaps
+              sourceMap: isDevelopment
             }
           },
         ],
       }, // end css / scss
-      
+
     ], // end rules
   }, // end module
 
