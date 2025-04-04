@@ -137,6 +137,7 @@ const config = {
     // non necessario con opzione `clean` di output
     // new CleanWebpackPlugin(),
 
+    // =>> MiniCssExtractPlugin
     // Extracts CSS into separate files
     new MiniCssExtractPlugin({
       // filename: isDevelopment? '[name].css' : '[name].[contenthash].css',
