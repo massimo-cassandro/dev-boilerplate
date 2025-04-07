@@ -134,6 +134,11 @@ const config = {
     //   process: 'process/browser',
     // }),
 
+    //=>> numero di versione
+    // new webpack.DefinePlugin({
+    //   'APP_VERSION': `'${PACKAGE.version}'`,
+    // }),
+
     // Removes/cleans build folders and unused assets when rebuilding
     // non necessario con opzione `clean` di output
     // new CleanWebpackPlugin(),
