@@ -48,11 +48,17 @@ const config = {
   devtool: isDevelopment? 'inline-source-map' : false,
   // devtool: 'source-map',
 
-  // Where webpack looks to start building the bundle
+  // =>> entry
   entry: {
     'my-app-name': './src/index.tsx',
+
+    // 'app-2': {
+    //   import: './app.js',
+    //   filename: 'path/to/app2.js', // output
+    //   dependOn: 'shared',
+    //   chunkLoading: false, // Disable chunks that are loaded on demand and put everything in the main chunk.
+    // },
   },
-  // Where webpack outputs the assets and bundles
 
   // =>> output
   output: {
@@ -92,14 +98,14 @@ const config = {
     },
     usedExports: true,
   }, // end optimization
-  
+
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
     maxAssetSize: 512000,
   }, // end perfomance
 
-  
+
   // =>> devServer
   // https://webpack.js.org/configuration/dev-server/
   devServer: {
@@ -241,9 +247,10 @@ const config = {
 
     new HtmlWebpackPlugin({
       filename: 'index.html',
-        template: path.resolve(__dirname, './src/public/index.html'),
+        template: path.resolve(__dirname, './src/public/index.ejs'),
         inject: 'body',
         title: 'XXXX',
+        // chunks: ['app'],
     }), // end HtmlWebpackPlugin
 
     new HtmlWebpackInjectPreload({
