@@ -91,13 +91,15 @@ const config = {
       }
     },
     usedExports: true,
-  },
+  }, // end optimization
+  
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
     maxAssetSize: 512000,
-  },
+  }, // end perfomance
 
+  
   // =>> devServer
   // https://webpack.js.org/configuration/dev-server/
   devServer: {
@@ -130,6 +132,11 @@ const config = {
     // richiede dotenv-webpack e `npm install -D process`
     // new webpack.ProvidePlugin({
     //   process: 'process/browser',
+    // }),
+
+    //=>> numero di versione
+    // new webpack.DefinePlugin({
+    //   'APP_VERSION': `'${PACKAGE.version}'`,
     // }),
 
     // Removes/cleans build folders and unused assets when rebuilding
