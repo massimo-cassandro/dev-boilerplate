@@ -49,6 +49,7 @@ const config = {
   // devtool: 'source-map',
 
   // =>> entry
+  // https://webpack.js.org/configuration/entry-context/
   entry: {
     'my-app-name': './src/index.tsx',
 
