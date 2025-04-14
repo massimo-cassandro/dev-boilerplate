@@ -62,6 +62,7 @@ const config = {
   },
 
   // =>> output
+  // https://webpack.js.org/configuration/output/
   output: {
     path: path.resolve(__dirname, './build'), // path.resolve(__dirname, `./public/${output_dir}` ),
     // filename: '[name].js',
@@ -71,6 +72,7 @@ const config = {
   },
 
   // =>> optimization
+  // https://webpack.js.org/configuration/optimization/
   optimization: {
     minimize: !isDevelopment,
     minimizer: [
@@ -100,6 +102,8 @@ const config = {
     usedExports: true,
   }, // end optimization
 
+  // =>> performance
+  // https://webpack.js.org/configuration/performance/
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
