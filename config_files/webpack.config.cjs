@@ -154,6 +154,13 @@ const config = {
     // non necessario con opzione `clean` di output
     // new CleanWebpackPlugin(),
 
+    // =>> RemoveEmptyScriptsPlugin
+    // https://github.com/webdiscus/webpack-remove-empty-scripts
+    // new RemoveEmptyScriptsPlugin({
+    //   enabled: !isDevelopment,
+    //   verbose: true
+    // }),
+
     // =>> MiniCssExtractPlugin
     // Extracts CSS into separate files
     new MiniCssExtractPlugin({
@@ -300,7 +307,7 @@ const config = {
     // Determine how modules within the project are treated
     rules: [
 
-      // =>> html files
+      // =>> rules: html files
       // {
       // test: /(\.html?)$/i,
       //   oneOf: [
@@ -327,20 +334,21 @@ const config = {
       //   ]
       // }, // end html files
 
-      // =>> markdown / plain text
+      // =>> rules: markdown / plain text
       // {
       //   test: /\.(txt|md)$/i,
       //   type: 'asset/source'
       // },
 
-      // =>> typescript
+      // =>> rules: typescript
       // {
       //   test: /\.tsx?$/,
       //   use: 'ts-loader',
       //   exclude: /node_modules/,
       // },
 
-      // =>> JavaScript/JSX: Use Babel to transpile JavaScript files
+      // =>> rules: JavaScript/JSX
+      // Use Babel to transpile JavaScript files
       {
         test: /(\.jsx?)$/,
         exclude: /node_modules/,
@@ -354,7 +362,7 @@ const config = {
         },
       },
 
-      // =>> favicons
+      // =>> rules: favicons
       {
         test: /\.(?:ico|png|svg|webmanifest)$/i,
         type: 'javascript/auto',
@@ -371,7 +379,7 @@ const config = {
         ]
       }, // end favicons
 
-      // =>> svg
+      // =>> rules: svg
       {
         test: /(\.svg)$/i,
         exclude: favicons_path,
@@ -415,7 +423,7 @@ const config = {
         ]
       }, // end svg
 
-      // =>> Images / pdf
+      // =>> rules: Images / pdf
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp|avif|pdf)$/i,
         // type: 'asset/resource',
@@ -433,7 +441,7 @@ const config = {
         ]
       }, // end Images / pdf
 
-      // =>> Fonts
+      // =>> rules: Fonts
       {
         test: /\.(woff2?|eot|ttf|otf)$/,
         //type: 'asset/resource',
@@ -452,7 +460,7 @@ const config = {
         ]
       }, // end fonts
 
-      // =>> css/scss modules
+      // =>> rules: css/scss modules
       {
         test: /(\.module\.(sass|scss|css))$/,
         use: [
@@ -488,7 +496,7 @@ const config = {
         ]
       }, // end css/scss modules
 
-      // =>> css / scss
+      // =>> rules: css / scss
       {
         test: /\.(sass|scss|css)$/,
         exclude: /(\.module\.s?(a|c)ss)$/,
