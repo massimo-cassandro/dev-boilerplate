@@ -91,6 +91,15 @@ const snippets = [
     addConfigFile: ['stylelint.config.cjs'],
     fav: true,
   },
+  {
+    label: 'webhint',
+    snippets: [],
+    dev_packages: [
+      ['hint'],
+    ],
+    addConfigFile: ['_hintrc.cjs'],
+    fav: true,
+  },
 
   {
     label: 'rollup base',
