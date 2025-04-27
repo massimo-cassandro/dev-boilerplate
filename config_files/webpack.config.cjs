@@ -263,6 +263,9 @@ const config = {
         inject: 'body',
         title: 'XXXX',
         // chunks: ['app'],
+        // templateParameters: {
+        //   mdContent: getMarkdownFiles(),
+        // }
     }), // end HtmlWebpackPlugin
 
     new HtmlWebpackInjectPreload({
@@ -334,11 +337,41 @@ const config = {
       //   ]
       // }, // end html files
 
-      // =>> rules: markdown / plain text
+      // =>> rules: plain text
       // {
       //   test: /\.(txt|md)$/i,
       //   type: 'asset/source'
       // },
+
+      // =>> rules: markdown (marked + html-loader)
+      // aggiungere negli import iniziali:
+      // const DOMPurify = require('isomorphic-dompurify');
+      // const { marked } = require('marked');
+      // https://github.com/webpack-contrib/html-loader
+      // https://marked.js.org/
+      // https://github.com/cure53/DOMPurify
+      {
+        test: /(\.md)$/i,
+        // type: 'asset/source',
+        use: [
+          {
+            loader: "html-loader",
+            options: {
+              preprocessor: (content, loaderContext) => {
+                console.log( content);
+                try {
+                  console.log( DOMPurify.sanitize(marked.parse(content)));
+                  return DOMPurify.sanitize(marked.parse(content));
+
+                } catch (error) {
+                  loaderContext.emitError(error);
+                  return content;
+                }
+              },
+            },
+          },
+        ],
+      },
 
       // =>> rules: typescript
       // {
