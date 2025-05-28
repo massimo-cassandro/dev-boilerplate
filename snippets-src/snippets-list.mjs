@@ -54,7 +54,8 @@ const snippets = [
     descr: [
       '`"python server": "python3 -m http.server 8000 # --directory __dirname__ # 8000 = default port",`',
       '`"php server": "php -S localhost:8000 # -t root_dir/",`',
-      '`"symfony local server": "symfony serve -d",`'
+      '`"symfony local server": "symfony serve -d",`',
+      'node serve # npm i serve'
     ],
     fav: true
   },
@@ -104,7 +105,8 @@ const snippets = [
   {
     label: 'rollup base',
     snippets: [
-      '"rollup": "npx rollup --config ./config/rollup.config.mjs --watch",'
+      '"rollup (config)": "npx rollup --config ./config/rollup.config.mjs --watch",',
+      '"rollup (CLI)": "npx rollup --input js/source.js --file dist/dest.min.js --format iife --sourcemap --plugin \'terser={compress: {passes: 2}}\' --plugin @rollup/plugin-node-resolve --watch"'
     ],
     addConfigFile: ['rollup.config.mjs'],
     dev_packages: [

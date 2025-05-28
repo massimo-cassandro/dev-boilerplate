@@ -90,6 +90,7 @@ echo "{\n  \"compilerOptions\": {\n    \"target\": \"es2023\",\n    \"baseUrl\":
 * `"python server": "python3 -m http.server 8000 # --directory __dirname__ # 8000 = default port",`
 * `"php server": "php -S localhost:8000 # -t root_dir/",`
 * `"symfony local server": "symfony serve -d",`
+* node serve # npm i serve
 
 ## open-props + postcss-jit-props
 ```bash
@@ -150,6 +151,20 @@ npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-conf
 
 ```bash
 echo "/* eslint-env node */\n\nmodule.exports = {\n  extends: ['@massimo-cassandro/stylelint-config'],\n  ignoreFiles: ['node_modules/**/*.{css,scss}', 'dist/**/*.css', 'build/**/*.css', 'public/**/*.css', 'test/**/*.css'],\n\n  // tailwind\n  // 'rules': {\n  //   'value-keyword-case': null,\n  //   '@stylistic/number-no-trailing-zeros': null\n  // }\n};\n" > stylelint.config.cjs
+```
+
+
+
+## webhint
+```bash
+npm i -D hint
+```
+
+
+*.hintrc.cjs*:
+
+```bash
+echo "module.exports = {\n  \"connector\": {\n    \"name\": \"local\",\n    \"options\": {\n      \"pattern\": [\"./build/**/*.html\"] // Analizza i file HTML generati nella directory di build\n    }\n  },\n  \"extends\": [\n    \"development\", // Configurazione base per lo sviluppo\n    \"accessibility\", // Regole per l'accessibilità\n    \"performance\", // Regole per le prestazioni\n    \"security\", // Regole per la sicurezza\n    \"html-checker\" // Controllo della validità HTML\n  ],\n  \"hints\": {\n    \"axe\": \"error\", // Controlla l'accessibilità con axe-core\n    \"content-type\": \"error\", // Verifica i tipi di contenuto corretti\n    \"disown-opener\": \"warning\", // Consiglia di usare `rel=\"noopener\"`\n    \"http-cache\": [\"warning\", { \"maxAge\": 31536000 }], // Suggerisce una cache HTTP ottimale\n    \"image-optimization-cloudinary\": \"off\", // Disattiva l'ottimizzazione delle immagini\n    \"meta-viewport\": \"error\", // Verifica la presenza del meta tag viewport\n    \"no-vulnerable-javascript-libraries\": \"error\", // Controlla librerie JS vulnerabili\n    \"performance-budget\": [\n      \"warning\",\n      {\n        \"resourceTypes\": {\n          \"script\": 250, // Limite di 250 KB per gli script\n          \"image\": 500 // Limite di 500 KB per le immagini\n        }\n      }\n    ],\n    \"strict-transport-security\": \"error\", // Suggerisce l'uso di HSTS\n    \"validate-set-cookie-header\": \"error\" // Controlla l'uso corretto dell'header Set-Cookie\n  }\n};\n" > .hintrc.cjs
 ```
 
 
@@ -342,7 +357,8 @@ npm i -D react-html-comment
 
 
 ## rollup base
-* `"rollup": "npx rollup --config ./config/rollup.config.mjs --watch",`
+* `"rollup (config)": "npx rollup --config ./config/rollup.config.mjs --watch",`
+* `"rollup (CLI)": "npx rollup --input js/source.js --file dist/dest.min.js --format iife --sourcemap --plugin 'terser={compress: {passes: 2}}' --plugin @rollup/plugin-node-resolve --watch"`
 ```bash
 npm i -D rollup@latest @rollup/plugin-terser @rollup/plugin-node-resolve @rollup/plugin-json @rollup/plugin-image @rollup/plugin-replace @rollup/plugin-commonjs
 ```
