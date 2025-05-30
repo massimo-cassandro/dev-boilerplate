@@ -125,7 +125,7 @@ const config = {
     // open: ['/my-page', '/another-page'],
     // open: {
     //   app: {
-    //     name: 'google-chrome',
+    //     name: 'Google Chrome',
     //   },
     // },
     compress: true,
