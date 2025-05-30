@@ -121,6 +121,13 @@ const config = {
     },
 
     open: true, // oppure nel comando cli: --open | --no-open, cambia browser: --open-app-name 'Google Chrome'
+    // aletrnative a `open: true`
+    // open: ['/my-page', '/another-page'],
+    // open: {
+    //   app: {
+    //     name: 'google-chrome',
+    //   },
+    // },
     compress: true,
     hot: true,
     // host: '0.0.0.0',
