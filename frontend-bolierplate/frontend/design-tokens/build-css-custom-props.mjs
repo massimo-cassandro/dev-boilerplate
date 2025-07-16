@@ -3,7 +3,7 @@ import * as fs from 'fs';
 // import * as path from 'path';
 
 const source_files = [
-    {default: './figma/design-tokens/blupadel.light.tokens.json', dark: './figma/design-tokens/blupadel.dark.tokens.json' }
+    {default: './figma/design-tokens/xxx.light.tokens.json', dark: './figma/design-tokens/xxx.dark.tokens.json' }
   ]
   ,groups_to_skip = ['figma_only']
   // ,openProps_tokens_file = new URL('../../node_modules/open-props/dist/open-props.module.js', import.meta.url).pathname
