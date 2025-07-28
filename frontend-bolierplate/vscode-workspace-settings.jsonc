@@ -1,0 +1,34 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+  ],
+  "settings": {
+    "cssvar.files": [
+       "./node_modules/open-props/open-props.min.css",
+      "frontend/css/custom-properties-list.css"
+    ],
+    // Do not ignore node_modules css files, which is ignored by default
+    "cssvar.ignore": [],
+
+    // add support for autocomplete in JS or JS like files
+    "cssvar.extensions": [
+      "css", "postcss", "jsx", "tsx", "scss"
+    ],
+    "favorites.resources": [
+      {
+        "filePath": "node_modules/@fontsource-variable",
+        "group": "Default"
+      },
+      {
+        "filePath": "node_modules/@fontsource",
+        "group": "Default"
+      },
+      {
+        "filePath": "node_modules/@massimo-cassandro",
+        "group": "Default"
+      }
+    ],
+  }
+}
