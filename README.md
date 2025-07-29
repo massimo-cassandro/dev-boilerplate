@@ -22,7 +22,7 @@ echo "# https://editorconfig.org\n\n# top-most EditorConfig file\nroot = true\n\
 *.gitignore*:
 
 ```bash
-echo "*~\n.DS_Store\n**/*.mwb.bak\n**/*.mwb.beforefix\n\nnode_modules\nbower_components\nvendor\npackage-lock.json\ncomposer.lock\n\n.env\n.env.local\n.env.development\n.env.test\n.env.development.local\n.env.test.local\n.env.production.local\n\n*.sass-cache\n/@files-repo\n/@db-backup\n/pswd\n/**/.vscode/\n*.code-workspace\n*.sketch\n*.ai\n*.psd\n/progetto\n*TODO*.md\n\n\n" > .gitignore
+echo "*~\n.DS_Store\n**/*.mwb.bak\n**/*.mwb.beforefix\n\nnode_modules\nbower_components\nvendor\n\n.env\n.env.local\n.env.development\n.env.test\n.env.development.local\n.env.test.local\n.env.production.local\n\n*.sass-cache\n/@files-repo\n/@db-backup\n/pswd\n/**/.vscode/\n*.code-workspace\n*.sketch\n*.ai\n*.psd\n/progetto\n*TODO*.md\n\n\n" > .gitignore
 ```
 
 
@@ -81,7 +81,7 @@ npm i -D @principalstudio/html-webpack-inject-preload
 *jsconfig.json*:
 
 ```bash
-echo "{\n  \"compilerOptions\": {\n    \"target\": \"es2023\",\n    \"baseUrl\": \".\",\n    \"module\": \"ES6\",\n    \"allowSyntheticDefaultImports\": false,\n    \"paths\": {\n\n      \"@apps/*\": [\"./apps/*\"],\n      \"@js/*\": [\"./js/*\"],\n      \"@scss/*\": [\"./scss/*\"],\n      \"@src/*\": [\"./src/*\"]\n    }\n  },\n  \"exclude\": [\"node_modules\", \"dist\", \"docs\", \"build\"]\n}\n" > jsconfig.json
+echo "{\n  \"__help\": \"https://code.visualstudio.com/docs/languages/jsconfig\",\n  \"compilerOptions\": {\n    \"target\": \"es2023\",\n    \"baseUrl\": \".\",\n    \"module\": \"ES6\",\n    \"allowSyntheticDefaultImports\": false,\n    \"paths\": {\n\n      \"@apps/*\": [\"./apps/*\"],\n      \"@js/*\": [\"./js/*\"],\n      \"@scss/*\": [\"./scss/*\"],\n      \"@src/*\": [\"./src/*\"]\n    }\n  },\n  \"exclude\": [\"node_modules\", \"dist\", \"docs\", \"build\"]\n}\n" > jsconfig.json
 ```
 
 
@@ -171,7 +171,7 @@ echo "module.exports = {\n  \"connector\": {\n    \"name\": \"local\",\n    \"op
 
 ## webpack
 * Non include Postcss
-* `"webpack DEV": "NODE_ENV=development webpack serve --config ./webpack.config.cjs #--open-app-name 'Google Chrome'",`
+* `"webpack DEV": "rm -rf ./public/dev && NODE_ENV=development webpack serve --config ./webpack.config.cjs #--open-app-name 'Google Chrome'",`
 * `"webpack PROD": "NODE_ENV=production webpack --config ./webpack.config.cjs",`
 ```bash
 npm i -D @babel/core @babel/preset-env babel-loader copy-webpack-plugin css-loader css-minimizer-webpack-plugin dotenv-webpack file-loader html-loader html-webpack-plugin mini-css-extract-plugin mini-svg-data-uri postcss-loader postcss-preset-env style-loader terser-webpack-plugin && npm i -D webpack-cli webpack-dev-server webpack-manifest-plugin webpack
