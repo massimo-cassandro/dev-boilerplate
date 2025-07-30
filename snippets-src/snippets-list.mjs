@@ -273,7 +273,8 @@ const snippets = [
     fav: true,
     descr: ['Non include Postcss'],
     snippets: [
-      '"webpack DEV": "rm -rf ./public/dev && NODE_ENV=development webpack serve --config ./webpack.config.cjs #--open-app-name \'Google Chrome\'",',
+      '"webpack DEV": "NODE_ENV=development webpack serve --config ./webpack.config.cjs #--open-app-name \'Google Chrome\'",',
+      '"webpack DEV": "rm -rf ./public/dev && NODE_ENV=development webpack --config ./webpack.config.cjs #--open-app-name \'Google Chrome\'",',
       '"webpack PROD": "NODE_ENV=production webpack --config ./webpack.config.cjs",'
     ],
     // addConfigFile: ['webpack.config.cjs'], // TODO così non funziona
