@@ -171,7 +171,8 @@ echo "module.exports = {\n  \"connector\": {\n    \"name\": \"local\",\n    \"op
 
 ## webpack
 * Non include Postcss
-* `"webpack DEV": "rm -rf ./public/dev && NODE_ENV=development webpack serve --config ./webpack.config.cjs #--open-app-name 'Google Chrome'",`
+* `"webpack DEV": "NODE_ENV=development webpack serve --config ./webpack.config.cjs #--open-app-name 'Google Chrome'",`
+* `"webpack DEV": "rm -rf ./public/dev && NODE_ENV=development webpack --config ./webpack.config.cjs",`
 * `"webpack PROD": "NODE_ENV=production webpack --config ./webpack.config.cjs",`
 ```bash
 npm i -D @babel/core @babel/preset-env babel-loader copy-webpack-plugin css-loader css-minimizer-webpack-plugin dotenv-webpack file-loader html-loader html-webpack-plugin mini-css-extract-plugin mini-svg-data-uri postcss-loader postcss-preset-env style-loader terser-webpack-plugin && npm i -D webpack-cli webpack-dev-server webpack-manifest-plugin webpack
