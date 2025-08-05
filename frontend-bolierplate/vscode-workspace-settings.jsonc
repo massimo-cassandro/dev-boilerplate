@@ -5,6 +5,7 @@
 		}
   ],
   "settings": {
+
     "cssvar.files": [
        "./node_modules/open-props/open-props.min.css",
       "frontend/css/custom-properties-list.css"
@@ -16,6 +17,7 @@
     "cssvar.extensions": [
       "css", "postcss", "jsx", "tsx", "scss"
     ],
+
     "favorites.resources": [
       {
         "filePath": "node_modules/@fontsource-variable",
@@ -30,5 +32,12 @@
         "group": "Default"
       }
     ],
+
+    "bootstrapIntelliSense": {
+      "enable": false,
+      "bsVersion": "5.3.7",
+      "showSuggestions": false,
+      "autoComplete": false
+    }
   }
 }

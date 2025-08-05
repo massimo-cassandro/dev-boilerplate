@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2023",
+    "baseUrl": ".",
+    "module": "ES6",
+    "allowSyntheticDefaultImports": false,
+    "paths": {
+      "@src/*": ["./src/*"]
+    }
+  },
+  "exclude": ["node_modules", "vendor", "dist", "docs", "build", "public"]
+}
+

@@ -4,15 +4,15 @@
   o (se non necessario), direttamente nel file js principale
  */
 
-@import '@src/basic/fonts.css';
+@import '@main/fonts.css';
 /* @import '../node_modules/open-props/open-props.min.css'; */
-@import '@src/basic/custom-properties-figma.css';
-@import '@src/basic/custom-properties.css';
+@import '@main/custom-properties-figma.css';
+@import '@main/custom-properties.css';
 
-@import '@src/basic/reset.css';
+@import '@main/reset.css';
 
-@import '@src/basic/buttons.css';
-@import '@src/basic/text.css';
+@import '@main/buttons.css';
+@import '@main/text.css';
 
 
 @import '@src/layout/layout.css';

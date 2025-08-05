@@ -7,7 +7,7 @@ const source_files = [
   ]
   ,groups_to_skip = ['figma_only']
   // ,openProps_tokens_file = new URL('../../node_modules/open-props/dist/open-props.module.js', import.meta.url).pathname
-  ,dest_file = new URL('../css/custom-properties-figma.css', import.meta.url).pathname
+  ,dest_file = new URL('../src/config/custom-properties-figma.css', import.meta.url).pathname
 ;
 
 /*

@@ -4,7 +4,6 @@
 **/*.mwb.beforefix
 
 node_modules
-bower_components
 vendor
 
 .env
@@ -15,16 +14,5 @@ vendor
 .env.test.local
 .env.production.local
 
-*.sass-cache
-/@files-repo
-/@db-backup
-/pswd
-/**/.vscode/
-*.code-workspace
-*.sketch
-*.ai
-*.psd
-/progetto
-*TODO*.md
-
-
+_private
+public/_dev
