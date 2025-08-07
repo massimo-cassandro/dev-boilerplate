@@ -441,10 +441,10 @@ const config = {
         test: /(\.svg)$/i,
         exclude: favicons_path,
         oneOf: [
-          // svg inline base64 per css (con `?inline-base64`)
+
+          // svg inline dataUri per css (con `?inline-dataURI`)
           {
-            resourceQuery: /inline-base64/,
-            // loader: 'raw-loader',
+            resourceQuery: /inline-dataURI/,
             type: 'asset/inline',
             generator: {
               dataUrl: content => {
@@ -453,11 +453,15 @@ const config = {
               }
             }
           },
+          // svg inline base64 per css (con `?inline-base64`)
+          // {
+          //   resourceQuery: /inline-base64/,
+          //   type: 'asset/inline', // inline as base 64
+          // },
 
           // svg inline (con `?inline`)
           {
             resourceQuery: /inline/,
-            // type: 'asset/inline', // inline as base 64
             type: 'asset/source', // inline as svg
           },
 
