@@ -3,10 +3,11 @@
 **/*.mwb.bak
 **/*.mwb.beforefix
 
-node_modules
 vendor
 
-.env
+# local env
+# .env
+.env.dev
 .env.local
 .env.development
 .env.test
@@ -14,5 +15,7 @@ vendor
 .env.test.local
 .env.production.local
 
+# frontend
+node_modules
 _private
 public/_dev

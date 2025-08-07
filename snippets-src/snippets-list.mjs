@@ -77,8 +77,13 @@ const snippets = [
     snippets: [
       '## upd config file:',
       'mv -f .stylelintrc.cjs stylelint.config.cjs',
-      '## unistall versione prec.:',
-      'npm uninstall @massimo-cassandro/stylelint-config stylelint stylelint-config-css-modules stylelint-config-twbs-bootstrap',
+    ],
+    uninstall: [
+      '@stylistic/stylelint-plugin',
+      'stylelint-config-css-modules',
+      'stylelint-config-twbs-bootstrap',
+      'stylelint',
+      '@massimo-cassandro/stylelint-config'
     ],
     dev_packages: [
       [

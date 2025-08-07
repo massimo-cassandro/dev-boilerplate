@@ -31,7 +31,7 @@ for(const item in jsConfig.compilerOptions.paths) {
 
 // const Dotenv = require('dotenv-webpack');
 const isDevelopment = process.env.NODE_ENV === 'development'
-  // ,output_dir = isDevelopment? 'dev' : 'build'
+  // ,output_dir = isDevelopment? '_dev' : 'build'
   ,favicons_path = /src\/favicons\/output/
 
   // https://medium.com/@technoblogueur/webpack-one-manifest-json-from-multiple-configurations-output-fee48578eb92

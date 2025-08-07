@@ -32,8 +32,14 @@ const __dirname = new URL('.', import.meta.url).pathname
   ,md_code_block = (code, flag='') => code? '```bash\n' + flag + code + '\n```\n\n' : null
 
   ,md_descr_block = (descr_array) => {
-    return (descr_array && descr_array.length)? descr_array
-      .map( i => '* ' + i ).join('\n') : null;
+    return (descr_array && descr_array.length)
+      ? descr_array.map( i => '* ' + i ).join('\n')
+      : null;
+  }
+  ,md_label = (text) => {
+    return text
+      ? `\n**${text}:**\n`
+      : null;
   }
 
   ,makeInstallString = (packageArray, isDev) => {
@@ -62,7 +68,10 @@ const content = snippets_list
     }
 
     if(item.uninstall && item.uninstall.length) {
-      parsed_item.push( md_code_block( 'npm uninstall ' + item.uninstall.join(' ')) );
+      parsed_item.push(
+        md_label('uninstall'),
+        md_code_block( 'npm uninstall ' + item.uninstall.join(' '))
+      );
     }
 
 
@@ -88,7 +97,10 @@ const content = snippets_list
     install_string.push(...temp);
 
     if(install_string.length) {
-      parsed_item.push( md_code_block(install_string.join(' && ')) );
+      parsed_item.push(
+        md_label('install'),
+        md_code_block(install_string.join(' && '))
+      );
     }
 
     (item.addConfigFile??[]).forEach( configFile => {
