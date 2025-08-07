@@ -387,6 +387,23 @@ const config = {
       //   exclude: /node_modules/,
       // },
 
+      // =>> JS libraries (not included in scripts) (?as_asset)
+      {
+        test: /\.js$/,
+        type: 'javascript/auto',
+        resourceQuery: /as_asset/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[contenthash].[ext]',
+              // outputPath: 'imgs/',
+              esModule: false,
+            }
+          }
+        ]
+      },
+
       // =>> rules: JavaScript/JSX
       // Use Babel to transpile JavaScript files
       {
