@@ -239,7 +239,7 @@ npm i -D webpack-remove-empty-scripts
 **install:**
 
 ```bash
-npm i -S @massimo-cassandro/auto-datatables-bs5
+npm i -S @massimo-cassandro/auto-datatables-bs5 datatables.net
 ```
 
 
