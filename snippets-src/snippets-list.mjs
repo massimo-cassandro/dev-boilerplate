@@ -350,7 +350,7 @@ const snippets = [
 
 // =>> @m
 const m = [...[
-  {p: 'auto-datatables-bs5', extra_p: ['datatables.net', 'datatables.net-bs5'], dev: false},
+  {p: 'auto-datatables-bs5', extra_p: ['datatables.net@^1', 'datatables.net-bs5@^1'], dev: false},
   {p: 'autocomplete', dev: false},
   {p: 'ckeditor-utilities', dev: false},
   // {p: 'cookie-consent', dev: false},

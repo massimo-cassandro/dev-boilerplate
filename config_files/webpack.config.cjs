@@ -29,6 +29,27 @@ for(const item in jsConfig.compilerOptions.paths) {
 // console.log(aliases);
 */
 
+// =>> entries obj
+// lettura dei file in admin
+// const entries = {
+//   assicorporate: path.resolve(__dirname, './src/assicorporate.js'),
+//   datatable: path.resolve(__dirname, './src/components/datatable/datatable.js'),
+// };
+// const app_dir = path.resolve(__dirname, './src/app');
+// fs.readdirSync(app_dir)
+//   .forEach(subdir => {
+//     const thisDir = path.join(app_dir, subdir);
+//     const stats = fs.statSync(thisDir); // stats.isFile() / stats.isDirectory()
+//     if(stats.isDirectory()) {
+//       fs.readdirSync(thisDir)
+//         .filter(f => /\.js$/.test(f))
+//         .filter(f => /^[^_]/.test(f)) // ignore files starting with `_`
+//         .forEach(file => {
+//           entries[subdir + '/' + path.basename(file, '.js')] = path.join(thisDir, file);
+//         });
+//     }
+//   });
+
 // const Dotenv = require('dotenv-webpack');
 const isDevelopment = process.env.NODE_ENV === 'development'
   // ,output_dir = isDevelopment? '_dev' : 'build'
@@ -37,6 +58,60 @@ const isDevelopment = process.env.NODE_ENV === 'development'
   // https://medium.com/@technoblogueur/webpack-one-manifest-json-from-multiple-configurations-output-fee48578eb92
   // ,manifest_shared_seed = {};
 ;
+
+
+// =>> css_loaders func
+const css_loaders = (opts) => {
+
+  opts = {...{
+    css_modules: false,
+    inline: false
+  }, ...opts};
+
+  return [
+    (
+      opts.inline? {
+        loader: 'style-loader',
+        options: {
+          injectType: 'singletonStyleTag'
+        }
+      } : MiniCssExtractPlugin.loader
+    ),
+    {
+      loader: 'css-loader',
+      options: {
+        // esModule: false,
+        modules: opts.css_modules ? {
+          auto: true, // /\.module\.scss$/i.test(filename),
+          localIdentName: isDevelopment? '[local]_[hash:base64:6]' : '[hash:base64]', // '[name]__[local]_[hash:base64:5]'
+          // localIdentName: '[local]_[hash:base64:6]'
+        } : false,
+        sourceMap: isDevelopment,
+        importLoaders: isDevelopment? 1 : 2,
+      }
+    },
+    {
+      loader: 'postcss-loader',
+      options: {
+        postcssOptions: {
+          sourceMap: isDevelopment,
+        },
+      },
+    },
+    // {
+    //   loader: 'sass-loader',
+    //   options: {
+    //     sourceMap: isDevelopment,
+    //     // api: 'legacy',
+    //     sassOptions: {
+    //       quietDeps: true,
+    //       silenceDeprecations: ['legacy-js-api', 'mixed-decls', 'color-functions', 'global-builtin', 'import'],
+    //     }
+    //   }
+    // },
+  ];
+}; // end css_loaders func
+
 
 const config = {
   mode: isDevelopment? 'development' : 'production',
@@ -524,70 +599,24 @@ const config = {
       // =>> rules: css/scss modules
       {
         test: /(\.module\.(sass|scss|css))$/,
-        use: [
-          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              // importLoaders: 1,
-              // modules: true,
-              modules: {
-                // esModule: false, // abilita importazione in cjs
-                auto: true, // /\.module\.scss$/i.test(filename),
-                // localIdentName: isDevelopment? '[local]_[hash:base64:6]' : '[hash:base64]' // '[name]__[local]_[hash:base64:5]'
-                localIdentName: '[local]_[hash:base64:6]' // '[name]__[local]_[hash:base64:5]'
-              },
-              sourceMap: isDevelopment
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                sourceMap: isDevelopment
-              },
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: isDevelopment
-            }
-          }
-        ]
-      }, // end css/scss modules
+        use: css_loaders({css_modules: true})
+      },
 
       // =>> rules: css / scss
       {
         test: /\.(sass|scss|css)$/,
-        exclude: /(\.module\.s?(a|c)ss)$/,
-        use: [
-          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-          // MiniCssExtractPlugin.loader, // per uso con scrittura del css anche in dev (commentando riga precedente)
+        exclude: /(\.module\.(sass|scss|css))$/,
+        oneOf: [
           {
-            loader: 'css-loader',
-            options: {
-              sourceMap: isDevelopment,
-              importLoaders: isDevelopment? 1 : 2,
-              modules: false
-            },
+            resourceQuery: /inline/, // foo.css?inline
+            use: css_loaders({inline: true}),
           },
           {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                sourceMap: isDevelopment
-              },
-            },
+            use: css_loaders(),
           },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: isDevelopment
-            }
-          },
-        ],
-      }, // end css / scss
+        ]
+
+      }, // end css/scss
 
     ], // end rules
   }, // end module
