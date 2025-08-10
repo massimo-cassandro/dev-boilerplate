@@ -1,10 +1,12 @@
 /* eslint-env node */
+const { paths } = require('./webpack-src/paths.cjs');
+const { jsConfigAliases } = require('./webpack-src/get-jsconfig-aliases.cjs');
+const { cssPlugins, cssRules } = require('./webpack-src/css-setup.cjs');
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInjectPreload = require('@principalstudio/html-webpack-inject-preload');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const svgToMiniDataURI = require('mini-svg-data-uri');
@@ -12,7 +14,7 @@ const svgToMiniDataURI = require('mini-svg-data-uri');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const {BannerPlugin} = require('webpack');
-const PACKAGE = require('./package.json');
+const PACKAGE = require(paths.packageJson);
 const path = require('path');
 
 /*
@@ -58,59 +60,6 @@ const isDevelopment = process.env.NODE_ENV === 'development'
   // https://medium.com/@technoblogueur/webpack-one-manifest-json-from-multiple-configurations-output-fee48578eb92
   // ,manifest_shared_seed = {};
 ;
-
-
-// =>> css_loaders func
-const css_loaders = (opts) => {
-
-  opts = {...{
-    css_modules: false,
-    inline: false
-  }, ...opts};
-
-  return [
-    (
-      opts.inline? {
-        loader: 'style-loader',
-        options: {
-          injectType: 'singletonStyleTag'
-        }
-      } : MiniCssExtractPlugin.loader
-    ),
-    {
-      loader: 'css-loader',
-      options: {
-        // esModule: false,
-        modules: opts.css_modules ? {
-          auto: true, // /\.module\.scss$/i.test(filename),
-          localIdentName: isDevelopment? '[local]_[hash:base64:6]' : '[hash:base64]', // '[name]__[local]_[hash:base64:5]'
-          // localIdentName: '[local]_[hash:base64:6]'
-        } : false,
-        sourceMap: isDevelopment,
-        importLoaders: isDevelopment? 1 : 2,
-      }
-    },
-    {
-      loader: 'postcss-loader',
-      options: {
-        postcssOptions: {
-          sourceMap: isDevelopment,
-        },
-      },
-    },
-    // {
-    //   loader: 'sass-loader',
-    //   options: {
-    //     sourceMap: isDevelopment,
-    //     // api: 'legacy',
-    //     sassOptions: {
-    //       quietDeps: true,
-    //       silenceDeprecations: ['legacy-js-api', 'mixed-decls', 'color-functions', 'global-builtin', 'import'],
-    //     }
-    //   }
-    // },
-  ];
-}; // end css_loaders func
 
 
 const config = {
@@ -213,6 +162,8 @@ const config = {
   // =>> plugins
   plugins: [
 
+    ...cssPlugins,
+
     // =>> Dotenv
     // richiede `npm install -D dotenv-webpack`
     // new Dotenv({
@@ -243,14 +194,6 @@ const config = {
     //   verbose: true
     // }),
 
-    // =>> MiniCssExtractPlugin
-    // Extracts CSS into separate files
-    new MiniCssExtractPlugin({
-      // filename: isDevelopment? '[name].css' : '[name].[contenthash].css',
-      // chunkFilename: isDevelopment? '[id].css' : '[id].[contenthash].css'
-      filename: '[name].[contenthash].css',
-      chunkFilename: '[id].[contenthash].css'
-    }),
 
     // =>> CopyWebpackPlugin
     new CopyWebpackPlugin({
@@ -280,7 +223,23 @@ const config = {
     // new webpack.HotModuleReplacementPlugin(), (non necessario con devServer.hot === true)
 
     // =>> WebpackManifestPlugin
-    new WebpackManifestPlugin(/* {seed: manifest_shared_seed} */),
+    new WebpackManifestPlugin({
+      seed: manifest_shared_seed,
+      fileName: path.join(paths.output_path, 'manifest.json'),
+      // basePath: item.source_dirname
+      // removeKeyHash: /(^(_assets\/(?!(fonts\/))))|((\?as_asset)$)/,
+      removeKeyHash: /(\?as_asset)$/,
+
+      // rimuove i font dal manifest. Non necessari, rendono il file inutilmente grande
+      filter: isDevelopment? undefined : (FileDescriptor) => {
+        // console.log(FileDescriptor.name);
+        // console.log(FileDescriptor.path);
+        // return /\.(woff2?|eot|ttf|otf)$/.test(FileDescriptor.name)? false : true;
+        return /_fonts/.test(FileDescriptor.path)? false : true;
+      },
+
+      sort: isDevelopment? undefined : (a, b) => a.name.localeCompare(b.name)
+    }),
 
     // =>> HtmlWebpackPlugin
     // https://github.com/jantimon/html-webpack-plugin#readme
@@ -596,27 +555,7 @@ const config = {
         ]
       }, // end fonts
 
-      // =>> rules: css/scss modules
-      {
-        test: /(\.module\.(sass|scss|css))$/,
-        use: css_loaders({css_modules: true})
-      },
-
-      // =>> rules: css / scss
-      {
-        test: /\.(sass|scss|css)$/,
-        exclude: /(\.module\.(sass|scss|css))$/,
-        oneOf: [
-          {
-            resourceQuery: /inline/, // foo.css?inline
-            use: css_loaders({inline: true}),
-          },
-          {
-            use: css_loaders(),
-          },
-        ]
-
-      }, // end css/scss
+      ...cssRules,
 
     ], // end rules
   }, // end module
@@ -629,13 +568,12 @@ const config = {
     },
     modules: ['./', 'node_modules'],
     extensions: ['.tsx', '.ts', '.js', '.mjs', '.cjs', '.jsx', '.json', '.scss', '.css'],
-    alias: {
-      '@': './',
-    },
-    // alias: aliases
+    // alias: {
+    //   '@': './',
+    // },
+    alias: jsConfigAliases
   }
 
 };
-
 
 module.exports = config;
