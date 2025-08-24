@@ -20,7 +20,8 @@ const css_loaders = (opts) => {
             injectType: 'singletonStyleTag'
           }
         }
-        : MiniCssExtractPlugin.loader
+        // : isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader
+        : MiniCssExtractPlugin.loader // per uso con scrittura del css anche in dev (commentando riga precedente)
     ),
     {
       loader: 'css-loader',
