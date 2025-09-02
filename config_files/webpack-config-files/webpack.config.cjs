@@ -101,11 +101,18 @@ const config = {
     minimizer: [
       new CssMinimizerPlugin(),
       new TerserPlugin({
-        // terserOptions: {
-        //   format: {
-        //     comments: false,
-        //   },
-        // },
+        terserOptions: {
+          // https://github.com/terser/terser?tab=readme-ov-file#mangle-options
+          // mangle: {
+          //   reserved: [],
+          //   properties: {
+          //     keep_quoted: 'strict'
+          //   }
+          // },
+          output: {
+            comments: /^!/,
+          },
+        },
         extractComments: false,
       }),
     ],

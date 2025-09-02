@@ -73,7 +73,7 @@ npm i -D eslint@^9 @eslint/js globals && npm i -D @massimo-cassandro/eslint-conf
 *eslint.config.mjs*:
 
 ```bash
-echo "import eslint_config from '@massimo-cassandro/eslint-config';\n\nexport default [\n  ...eslint_config,\n  // {\n  //   files: ['src/**/*.js'],\n  //   ignores: [\n  //     'dist/',\n  //     'build/',\n  //     '**/vendor/'\n  //   ],\n  // }\n];\n" > eslint.config.mjs
+echo "import eslint_config from '@massimo-cassandro/eslint-config';\n\nexport default [\n  ...eslint_config,\n  // {\n  //   files: ['src/**/*.js'],\n  //   ignores: [\n  //     'dist/',\n  //     'build/',\n  //     '**/vendor/'\n  //   ],\n  // }\n  // {\n  //   languageOptions: {\n  //     globals: {\n  //       jQuery: 'readonly',\n  //       $: 'readonly',\n  //     },\n  //   },\n  // },\n];\n" > eslint.config.mjs
 ```
 
 
@@ -186,7 +186,7 @@ npm i -D @stylistic/stylelint-plugin stylelint-config-css-modules stylelint-conf
 *stylelint.config.cjs*:
 
 ```bash
-echo "/* eslint-env node */\n\nmodule.exports = {\n  extends: ['@massimo-cassandro/stylelint-config'],\n  ignoreFiles: ['node_modules/**/*.{css,scss}', 'dist/**/*.css', 'build/**/*.css', 'public/**/*.css', 'test/**/*.css'],\n\n  // tailwind\n  // 'rules': {\n  //   'value-keyword-case': null,\n  //   '@stylistic/number-no-trailing-zeros': null\n  // }\n};\n" > stylelint.config.cjs
+echo "/* eslint-env node */\n\nmodule.exports = {\n  extends: [\n    '@massimo-cassandro/stylelint-config',\n    // 'stylelint-config-css-modules'\n  ],\n  ignoreFiles: [\n    'node_modules/**/*.{css,scss}',\n    'vendor/**/*.{css,scss}',\n    'templates/**/*.{css,scss}',\n    'dist/**/*.css',\n    'build/**/*.css',\n    'public/**/*.css',\n    'test/**/*.css'\n  ],\n\n  // tailwind\n  // 'rules': {\n  //   'value-keyword-case': null,\n  //   '@stylistic/number-no-trailing-zeros': null\n  // }\n};\n" > stylelint.config.cjs
 ```
 
 

@@ -10,4 +10,12 @@ export default [
   //     '**/vendor/'
   //   ],
   // }
+  // {
+  //   languageOptions: {
+  //     globals: {
+  //       jQuery: 'readonly',
+  //       $: 'readonly',
+  //     },
+  //   },
+  // },
 ];

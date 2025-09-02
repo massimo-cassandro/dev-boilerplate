@@ -1,7 +1,10 @@
 /* eslint-env node */
 
 module.exports = {
-  extends: ['@massimo-cassandro/stylelint-config'],
+  extends: [
+    '@massimo-cassandro/stylelint-config',
+    // 'stylelint-config-css-modules'
+  ],
   ignoreFiles: [
     'node_modules/**/*.{css,scss}',
     'vendor/**/*.{css,scss}',
