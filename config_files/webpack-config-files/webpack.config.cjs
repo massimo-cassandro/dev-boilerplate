@@ -252,31 +252,31 @@ const config = {
     rules: [
 
       // =>> rules: html files
-      // {
-      // test: /(\.html?)$/i,
-      //   oneOf: [
+      {
+      test: /(\.html?)$/i,
+        oneOf: [
 
-      //     // copy files to output folder
-      //     {
-      //       type: 'javascript/auto',
-      //       resourceQuery: /as_asset/,
-      //       use: [
-      //         {
-      //           loader: 'file-loader',
-      //           options: {
-      //             name: '[name].[contenthash].[ext]',
-      //             // outputPath: 'imgs/',
-      //             esModule: false,
-      //           }
-      //         }
-      //       ]
-      //     },
-      //     // get html content
-      //     {
-      //       loader: 'html-loader'
-      //     },
-      //   ]
-      // }, // end html files
+          // copy files to output folder
+          {
+            type: 'javascript/auto',
+            resourceQuery: /as_asset/,
+            use: [
+              {
+                loader: 'file-loader',
+                options: {
+                  name: '[name].[contenthash].[ext]',
+                  // outputPath: 'imgs/',
+                  esModule: false,
+                }
+              }
+            ]
+          },
+          // get html content
+          {
+            loader: 'html-loader'
+          },
+        ]
+      }, // end html files
 
       // =>> rules: plain text
       // {
