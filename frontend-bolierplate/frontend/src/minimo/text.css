@@ -1,3 +1,4 @@
+/* stylelint-disable declaration-no-important */
 p {
   margin: 0 0 var(--spacing-sm);
 }
@@ -31,40 +32,7 @@ a, .btn-link {
   }
 }
 
-h2, h3, .h3, h4, .h4 {
-  font-weight: var(--font-weight-semibold);
-  line-height: 1.2;
-  text-align: center;
-}
 
-h2 {
-  margin: 0 0 2.5rem;
-  font-size: 3rem;
-}
-
-h3, .h3 {
-  margin: 0 0 1.5rem;
-  font-size: 2rem;
-}
-h4, .h4 {
-  margin: 0 0 1.5rem;
-  font-size: 1.6rem;
-}
-
-
-/* da bootstrap */
-/* stylelint-disable declaration-no-important */
-
-.visually-hidden {
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-}
 
 strong, b {
   font-weight: 700;
@@ -74,9 +42,21 @@ em, .italic {
 }
 
 .text-center {
-  text-align: center;
+  text-align: center !important;
+}
+.text-right, .text-end {
+  text-align: end !important;
 }
 .text-nowrap {
+  white-space: nowrap;
+}
+
+.text-monospace {
+  font-family: var(--font-family-mono);
+}
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -92,8 +72,14 @@ em, .italic {
 .xsmall {
   font-size: var(--font-size-xs);
 }
-small, .small, .sm {
+small, .small, .text-sm {
   font-size: var(--font-size-sm);
+}
+.text-md {
+  font-size: var(--font-size-md);
+}
+.text-medium-sm {
+  font-size: var(--font-size-medium-sm);
 }
 
 .text-muted {
@@ -106,4 +92,17 @@ ul {
 }
 li {
   margin-left: 1.5rem;
+}
+
+.text-danger {
+  color: var(--status-danger-color);
+}
+.text-warning {
+  color: var(--status-warning-color);
+}
+.text-info {
+  color: var(--status-info-color);
+}
+.text-success {
+  color: var(--status-success-color);
 }

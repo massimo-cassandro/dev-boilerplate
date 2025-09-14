@@ -4,7 +4,16 @@ https://projects.lukehaas.me/css-loaders/
 <div class="loader-wrapper"><div class="loader">Loading...</div></div>
 */
 
-.loader-wrapper {
+.spinner-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-index-overlay);
+  display: grid;
+  place-content: center;
+  background-color: color-mix(in srgb, var(--text-color) 20%, transparent);
+}
+
+.spinner-wrapper {
   position: absolute;
   top: 1rem;
   left: 50%;
@@ -15,7 +24,7 @@ https://projects.lukehaas.me/css-loaders/
   translate: -50%;
 }
 
-.loader {
+.spinner {
   position: relative;
   width: 1em;
   height: 1em;
