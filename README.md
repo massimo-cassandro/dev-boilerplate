@@ -93,7 +93,7 @@ npm i -D @principalstudio/html-webpack-inject-preload
 *jsconfig.json*:
 
 ```bash
-echo "{\n  \"__help\": \"https://code.visualstudio.com/docs/languages/jsconfig\",\n  \"compilerOptions\": {\n    \"target\": \"es2023\",\n    \"baseUrl\": \".\",\n    \"module\": \"ES6\",\n    \"allowSyntheticDefaultImports\": false,\n    \"paths\": {\n\n      \"@apps/*\": [\"./apps/*\"],\n      \"@js/*\": [\"./js/*\"],\n      \"@scss/*\": [\"./scss/*\"],\n      \"@src/*\": [\"./src/*\"]\n    }\n  },\n  \"exclude\": [\"node_modules\", \"dist\", \"docs\", \"build\"]\n}\n" > jsconfig.json
+echo "{\n  \"__help\": \"https://code.visualstudio.com/docs/languages/jsconfig\",\n  \"compilerOptions\": {\n    \"target\": \"es2023\",\n    \"baseUrl\": \".\",\n    \"module\": \"ES6\",\n    \"allowSyntheticDefaultImports\": false,\n    \"paths\": {\n\n      \"@apps/*\": [\"./apps/*\"],\n      \"@css/*\": [\"./frontend/css/*\"],\n      \"@src/*\": [\"./frontend/src/*\"],\n      \"@minimo/*\": [\"./frontend/minimo/*\"],\n    }\n  },\n  \"exclude\": [\"node_modules\", \"dist\", \"docs\", \"build\"]\n}\n" > jsconfig.json
 ```
 
 

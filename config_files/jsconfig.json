@@ -8,9 +8,9 @@
     "paths": {
 
       "@apps/*": ["./apps/*"],
-      "@js/*": ["./js/*"],
-      "@scss/*": ["./scss/*"],
-      "@src/*": ["./src/*"]
+      "@css/*": ["./frontend/css/*"],
+      "@src/*": ["./frontend/src/*"],
+      "@minimo/*": ["./frontend/minimo/*"],
     }
   },
   "exclude": ["node_modules", "dist", "docs", "build"]
